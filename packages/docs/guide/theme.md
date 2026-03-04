@@ -14,6 +14,9 @@ const theme = {
     success, successLight, warning, warningLight,
     error, errorLight,
     border, borderFocus, divider, overlay, transparent,
+    codeBackground, highlight, link,
+    ratingActive, ratingInactive,
+    segmentedBackground, segmentedActiveBackground,
   },
   spacing: {
     '0': 0, xs: 4, s: 8, m: 16, l: 24, xl: 32, xxl: 48,
@@ -41,7 +44,13 @@ const theme = {
 | `textPrimary` | 主要文字 |
 | `primary` | 主色调 |
 | `error` | 错误色 |
-| ... | ... |
+| `codeBackground` | 代码背景色 |
+| `highlight` | 高亮背景色 |
+| `link` | 链接文字色 |
+| `ratingActive` | 评分激活色 |
+| `ratingInactive` | 评分未激活色 |
+| `segmentedBackground` | 分段控制器背景 |
+| `segmentedActiveBackground` | 分段控制器激活背景 |
 
 ## 间距
 

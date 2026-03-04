@@ -21,12 +21,39 @@ export type {CenterProps} from './components/Center';
 export {default as Divider} from './components/Divider';
 export type {DividerProps} from './components/Divider';
 
+export {default as AspectRatio} from './components/AspectRatio';
+export type {AspectRatioProps} from './components/AspectRatio';
+
+export {default as Grid} from './components/Grid';
+export type {GridProps} from './components/Grid';
+
+export {default as Group} from './components/Group';
+export type {GroupProps} from './components/Group';
+
+export {default as ScrollArea} from './components/ScrollArea';
+export type {ScrollAreaProps} from './components/ScrollArea';
+
+export {default as Separator} from './components/Separator';
+export type {SeparatorProps} from './components/Separator';
+
 // 排版组件
 export {default as Text} from './components/Text';
 export type {TextProps} from './components/Text';
 
 export {default as Heading} from './components/Heading';
 export type {HeadingProps} from './components/Heading';
+
+export {default as Code} from './components/Code';
+export type {CodeProps} from './components/Code';
+
+export {default as Highlight} from './components/Highlight';
+export type {HighlightProps} from './components/Highlight';
+
+export {default as Link} from './components/Link';
+export type {LinkProps} from './components/Link';
+
+export {default as List, ListItem} from './components/List';
+export type {ListProps, ListItemProps} from './components/List';
 
 // 表单组件
 export {default as Button} from './components/Button';
@@ -37,6 +64,30 @@ export type {InputProps} from './components/Input';
 
 export {default as Switch} from './components/Switch';
 export type {SwitchProps} from './components/Switch';
+
+export {default as Checkbox} from './components/Checkbox';
+export type {CheckboxProps} from './components/Checkbox';
+
+export {default as NumberInput} from './components/NumberInput';
+export type {NumberInputProps} from './components/NumberInput';
+
+export {default as PasswordInput} from './components/PasswordInput';
+export type {PasswordInputProps} from './components/PasswordInput';
+
+export {default as PinInput} from './components/PinInput';
+export type {PinInputProps} from './components/PinInput';
+
+export {default as Radio, RadioGroup} from './components/Radio';
+export type {RadioProps, RadioGroupProps} from './components/Radio';
+
+export {default as Rating} from './components/Rating';
+export type {RatingProps} from './components/Rating';
+
+export {default as SegmentedControl} from './components/SegmentedControl';
+export type {SegmentedControlProps, Segment} from './components/SegmentedControl';
+
+export {default as Textarea} from './components/Textarea';
+export type {TextareaProps} from './components/Textarea';
 
 // 数据展示组件
 export {default as Badge} from './components/Badge';

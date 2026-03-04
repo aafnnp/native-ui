@@ -25,6 +25,11 @@ export default defineConfig({
           {text: 'Stack', link: '/guide/components/stack'},
           {text: 'Center', link: '/guide/components/center'},
           {text: 'Divider', link: '/guide/components/divider'},
+          {text: 'AspectRatio', link: '/guide/components/aspect-ratio'},
+          {text: 'Grid', link: '/guide/components/grid'},
+          {text: 'Group', link: '/guide/components/group'},
+          {text: 'ScrollArea', link: '/guide/components/scroll-area'},
+          {text: 'Separator', link: '/guide/components/separator'},
         ],
       },
       {
@@ -32,6 +37,10 @@ export default defineConfig({
         items: [
           {text: 'Text', link: '/guide/components/text'},
           {text: 'Heading', link: '/guide/components/heading'},
+          {text: 'Code', link: '/guide/components/code'},
+          {text: 'Highlight', link: '/guide/components/highlight'},
+          {text: 'Link', link: '/guide/components/link'},
+          {text: 'List', link: '/guide/components/list'},
         ],
       },
       {
@@ -40,6 +49,14 @@ export default defineConfig({
           {text: 'Button', link: '/guide/components/button'},
           {text: 'Input', link: '/guide/components/input'},
           {text: 'Switch', link: '/guide/components/switch'},
+          {text: 'Checkbox', link: '/guide/components/checkbox'},
+          {text: 'Radio', link: '/guide/components/radio'},
+          {text: 'Textarea', link: '/guide/components/textarea'},
+          {text: 'NumberInput', link: '/guide/components/number-input'},
+          {text: 'PasswordInput', link: '/guide/components/password-input'},
+          {text: 'PinInput', link: '/guide/components/pin-input'},
+          {text: 'Rating', link: '/guide/components/rating'},
+          {text: 'SegmentedControl', link: '/guide/components/segmented-control'},
         ],
       },
       {

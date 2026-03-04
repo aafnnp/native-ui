@@ -46,6 +46,23 @@ const theme = createTheme({
     // 遮罩
     overlay: "rgba(0, 0, 0, 0.4)" as string,
 
+    // 代码背景
+    codeBackground: palette.gray100,
+
+    // 高亮背景
+    highlight: '#FEFCBF',
+
+    // 链接
+    link: palette.primary500,
+
+    // 评分
+    ratingActive: palette.warning400,
+    ratingInactive: palette.gray200,
+
+    // 分段控制器
+    segmentedBackground: palette.gray100,
+    segmentedActiveBackground: palette.white,
+
     // 透明
     transparent: palette.transparent,
   },

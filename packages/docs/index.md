@@ -17,5 +17,5 @@ features:
   - title: 主题驱动
     details: 通过 @shopify/restyle 实现主题化，支持亮色/暗色模式切换
   - title: 开箱即用
-    details: 15+ 常用组件，覆盖布局、排版、表单、数据展示、反馈等场景
+    details: 30+ 常用组件，覆盖布局、排版、表单、数据展示、反馈等场景
 ---

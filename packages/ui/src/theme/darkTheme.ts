@@ -39,6 +39,14 @@ const darkTheme = createTheme<Theme>({
 
     overlay: 'rgba(0, 0, 0, 0.6)',
 
+    codeBackground: palette.gray700,
+    highlight: '#744210',
+    link: palette.primary300,
+    ratingActive: palette.warning300,
+    ratingInactive: palette.gray600,
+    segmentedBackground: palette.gray700,
+    segmentedActiveBackground: palette.gray600,
+
     transparent: palette.transparent,
   },
 
@@ -186,7 +194,7 @@ const darkTheme = createTheme<Theme>({
       borderBottomWidth: 1,
       borderColor: 'border',
       borderRadius: 'none',
-      paddingHorizontal: 0,
+      paddingHorizontal: '0',
     },
   },
 
