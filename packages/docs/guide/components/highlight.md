@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Highlight } from 'native-ui';
+import { Highlight } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -24,8 +24,8 @@ import { Highlight } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| children | `string` | - | 原始文本（必填） |
-| query | `string \| string[]` | - | 要高亮的关键词（必填） |
-| ...TextProps | - | - | 继承 Text 属性 |
+| 属性         | 类型                 | 默认值 | 说明                   |
+| ------------ | -------------------- | ------ | ---------------------- |
+| children     | `string`             | -      | 原始文本（必填）       |
+| query        | `string \| string[]` | -      | 要高亮的关键词（必填） |
+| ...TextProps | -                    | -      | 继承 Text 属性         |
