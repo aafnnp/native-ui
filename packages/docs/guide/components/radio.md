@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Radio, RadioGroup } from 'native-ui';
+import { Radio, RadioGroup } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -34,19 +34,19 @@ const [value, setValue] = useState('apple');
 
 ## RadioGroup Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| value | `string` | - | 当前选中值 |
-| onChange | `(value: string) => void` | - | 选中值变更回调 |
-| direction | `'row' \| 'column'` | `'column'` | 排列方向 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                      | 默认值     | 说明           |
+| ----------- | ------------------------- | ---------- | -------------- |
+| value       | `string`                  | -          | 当前选中值     |
+| onChange    | `(value: string) => void` | -          | 选中值变更回调 |
+| direction   | `'row' \| 'column'`       | `'column'` | 排列方向       |
+| size        | `'sm' \| 'md' \| 'lg'`    | `'md'`     | 尺寸           |
+| ...BoxProps | -                         | -          | 继承 Box 属性  |
 
 ## Radio Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| value | `string` | - | 选项值（必填） |
-| label | `string` | - | 标签文字 |
-| isDisabled | `boolean` | `false` | 是否禁用 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型      | 默认值  | 说明           |
+| ----------- | --------- | ------- | -------------- |
+| value       | `string`  | -       | 选项值（必填） |
+| label       | `string`  | -       | 标签文字       |
+| isDisabled  | `boolean` | `false` | 是否禁用       |
+| ...BoxProps | -         | -       | 继承 Box 属性  |

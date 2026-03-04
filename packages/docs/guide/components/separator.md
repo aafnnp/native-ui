@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Separator } from 'native-ui';
+import { Separator } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -27,9 +27,9 @@ import { Separator } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | 分隔线方向 |
-| label | `string` | - | 中间标签文字（仅水平方向） |
-| thickness | `number` | `1` | 分隔线粗细 |
-| ...BoxProps | - | - | 继承 Box 属性（不含 height、width） |
+| 属性        | 类型                         | 默认值         | 说明                                |
+| ----------- | ---------------------------- | -------------- | ----------------------------------- |
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | 分隔线方向                          |
+| label       | `string`                     | -              | 中间标签文字（仅水平方向）          |
+| thickness   | `number`                     | `1`            | 分隔线粗细                          |
+| ...BoxProps | -                            | -              | 继承 Box 属性（不含 height、width） |

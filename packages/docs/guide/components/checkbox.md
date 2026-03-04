@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Checkbox } from 'native-ui';
+import { Checkbox } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -30,11 +30,11 @@ const [checked, setChecked] = useState(false);
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| isChecked | `boolean` | `false` | 是否选中 |
-| onChange | `(checked: boolean) => void` | - | 选中状态变更回调 |
-| label | `string` | - | 标签文字 |
-| isDisabled | `boolean` | `false` | 是否禁用 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                         | 默认值  | 说明             |
+| ----------- | ---------------------------- | ------- | ---------------- |
+| isChecked   | `boolean`                    | `false` | 是否选中         |
+| onChange    | `(checked: boolean) => void` | -       | 选中状态变更回调 |
+| label       | `string`                     | -       | 标签文字         |
+| isDisabled  | `boolean`                    | `false` | 是否禁用         |
+| size        | `'sm' \| 'md' \| 'lg'`       | `'md'`  | 尺寸             |
+| ...BoxProps | -                            | -       | 继承 Box 属性    |

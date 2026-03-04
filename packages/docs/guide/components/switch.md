@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Switch } from 'native-ui';
+import { Switch } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -37,13 +37,13 @@ import { Switch } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| label | `string` | - | 标签文字 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| isDisabled | `boolean` | `false` | 是否禁用 |
-| onLabel | `string` | - | 开启状态文字 |
-| offLabel | `string` | - | 关闭状态文字 |
-| value | `boolean` | - | 开关状态 |
-| onValueChange | `(value: boolean) => void` | - | 状态变化回调 |
-| containerProps | `BoxProps` | - | 容器 Box 属性 |
+| 属性           | 类型                       | 默认值  | 说明          |
+| -------------- | -------------------------- | ------- | ------------- |
+| label          | `string`                   | -       | 标签文字      |
+| size           | `'sm' \| 'md' \| 'lg'`     | `'md'`  | 尺寸          |
+| isDisabled     | `boolean`                  | `false` | 是否禁用      |
+| onLabel        | `string`                   | -       | 开启状态文字  |
+| offLabel       | `string`                   | -       | 关闭状态文字  |
+| value          | `boolean`                  | -       | 开关状态      |
+| onValueChange  | `(value: boolean) => void` | -       | 状态变化回调  |
+| containerProps | `BoxProps`                 | -       | 容器 Box 属性 |

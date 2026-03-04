@@ -1,2 +1,3 @@
-# native-ui
+# kra-ui
+
 react-native ui components

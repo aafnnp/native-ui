@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Grid } from 'native-ui';
+import { Grid } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -35,8 +35,8 @@ import { Grid } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| columns | `number` | `2` | 列数 |
-| spacing | `keyof Theme['spacing']` | `'s'` | 网格间距 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                     | 默认值 | 说明          |
+| ----------- | ------------------------ | ------ | ------------- |
+| columns     | `number`                 | `2`    | 列数          |
+| spacing     | `keyof Theme['spacing']` | `'s'`  | 网格间距      |
+| ...BoxProps | -                        | -      | 继承 Box 属性 |

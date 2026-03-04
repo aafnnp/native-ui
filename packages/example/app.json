@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "NativeUI Example",
-    "slug": "native-ui-example",
+    "slug": "kra-ui-example",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "native-ui-example",
+    "scheme": "kra-ui-example",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Button } from 'native-ui';
+import { Button } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -19,11 +19,11 @@ import { Button } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| label | `string` | - | 按钮文字（必填） |
-| variant | `'filled' \| 'outline' \| 'ghost' \| 'danger'` | `'filled'` | 按钮变体 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 按钮尺寸 |
-| loading | `boolean` | `false` | 加载状态 |
-| disabled | `boolean` | `false` | 禁用状态 |
-| onPress | `() => void` | - | 点击回调 |
+| 属性     | 类型                                           | 默认值     | 说明             |
+| -------- | ---------------------------------------------- | ---------- | ---------------- |
+| label    | `string`                                       | -          | 按钮文字（必填） |
+| variant  | `'filled' \| 'outline' \| 'ghost' \| 'danger'` | `'filled'` | 按钮变体         |
+| size     | `'sm' \| 'md' \| 'lg'`                         | `'md'`     | 按钮尺寸         |
+| loading  | `boolean`                                      | `false`    | 加载状态         |
+| disabled | `boolean`                                      | `false`    | 禁用状态         |
+| onPress  | `() => void`                                   | -          | 点击回调         |

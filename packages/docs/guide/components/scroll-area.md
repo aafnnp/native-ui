@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { ScrollArea } from 'native-ui';
+import { ScrollArea } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -32,9 +32,9 @@ import { ScrollArea } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| direction | `'horizontal' \| 'vertical'` | `'vertical'` | 滚动方向 |
-| showsScrollIndicator | `boolean` | `true` | 是否显示滚动条 |
-| scrollViewProps | `ScrollViewProps` | - | 透传给 ScrollView 的属性 |
-| ...BoxProps | - | - | 继承 Box 属性（控制外层尺寸） |
+| 属性                 | 类型                         | 默认值       | 说明                          |
+| -------------------- | ---------------------------- | ------------ | ----------------------------- |
+| direction            | `'horizontal' \| 'vertical'` | `'vertical'` | 滚动方向                      |
+| showsScrollIndicator | `boolean`                    | `true`       | 是否显示滚动条                |
+| scrollViewProps      | `ScrollViewProps`            | -            | 透传给 ScrollView 的属性      |
+| ...BoxProps          | -                            | -            | 继承 Box 属性（控制外层尺寸） |

@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { PasswordInput } from 'native-ui';
+import { PasswordInput } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -28,7 +28,7 @@ const [password, setPassword] = useState('');
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| visibilityToggle | `boolean` | `true` | 是否显示可见性切换按钮 |
-| ...InputProps | - | - | 继承 Input 组件所有属性 |
+| 属性             | 类型      | 默认值 | 说明                    |
+| ---------------- | --------- | ------ | ----------------------- |
+| visibilityToggle | `boolean` | `true` | 是否显示可见性切换按钮  |
+| ...InputProps    | -         | -      | 继承 Input 组件所有属性 |

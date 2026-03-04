@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Rating } from 'native-ui';
+import { Rating } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -29,11 +29,11 @@ const [score, setScore] = useState(3);
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| value | `number` | `0` | 当前评分值 |
-| onChange | `(value: number) => void` | - | 评分变更回调 |
-| count | `number` | `5` | 星星数量 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| readonly | `boolean` | `false` | 是否只读 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                      | 默认值  | 说明          |
+| ----------- | ------------------------- | ------- | ------------- |
+| value       | `number`                  | `0`     | 当前评分值    |
+| onChange    | `(value: number) => void` | -       | 评分变更回调  |
+| count       | `number`                  | `5`     | 星星数量      |
+| size        | `'sm' \| 'md' \| 'lg'`    | `'md'`  | 尺寸          |
+| readonly    | `boolean`                 | `false` | 是否只读      |
+| ...BoxProps | -                         | -       | 继承 Box 属性 |

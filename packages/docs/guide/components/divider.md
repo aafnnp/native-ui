@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Divider } from 'native-ui';
+import { Divider } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -27,8 +27,8 @@ import { Divider } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | 分割线方向 |
-| thickness | `number` | `1` | 分割线粗细（像素） |
-| ...BoxProps | - | - | 继承 Box 属性（不含 height、width） |
+| 属性        | 类型                         | 默认值         | 说明                                |
+| ----------- | ---------------------------- | -------------- | ----------------------------------- |
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | 分割线方向                          |
+| thickness   | `number`                     | `1`            | 分割线粗细（像素）                  |
+| ...BoxProps | -                            | -              | 继承 Box 属性（不含 height、width） |

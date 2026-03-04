@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { AspectRatio } from 'native-ui';
+import { AspectRatio } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -26,7 +26,7 @@ import { AspectRatio } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| ratio | `number` | `1` | 宽高比 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型     | 默认值 | 说明          |
+| ----------- | -------- | ------ | ------------- |
+| ratio       | `number` | `1`    | 宽高比        |
+| ...BoxProps | -        | -      | 继承 Box 属性 |

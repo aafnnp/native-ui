@@ -3,13 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "native-ui": [
-        "../ui/src"
-      ]
+      "kra-ui": ["../ui/src"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

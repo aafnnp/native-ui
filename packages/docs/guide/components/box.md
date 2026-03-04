@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Box } from 'native-ui';
+import { Box } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -18,6 +18,6 @@ import { Box } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 说明 |
-|------|------|------|
-| 所有 BoxProps | - | 继承 Restyle 的 BoxProps，包括 `backgroundColor`、`padding`、`margin`、`border`、`shadow`、`position`、`flex` 等布局属性 |
+| 属性          | 类型 | 说明                                                                                                                     |
+| ------------- | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| 所有 BoxProps | -    | 继承 Restyle 的 BoxProps，包括 `backgroundColor`、`padding`、`margin`、`border`、`shadow`、`position`、`flex` 等布局属性 |

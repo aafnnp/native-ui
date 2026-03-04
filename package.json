@@ -1,11 +1,11 @@
 {
-  "name": "native-ui",
+  "name": "kra-ui",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter native-ui build",
-    "dev:example": "pnpm --filter native-ui-example start",
-    "dev:docs": "pnpm --filter native-ui-docs dev",
-    "build:docs": "pnpm --filter native-ui-docs build",
+    "build": "pnpm --filter kra-ui build",
+    "dev:example": "pnpm --filter kra-ui-example start",
+    "dev:docs": "pnpm --filter kra-ui-docs dev",
+    "build:docs": "pnpm --filter kra-ui-docs build",
     "lint": "pnpm -r lint",
     "clean": "pnpm -r clean",
     "changeset": "changeset",

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {ScrollView, SafeAreaView, StatusBar} from 'react-native';
+import React, { useState } from "react"
+import { ScrollView, SafeAreaView, StatusBar } from "react-native"
 import {
   Box,
   Text,
@@ -35,50 +35,66 @@ import {
   Rating,
   SegmentedControl,
   Textarea,
-} from 'native-ui';
+} from "kra-ui"
 
 /** 各组件分区展示 */
-function Section({title, children}: {title: string; children: React.ReactNode}) {
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Box marginBottom="l">
-      <Heading size="h4" marginBottom="s">
+      <Heading
+        size="h4"
+        marginBottom="s"
+      >
         {title}
       </Heading>
       {children}
     </Box>
-  );
+  )
 }
 
 export default function HomeScreen() {
-  const {colorMode, toggleColorMode} = useColorMode();
-  const [inputValue, setInputValue] = useState('');
-  const [switchValue, setSwitchValue] = useState(false);
-  const [checkboxValue, setCheckboxValue] = useState(false);
-  const [radioValue, setRadioValue] = useState('apple');
-  const [ratingValue, setRatingValue] = useState(3);
-  const [numberValue, setNumberValue] = useState(5);
-  const [passwordValue, setPasswordValue] = useState('');
-  const [pinValue, setPinValue] = useState('');
-  const [segmentValue, setSegmentValue] = useState('all');
-  const [textareaValue, setTextareaValue] = useState('');
+  const { colorMode, toggleColorMode } = useColorMode()
+  const [inputValue, setInputValue] = useState("")
+  const [switchValue, setSwitchValue] = useState(false)
+  const [checkboxValue, setCheckboxValue] = useState(false)
+  const [radioValue, setRadioValue] = useState("apple")
+  const [ratingValue, setRatingValue] = useState(3)
+  const [numberValue, setNumberValue] = useState(5)
+  const [passwordValue, setPasswordValue] = useState("")
+  const [pinValue, setPinValue] = useState("")
+  const [segmentValue, setSegmentValue] = useState("all")
+  const [textareaValue, setTextareaValue] = useState("")
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={colorMode === 'dark' ? 'light-content' : 'dark-content'} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar barStyle={colorMode === "dark" ? "light-content" : "dark-content"} />
       <ScrollView>
-        <Box padding="m" backgroundColor="mainBackground" flex={1}>
+        <Box
+          padding="m"
+          backgroundColor="mainBackground"
+          flex={1}
+        >
           {/* 标题 */}
-          <HStack space="s" marginBottom="m" alignItems="center" justifyContent="space-between">
+          <HStack
+            space="s"
+            marginBottom="m"
+            alignItems="center"
+            justifyContent="space-between"
+          >
             <Heading size="h2">NativeUI</Heading>
             <Button
-              label={colorMode === 'light' ? '暗色' : '亮色'}
+              label={colorMode === "light" ? "暗色" : "亮色"}
               variant="outline"
               size="sm"
               onPress={toggleColorMode}
             />
           </HStack>
 
-          <Text variant="body" color="textSecondary" marginBottom="l">
+          <Text
+            variant="body"
+            color="textSecondary"
+            marginBottom="l"
+          >
             基于 @shopify/restyle 的 React Native 组件库
           </Text>
 
@@ -103,7 +119,7 @@ export default function HomeScreen() {
           <Section title="行内代码 Code">
             <VStack space="s">
               <Code>const x = 42;</Code>
-              <Code>npm install native-ui</Code>
+              <Code>npm install kra-ui</Code>
             </VStack>
           </Section>
 
@@ -112,12 +128,8 @@ export default function HomeScreen() {
           {/* Highlight 高亮 */}
           <Section title="高亮 Highlight">
             <VStack space="s">
-              <Highlight query="React">
-                React Native 是基于 React 的移动端框架
-              </Highlight>
-              <Highlight query={['组件', '主题']}>
-                NativeUI 提供丰富的组件和主题系统
-              </Highlight>
+              <Highlight query="React">React Native 是基于 React 的移动端框架</Highlight>
+              <Highlight query={["组件", "主题"]}>NativeUI 提供丰富的组件和主题系统</Highlight>
             </VStack>
           </Section>
 
@@ -135,14 +147,28 @@ export default function HomeScreen() {
 
           {/* List 列表 */}
           <Section title="列表 List">
-            <Text variant="label" marginBottom="xs">无序列表</Text>
+            <Text
+              variant="label"
+              marginBottom="xs"
+            >
+              无序列表
+            </Text>
             <List>
               <Text>安装依赖</Text>
               <Text>配置主题</Text>
               <Text>使用组件</Text>
             </List>
-            <Text variant="label" marginTop="s" marginBottom="xs">有序列表</Text>
-            <List type="ordered" spacing="s">
+            <Text
+              variant="label"
+              marginTop="s"
+              marginBottom="xs"
+            >
+              有序列表
+            </Text>
+            <List
+              type="ordered"
+              spacing="s"
+            >
               <Text>第一步：初始化项目</Text>
               <Text>第二步：添加 Provider</Text>
               <Text>第三步：引入组件</Text>
@@ -155,19 +181,63 @@ export default function HomeScreen() {
           <Section title="按钮 Button">
             <VStack space="s">
               <HStack space="s">
-                <Button label="Filled" variant="filled" size="md" onPress={() => {}} />
-                <Button label="Outline" variant="outline" size="md" onPress={() => {}} />
-                <Button label="Ghost" variant="ghost" size="md" onPress={() => {}} />
+                <Button
+                  label="Filled"
+                  variant="filled"
+                  size="md"
+                  onPress={() => {}}
+                />
+                <Button
+                  label="Outline"
+                  variant="outline"
+                  size="md"
+                  onPress={() => {}}
+                />
+                <Button
+                  label="Ghost"
+                  variant="ghost"
+                  size="md"
+                  onPress={() => {}}
+                />
               </HStack>
               <HStack space="s">
-                <Button label="Small" variant="filled" size="sm" onPress={() => {}} />
-                <Button label="Medium" variant="filled" size="md" onPress={() => {}} />
-                <Button label="Large" variant="filled" size="lg" onPress={() => {}} />
+                <Button
+                  label="Small"
+                  variant="filled"
+                  size="sm"
+                  onPress={() => {}}
+                />
+                <Button
+                  label="Medium"
+                  variant="filled"
+                  size="md"
+                  onPress={() => {}}
+                />
+                <Button
+                  label="Large"
+                  variant="filled"
+                  size="lg"
+                  onPress={() => {}}
+                />
               </HStack>
               <HStack space="s">
-                <Button label="加载中..." variant="filled" loading onPress={() => {}} />
-                <Button label="禁用" variant="filled" disabled onPress={() => {}} />
-                <Button label="Danger" variant="danger" onPress={() => {}} />
+                <Button
+                  label="加载中..."
+                  variant="filled"
+                  loading
+                  onPress={() => {}}
+                />
+                <Button
+                  label="禁用"
+                  variant="filled"
+                  disabled
+                  onPress={() => {}}
+                />
+                <Button
+                  label="Danger"
+                  variant="danger"
+                  onPress={() => {}}
+                />
               </HStack>
             </VStack>
           </Section>
@@ -183,10 +253,24 @@ export default function HomeScreen() {
                 value={inputValue}
                 onChangeText={setInputValue}
               />
-              <Input variant="filled" placeholder="Filled 输入框" />
-              <Input variant="underline" placeholder="Underline 输入框" />
-              <Input variant="outline" placeholder="无效输入框" isInvalid />
-              <Input variant="outline" placeholder="禁用输入框" isDisabled />
+              <Input
+                variant="filled"
+                placeholder="Filled 输入框"
+              />
+              <Input
+                variant="underline"
+                placeholder="Underline 输入框"
+              />
+              <Input
+                variant="outline"
+                placeholder="无效输入框"
+                isInvalid
+              />
+              <Input
+                variant="outline"
+                placeholder="禁用输入框"
+                isDisabled
+              />
             </VStack>
           </Section>
 
@@ -256,9 +340,22 @@ export default function HomeScreen() {
                 onChange={setCheckboxValue}
                 label="同意用户协议"
               />
-              <Checkbox isChecked size="sm" label="小号" onChange={() => {}} />
-              <Checkbox isChecked size="lg" label="大号" onChange={() => {}} />
-              <Checkbox label="禁用选项" isDisabled />
+              <Checkbox
+                isChecked
+                size="sm"
+                label="小号"
+                onChange={() => {}}
+              />
+              <Checkbox
+                isChecked
+                size="lg"
+                label="大号"
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="禁用选项"
+                isDisabled
+              />
             </VStack>
           </Section>
 
@@ -266,11 +363,27 @@ export default function HomeScreen() {
 
           {/* 单选框 */}
           <Section title="单选框 Radio">
-            <RadioGroup value={radioValue} onChange={setRadioValue}>
-              <Radio value="apple" label="苹果" />
-              <Radio value="banana" label="香蕉" />
-              <Radio value="orange" label="橘子" />
-              <Radio value="disabled" label="禁用选项" isDisabled />
+            <RadioGroup
+              value={radioValue}
+              onChange={setRadioValue}
+            >
+              <Radio
+                value="apple"
+                label="苹果"
+              />
+              <Radio
+                value="banana"
+                label="香蕉"
+              />
+              <Radio
+                value="orange"
+                label="橘子"
+              />
+              <Radio
+                value="disabled"
+                label="禁用选项"
+                isDisabled
+              />
             </RadioGroup>
           </Section>
 
@@ -286,9 +399,24 @@ export default function HomeScreen() {
                 onLabel="已开启"
                 offLabel="已关闭"
               />
-              <Switch label="小号" size="sm" value={true} onValueChange={() => {}} />
-              <Switch label="大号" size="lg" value={false} onValueChange={() => {}} />
-              <Switch label="禁用" isDisabled value={false} onValueChange={() => {}} />
+              <Switch
+                label="小号"
+                size="sm"
+                value={true}
+                onValueChange={() => {}}
+              />
+              <Switch
+                label="大号"
+                size="lg"
+                value={false}
+                onValueChange={() => {}}
+              />
+              <Switch
+                label="禁用"
+                isDisabled
+                value={false}
+                onValueChange={() => {}}
+              />
             </VStack>
           </Section>
 
@@ -297,10 +425,24 @@ export default function HomeScreen() {
           {/* 评分 */}
           <Section title="评分 Rating">
             <VStack space="s">
-              <Rating value={ratingValue} onChange={setRatingValue} />
-              <HStack space="m" alignItems="center">
-                <Rating value={4} size="sm" readonly />
-                <Rating value={3} size="lg" readonly />
+              <Rating
+                value={ratingValue}
+                onChange={setRatingValue}
+              />
+              <HStack
+                space="m"
+                alignItems="center"
+              >
+                <Rating
+                  value={4}
+                  size="sm"
+                  readonly
+                />
+                <Rating
+                  value={3}
+                  size="lg"
+                  readonly
+                />
               </HStack>
             </VStack>
           </Section>
@@ -312,18 +454,18 @@ export default function HomeScreen() {
             <VStack space="s">
               <SegmentedControl
                 segments={[
-                  {label: '全部', value: 'all'},
-                  {label: '进行中', value: 'active'},
-                  {label: '已完成', value: 'done'},
+                  { label: "全部", value: "all" },
+                  { label: "进行中", value: "active" },
+                  { label: "已完成", value: "done" },
                 ]}
                 value={segmentValue}
                 onChange={setSegmentValue}
               />
               <SegmentedControl
                 segments={[
-                  {label: '日', value: 'day'},
-                  {label: '周', value: 'week'},
-                  {label: '月', value: 'month'},
+                  { label: "日", value: "day" },
+                  { label: "周", value: "week" },
+                  { label: "月", value: "month" },
                 ]}
                 value="day"
                 size="sm"
@@ -339,19 +481,28 @@ export default function HomeScreen() {
             <VStack space="s">
               <Card variant="elevated">
                 <Text variant="label">Elevated 卡片</Text>
-                <Text variant="caption" marginTop="xs">
+                <Text
+                  variant="caption"
+                  marginTop="xs"
+                >
                   带阴影的卡片样式
                 </Text>
               </Card>
               <Card variant="outline">
                 <Text variant="label">Outline 卡片</Text>
-                <Text variant="caption" marginTop="xs">
+                <Text
+                  variant="caption"
+                  marginTop="xs"
+                >
                   边框卡片样式
                 </Text>
               </Card>
               <Card variant="filled">
                 <Text variant="label">Filled 卡片</Text>
-                <Text variant="caption" marginTop="xs">
+                <Text
+                  variant="caption"
+                  marginTop="xs"
+                >
                   填充卡片样式
                 </Text>
               </Card>
@@ -363,9 +514,18 @@ export default function HomeScreen() {
           {/* 徽章 */}
           <Section title="徽章 Badge">
             <HStack space="s">
-              <Badge label="Solid" variant="solid" />
-              <Badge label="Subtle" variant="subtle" />
-              <Badge label="Outline" variant="outline" />
+              <Badge
+                label="Solid"
+                variant="solid"
+              />
+              <Badge
+                label="Subtle"
+                variant="subtle"
+              />
+              <Badge
+                label="Outline"
+                variant="outline"
+              />
             </HStack>
           </Section>
 
@@ -373,11 +533,26 @@ export default function HomeScreen() {
 
           {/* 头像 */}
           <Section title="头像 Avatar">
-            <HStack space="s" alignItems="center">
-              <Avatar size="xs" name="张三" />
-              <Avatar size="sm" name="李四" />
-              <Avatar size="md" name="王五" />
-              <Avatar size="lg" name="John Doe" />
+            <HStack
+              space="s"
+              alignItems="center"
+            >
+              <Avatar
+                size="xs"
+                name="张三"
+              />
+              <Avatar
+                size="sm"
+                name="李四"
+              />
+              <Avatar
+                size="md"
+                name="王五"
+              />
+              <Avatar
+                size="lg"
+                name="John Doe"
+              />
             </HStack>
           </Section>
 
@@ -385,11 +560,20 @@ export default function HomeScreen() {
 
           {/* 加载 */}
           <Section title="加载 Spinner">
-            <HStack space="m" alignItems="center">
+            <HStack
+              space="m"
+              alignItems="center"
+            >
               <Spinner size="sm" />
               <Spinner size="lg" />
-              <Spinner size="sm" colorKey="success" />
-              <Spinner size="sm" colorKey="error" />
+              <Spinner
+                size="sm"
+                colorKey="success"
+              />
+              <Spinner
+                size="sm"
+                colorKey="error"
+              />
             </HStack>
           </Section>
 
@@ -398,10 +582,26 @@ export default function HomeScreen() {
           {/* 提示 */}
           <Section title="提示 Alert">
             <VStack space="s">
-              <Alert status="info" title="提示" description="这是一条信息提示" />
-              <Alert status="success" title="成功" description="操作已成功完成" />
-              <Alert status="warning" title="警告" description="请注意此操作" />
-              <Alert status="error" title="错误" description="操作失败，请重试" />
+              <Alert
+                status="info"
+                title="提示"
+                description="这是一条信息提示"
+              />
+              <Alert
+                status="success"
+                title="成功"
+                description="操作已成功完成"
+              />
+              <Alert
+                status="warning"
+                title="警告"
+                description="请注意此操作"
+              />
+              <Alert
+                status="error"
+                title="错误"
+                description="操作失败，请重试"
+              />
             </VStack>
           </Section>
 
@@ -409,29 +609,51 @@ export default function HomeScreen() {
 
           {/* 布局 */}
           <Section title="布局 Layout">
-            <Text variant="label" marginBottom="xs">
+            <Text
+              variant="label"
+              marginBottom="xs"
+            >
               Flex 布局
             </Text>
-            <Flex justify="space-between" marginBottom="s">
-              <Box backgroundColor="primaryLight" padding="s" borderRadius="s">
+            <Flex
+              justify="space-between"
+              marginBottom="s"
+            >
+              <Box
+                backgroundColor="primaryLight"
+                padding="s"
+                borderRadius="s"
+              >
                 <Text>A</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="s" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="s"
+                borderRadius="s"
+              >
                 <Text>B</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="s" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="s"
+                borderRadius="s"
+              >
                 <Text>C</Text>
               </Box>
             </Flex>
 
-            <Text variant="label" marginBottom="xs">
+            <Text
+              variant="label"
+              marginBottom="xs"
+            >
               Center 居中
             </Text>
             <Center
               height={80}
               backgroundColor="primaryLight"
               borderRadius="m"
-              marginBottom="s">
+              marginBottom="s"
+            >
               <Text>居中内容</Text>
             </Center>
           </Section>
@@ -441,13 +663,27 @@ export default function HomeScreen() {
           {/* AspectRatio */}
           <Section title="宽高比 AspectRatio">
             <HStack space="s">
-              <AspectRatio ratio={1} flex={1}>
-                <Center flex={1} backgroundColor="primaryLight" borderRadius="m">
+              <AspectRatio
+                ratio={1}
+                flex={1}
+              >
+                <Center
+                  flex={1}
+                  backgroundColor="primaryLight"
+                  borderRadius="m"
+                >
                   <Text>1:1</Text>
                 </Center>
               </AspectRatio>
-              <AspectRatio ratio={16 / 9} flex={1}>
-                <Center flex={1} backgroundColor="successLight" borderRadius="m">
+              <AspectRatio
+                ratio={16 / 9}
+                flex={1}
+              >
+                <Center
+                  flex={1}
+                  backgroundColor="successLight"
+                  borderRadius="m"
+                >
                   <Text>16:9</Text>
                 </Center>
               </AspectRatio>
@@ -458,23 +694,50 @@ export default function HomeScreen() {
 
           {/* Grid */}
           <Section title="网格 Grid">
-            <Grid columns={3} spacing="s">
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+            <Grid
+              columns={3}
+              spacing="s"
+            >
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>1</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>2</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>3</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>4</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>5</Text>
               </Box>
-              <Box backgroundColor="primaryLight" padding="m" borderRadius="s">
+              <Box
+                backgroundColor="primaryLight"
+                padding="m"
+                borderRadius="s"
+              >
                 <Text>6</Text>
               </Box>
             </Grid>
@@ -485,9 +748,24 @@ export default function HomeScreen() {
           {/* Group */}
           <Section title="分组 Group">
             <Group spacing="s">
-              <Button label="取消" variant="outline" size="sm" onPress={() => {}} />
-              <Button label="保存" variant="filled" size="sm" onPress={() => {}} />
-              <Button label="提交" variant="filled" size="sm" onPress={() => {}} />
+              <Button
+                label="取消"
+                variant="outline"
+                size="sm"
+                onPress={() => {}}
+              />
+              <Button
+                label="保存"
+                variant="filled"
+                size="sm"
+                onPress={() => {}}
+              />
+              <Button
+                label="提交"
+                variant="filled"
+                size="sm"
+                onPress={() => {}}
+              />
             </Group>
           </Section>
 
@@ -506,5 +784,5 @@ export default function HomeScreen() {
         </Box>
       </ScrollView>
     </SafeAreaView>
-  );
+  )
 }

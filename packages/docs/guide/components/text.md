@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Text } from 'native-ui';
+import { Text } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -18,17 +18,17 @@ import { Text } from 'native-ui';
 
 ## textVariants
 
-| 变体 | 说明 |
-|------|------|
-| header | 大标题，34px 粗体 |
-| subheader | 副标题，24px 半粗 |
-| body | 正文，16px |
-| caption | 说明文字，12px |
-| label | 标签文字，14px 半粗 |
+| 变体      | 说明                |
+| --------- | ------------------- |
+| header    | 大标题，34px 粗体   |
+| subheader | 副标题，24px 半粗   |
+| body      | 正文，16px          |
+| caption   | 说明文字，12px      |
+| label     | 标签文字，14px 半粗 |
 
 ## Props
 
-| 属性 | 类型 | 说明 |
-|------|------|------|
-| variant | `'header' \| 'subheader' \| 'body' \| 'caption' \| 'label'` | 文本变体 |
-| ...TextProps | - | 继承 Restyle TextProps，包括 `color`、`fontSize`、`fontWeight` 等 |
+| 属性         | 类型                                                        | 说明                                                              |
+| ------------ | ----------------------------------------------------------- | ----------------------------------------------------------------- |
+| variant      | `'header' \| 'subheader' \| 'body' \| 'caption' \| 'label'` | 文本变体                                                          |
+| ...TextProps | -                                                           | 继承 Restyle TextProps，包括 `color`、`fontSize`、`fontWeight` 等 |

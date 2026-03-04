@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Link } from 'native-ui';
+import { Link } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -24,9 +24,9 @@ import { Link } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| href | `string` | - | 链接地址 |
-| isExternal | `boolean` | `true` | 是否使用系统浏览器打开 |
-| onPress | `() => void` | - | 自定义点击回调 |
-| ...TextProps | - | - | 继承 Text 属性 |
+| 属性         | 类型         | 默认值 | 说明                   |
+| ------------ | ------------ | ------ | ---------------------- |
+| href         | `string`     | -      | 链接地址               |
+| isExternal   | `boolean`    | `true` | 是否使用系统浏览器打开 |
+| onPress      | `() => void` | -      | 自定义点击回调         |
+| ...TextProps | -            | -      | 继承 Text 属性         |

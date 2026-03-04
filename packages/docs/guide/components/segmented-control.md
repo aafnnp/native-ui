@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { SegmentedControl } from 'native-ui';
+import { SegmentedControl } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -38,10 +38,10 @@ const [tab, setTab] = useState('all');
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| segments | `{ label: string; value: string }[]` | - | 选项列表（必填） |
-| value | `string` | - | 当前选中值 |
-| onChange | `(value: string) => void` | - | 选中值变更回调 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                                 | 默认值 | 说明             |
+| ----------- | ------------------------------------ | ------ | ---------------- |
+| segments    | `{ label: string; value: string }[]` | -      | 选项列表（必填） |
+| value       | `string`                             | -      | 当前选中值       |
+| onChange    | `(value: string) => void`            | -      | 选中值变更回调   |
+| size        | `'sm' \| 'md' \| 'lg'`               | `'md'` | 尺寸             |
+| ...BoxProps | -                                    | -      | 继承 Box 属性    |

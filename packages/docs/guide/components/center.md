@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Center } from 'native-ui';
+import { Center } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -18,6 +18,6 @@ import { Center } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 说明 |
-|------|------|------|
-| ...BoxProps | - | 继承所有 Box 属性 |
+| 属性        | 类型 | 说明              |
+| ----------- | ---- | ----------------- |
+| ...BoxProps | -    | 继承所有 Box 属性 |

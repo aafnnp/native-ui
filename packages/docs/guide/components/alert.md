@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Alert } from 'native-ui';
+import { Alert } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -19,9 +19,9 @@ import { Alert } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| status | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | 状态类型 |
-| title | `string` | - | 标题 |
-| description | `string` | - | 描述 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                                          | 默认值   | 说明          |
+| ----------- | --------------------------------------------- | -------- | ------------- |
+| status      | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | 状态类型      |
+| title       | `string`                                      | -        | 标题          |
+| description | `string`                                      | -        | 描述          |
+| ...BoxProps | -                                             | -        | 继承 Box 属性 |

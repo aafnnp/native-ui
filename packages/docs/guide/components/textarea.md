@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Textarea } from 'native-ui';
+import { Textarea } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -33,11 +33,11 @@ const [text, setText] = useState('');
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| variant | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| rows | `number` | `3` | 行数 |
-| isInvalid | `boolean` | `false` | 是否无效 |
-| isDisabled | `boolean` | `false` | 是否禁用 |
-| ...TextInputProps | - | - | 继承 TextInput 属性 |
+| 属性              | 类型                                   | 默认值      | 说明                |
+| ----------------- | -------------------------------------- | ----------- | ------------------- |
+| variant           | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体          |
+| size              | `'sm' \| 'md' \| 'lg'`                 | `'md'`      | 尺寸                |
+| rows              | `number`                               | `3`         | 行数                |
+| isInvalid         | `boolean`                              | `false`     | 是否无效            |
+| isDisabled        | `boolean`                              | `false`     | 是否禁用            |
+| ...TextInputProps | -                                      | -           | 继承 TextInput 属性 |

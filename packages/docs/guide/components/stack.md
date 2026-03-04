@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Stack, HStack, VStack } from 'native-ui';
+import { Stack, HStack, VStack } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -27,8 +27,8 @@ import { Stack, HStack, VStack } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| space | `keyof Theme['spacing']` | `'s'` | 子元素间距，对应主题 spacing 键（如 xs、s、m、l、xl） |
-| direction | `'row' \| 'column'` | `'column'` | 排列方向 |
-| ...BoxProps | - | - | 继承所有 Box 属性 |
+| 属性        | 类型                     | 默认值     | 说明                                                  |
+| ----------- | ------------------------ | ---------- | ----------------------------------------------------- |
+| space       | `keyof Theme['spacing']` | `'s'`      | 子元素间距，对应主题 spacing 键（如 xs、s、m、l、xl） |
+| direction   | `'row' \| 'column'`      | `'column'` | 排列方向                                              |
+| ...BoxProps | -                        | -          | 继承所有 Box 属性                                     |

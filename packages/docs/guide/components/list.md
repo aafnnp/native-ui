@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { List } from 'native-ui';
+import { List } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -28,8 +28,8 @@ import { List } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| type | `'ordered' \| 'unordered'` | `'unordered'` | 列表类型 |
-| spacing | `keyof Theme['spacing']` | `'xs'` | 列表项间距 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                       | 默认值        | 说明          |
+| ----------- | -------------------------- | ------------- | ------------- |
+| type        | `'ordered' \| 'unordered'` | `'unordered'` | 列表类型      |
+| spacing     | `keyof Theme['spacing']`   | `'xs'`        | 列表项间距    |
+| ...BoxProps | -                          | -             | 继承 Box 属性 |

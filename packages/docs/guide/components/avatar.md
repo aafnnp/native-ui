@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Avatar } from 'native-ui';
+import { Avatar } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -23,9 +23,9 @@ import { Avatar } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| source | `ImageSourcePropType` | - | 图片源 |
-| size | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | 头像尺寸 |
-| name | `string` | - | 名称（无图片时显示首字母，最多 2 个字符） |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                                   | 默认值 | 说明                                      |
+| ----------- | -------------------------------------- | ------ | ----------------------------------------- |
+| source      | `ImageSourcePropType`                  | -      | 图片源                                    |
+| size        | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | 头像尺寸                                  |
+| name        | `string`                               | -      | 名称（无图片时显示首字母，最多 2 个字符） |
+| ...BoxProps | -                                      | -      | 继承 Box 属性                             |

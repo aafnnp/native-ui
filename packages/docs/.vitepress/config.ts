@@ -75,6 +75,6 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/user/native-ui" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/user/kra-ui" }],
   },
 })

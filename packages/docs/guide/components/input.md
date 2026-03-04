@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Input } from 'native-ui';
+import { Input } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -19,11 +19,11 @@ import { Input } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| variant | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 输入框尺寸 |
-| leftElement | `React.ReactNode` | - | 左侧附加元素（如图标） |
-| rightElement | `React.ReactNode` | - | 右侧附加元素（如清除按钮） |
-| isInvalid | `boolean` | `false` | 是否无效（显示错误样式） |
-| isDisabled | `boolean` | `false` | 是否禁用 |
+| 属性         | 类型                                   | 默认值      | 说明                       |
+| ------------ | -------------------------------------- | ----------- | -------------------------- |
+| variant      | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体                 |
+| size         | `'sm' \| 'md' \| 'lg'`                 | `'md'`      | 输入框尺寸                 |
+| leftElement  | `React.ReactNode`                      | -           | 左侧附加元素（如图标）     |
+| rightElement | `React.ReactNode`                      | -           | 右侧附加元素（如清除按钮） |
+| isInvalid    | `boolean`                              | `false`     | 是否无效（显示错误样式）   |
+| isDisabled   | `boolean`                              | `false`     | 是否禁用                   |

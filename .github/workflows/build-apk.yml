@@ -41,5 +41,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: native-ui-example
+          name: kra-ui-example
           path: packages/example/android/app/build/outputs/apk/release/*.apk

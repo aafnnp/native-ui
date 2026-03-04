@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { NumberInput } from 'native-ui';
+import { NumberInput } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -27,13 +27,13 @@ const [count, setCount] = useState(0);
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| value | `number` | `0` | 当前数值 |
-| onChange | `(value: number) => void` | - | 数值变更回调 |
-| min | `number` | `-Infinity` | 最小值 |
-| max | `number` | `Infinity` | 最大值 |
-| step | `number` | `1` | 步进值 |
-| size | `'sm' \| 'md' \| 'lg'` | `'md'` | 尺寸 |
-| isDisabled | `boolean` | `false` | 是否禁用 |
-| variant | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体 |
+| 属性       | 类型                                   | 默认值      | 说明         |
+| ---------- | -------------------------------------- | ----------- | ------------ |
+| value      | `number`                               | `0`         | 当前数值     |
+| onChange   | `(value: number) => void`              | -           | 数值变更回调 |
+| min        | `number`                               | `-Infinity` | 最小值       |
+| max        | `number`                               | `Infinity`  | 最大值       |
+| step       | `number`                               | `1`         | 步进值       |
+| size       | `'sm' \| 'md' \| 'lg'`                 | `'md'`      | 尺寸         |
+| isDisabled | `boolean`                              | `false`     | 是否禁用     |
+| variant    | `'outline' \| 'filled' \| 'underline'` | `'outline'` | 输入框变体   |

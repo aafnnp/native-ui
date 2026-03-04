@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Badge } from 'native-ui';
+import { Badge } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -18,8 +18,8 @@ import { Badge } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| label | `string` | - | 徽章文字（必填） |
-| variant | `'solid' \| 'subtle' \| 'outline'` | `'subtle'` | 徽章变体 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                               | 默认值     | 说明             |
+| ----------- | ---------------------------------- | ---------- | ---------------- |
+| label       | `string`                           | -          | 徽章文字（必填） |
+| variant     | `'solid' \| 'subtle' \| 'outline'` | `'subtle'` | 徽章变体         |
+| ...BoxProps | -                                  | -          | 继承 Box 属性    |

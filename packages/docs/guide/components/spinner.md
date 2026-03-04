@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Spinner } from 'native-ui';
+import { Spinner } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -17,8 +17,8 @@ import { Spinner } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| size | `'sm' \| 'lg'` | `'sm'` | 尺寸 |
-| colorKey | `keyof Theme['colors']` | `'primary'` | 主题色键名 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                    | 默认值      | 说明          |
+| ----------- | ----------------------- | ----------- | ------------- |
+| size        | `'sm' \| 'lg'`          | `'sm'`      | 尺寸          |
+| colorKey    | `keyof Theme['colors']` | `'primary'` | 主题色键名    |
+| ...BoxProps | -                       | -           | 继承 Box 属性 |

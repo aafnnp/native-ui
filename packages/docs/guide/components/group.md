@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Group } from 'native-ui';
+import { Group } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -27,8 +27,8 @@ import { Group } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| spacing | `keyof Theme['spacing']` | `'s'` | 子元素间距 |
-| direction | `'row' \| 'column'` | `'row'` | 排列方向 |
-| ...BoxProps | - | - | 继承 Box 属性 |
+| 属性        | 类型                     | 默认值  | 说明          |
+| ----------- | ------------------------ | ------- | ------------- |
+| spacing     | `keyof Theme['spacing']` | `'s'`   | 子元素间距    |
+| direction   | `'row' \| 'column'`      | `'row'` | 排列方向      |
+| ...BoxProps | -                        | -       | 继承 Box 属性 |

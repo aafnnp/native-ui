@@ -5,7 +5,7 @@
 ## 引入
 
 ```tsx
-import { Card } from 'native-ui';
+import { Card } from 'kra-ui';
 ```
 
 ## 基本用法
@@ -23,7 +23,7 @@ import { Card } from 'native-ui';
 
 ## Props
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| variant | `'elevated' \| 'outline' \| 'filled'` | `'elevated'` | 卡片变体 |
-| ...BoxProps | - | - | 继承所有 Box 属性 |
+| 属性        | 类型                                  | 默认值       | 说明              |
+| ----------- | ------------------------------------- | ------------ | ----------------- |
+| variant     | `'elevated' \| 'outline' \| 'filled'` | `'elevated'` | 卡片变体          |
+| ...BoxProps | -                                     | -            | 继承所有 Box 属性 |
