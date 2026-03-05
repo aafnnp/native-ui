@@ -21,19 +21,19 @@
 
 ## 组件列表
 
-| 布局 | 表单 | 数据展示 | 反馈 |
-| --- | --- | --- | --- |
-| Box | Button | Avatar | Alert |
-| Flex | Checkbox | Badge | Spinner |
-| Grid | Input | Card | Rating |
-| Stack | NumberInput | Code | - |
-| Center | PasswordInput | Heading | - |
-| Group | PinInput | Highlight | - |
-| AspectRatio | Radio | List | - |
-| ScrollArea | SegmentedControl | Separator | - |
-| - | Switch | Text | - |
-| - | Textarea | Divider | - |
-| - | Link | - | - |
+| 布局 | 表单 | 数据展示 | 反馈 | 其他 |
+| --- | --- | --- | --- | --- |
+| Box | Button | Avatar | Alert | Accordion |
+| Flex | Checkbox | Badge | Spinner | Modal |
+| Grid | Input | Card | Rating | - |
+| Stack | NumberInput | Code | - | - |
+| Center | PasswordInput | Heading | - | - |
+| Group | PinInput | Highlight | - | - |
+| AspectRatio | Radio | List | - | - |
+| ScrollArea | SegmentedControl | Separator | - | - |
+| - | Switch | Text | - | - |
+| - | Textarea | Divider | - | - |
+| - | Link | - | - | - |
 
 ## 安装
 

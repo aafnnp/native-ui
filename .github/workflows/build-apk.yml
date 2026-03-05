@@ -8,6 +8,9 @@ on:
       - packages/ui/**
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,8 +41,7 @@ jobs:
         run: ./gradlew assembleRelease
         working-directory: packages/example/android
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Upload APK to Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: kra-ui-example
-          path: packages/example/android/app/build/outputs/apk/release/*.apk
+          files: packages/example/android/app/build/outputs/apk/release/*.apk

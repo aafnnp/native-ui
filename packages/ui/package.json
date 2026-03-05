@@ -15,7 +15,8 @@
   "scripts": {
     "build": "bob build",
     "clean": "rm -rf lib",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepack": "cp ../../README.md ."
   },
   "keywords": [
     "react-native",
