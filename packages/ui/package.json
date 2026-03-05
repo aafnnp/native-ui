@@ -16,6 +16,7 @@
     "build": "bob build",
     "clean": "rm -rf lib",
     "lint": "tsc --noEmit",
+    "prepublishOnly": "bob build",
     "prepack": "cp ../../README.md ."
   },
   "keywords": [
