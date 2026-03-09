@@ -1,5 +1,11 @@
 # kra-ui
 
+## 0.6.0
+
+### Minor Changes
+
+- [#12](https://github.com/aafnnp/kra-ui/pull/12) [`c0164fb`](https://github.com/aafnnp/kra-ui/commit/c0164fbd19ba017d20aa51714755ddc189bd07ef) Thanks [@aafnnp](https://github.com/aafnnp)! - add steps component
+
 ## 0.5.0
 
 ### Minor Changes
