@@ -2,11 +2,7 @@ name: Build APK
 
 on:
   push:
-    branches: [master]
-    paths:
-      - packages/example/**
-      - packages/ui/**
-  workflow_dispatch:
+    tags: ['v*.*.*']
 
 jobs:
   build:
