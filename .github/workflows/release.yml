@@ -112,6 +112,8 @@ jobs:
           # 避免 CI 上 Gradle 在依赖收集/打包阶段 OOM（Java heap space）
           GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" -Dkotlin.daemon.jvm.options="-Xmx2g"
           JAVA_TOOL_OPTIONS: -Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8
+          # CI 构建示例 APK 优先稳定性：关闭 New Architecture，避免部分原生依赖的 CMake/Prefab 兼容问题
+          ORG_GRADLE_PROJECT_newArchEnabled: "false"
 
       - name: Rename APK
         run: mv packages/example/android/app/build/outputs/apk/release/*.apk kra-ui-example-${{ github.ref_name }}.apk
