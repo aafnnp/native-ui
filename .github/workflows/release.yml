@@ -105,12 +105,16 @@ jobs:
         run: npx expo prebuild --platform android --no-install
         working-directory: packages/example
 
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+        working-directory: packages/example/android
+
       - name: Build APK
         run: ./gradlew assembleRelease
         working-directory: packages/example/android
         env:
           # 避免 CI 上 Gradle 在依赖收集/打包阶段 OOM（Java heap space）
-          GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" -Dkotlin.daemon.jvm.options="-Xmx2g"
+          GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" -Dkotlin.daemon.jvm.options="-Xmx2g" -Dorg.gradle.internal.http.connectionTimeout=60000 -Dorg.gradle.internal.http.socketTimeout=60000 -Dorg.gradle.internal.repository.max.retries=5 -Dorg.gradle.internal.repository.initial.backoff=1000
           JAVA_TOOL_OPTIONS: -Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8
 
       - name: Rename APK
