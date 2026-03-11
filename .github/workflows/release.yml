@@ -96,6 +96,11 @@ jobs:
           distribution: zulu
           java-version: 17
 
+      - uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r27c
+          link-to-sdk: true
+
       - uses: android-actions/setup-android@v3
 
       - name: Disable New Architecture (CI only)

@@ -13,6 +13,7 @@
     },
     "android": {
       "package": "com.nativeui.example",
+      "minSdkVersion": 24,
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       }
