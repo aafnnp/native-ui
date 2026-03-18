@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Jest 全局测试环境配置
  *
@@ -14,6 +14,7 @@ jest.mock('react-native-reanimated', () => {
   const AnimatedView = React.forwardRef((props: any, ref: any) =>
     React.createElement(View, {...props, ref}),
   );
+  AnimatedView.displayName = 'Animated.View';
 
   return {
     __esModule: true,
