@@ -225,20 +225,47 @@ const theme = createTheme({
     defaults: {
       padding: "m",
       borderRadius: "m",
+      borderWidth: 1,
       flexDirection: "row" as const,
       alignItems: "center" as const,
     },
     info: {
       backgroundColor: "primaryLight",
+      borderColor: "primary",
     },
     success: {
       backgroundColor: "successLight",
+      borderColor: "success",
     },
     warning: {
       backgroundColor: "warningLight",
+      borderColor: "warning",
     },
     error: {
       backgroundColor: "errorLight",
+      borderColor: "error",
+    },
+  },
+
+  // Alert 尺寸
+  alertSizes: {
+    sm: {
+      paddingX: "s",
+      paddingY: "s",
+      gap: "s",
+      iconSize: 16,
+      radius: "m",
+      titleTextVariant: "label",
+      messageTextVariant: "caption",
+    },
+    md: {
+      paddingX: "m",
+      paddingY: "m",
+      gap: "s",
+      iconSize: 18,
+      radius: "m",
+      titleTextVariant: "label",
+      messageTextVariant: "body",
     },
   },
 
