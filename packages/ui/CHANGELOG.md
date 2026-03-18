@@ -1,5 +1,18 @@
 # kra-ui
 
+## 0.8.0
+
+### Minor Changes
+
+- [#19](https://github.com/aafnnp/kra-ui/pull/19) [`15f6564`](https://github.com/aafnnp/kra-ui/commit/15f6564e71be4273e21a3ecfc07975bbb5757a49) Thanks [@aafnnp](https://github.com/aafnnp)! - 新增 Toast 队列能力与全局调用 API（`toast.*` / `useToast`），并完善相关测试与工程化配置。
+
+  增强 Accordion：
+  - 新增受控展开：`index` / `onIndexChange`
+  - 支持自定义标题：`Accordion.Item renderHeader`
+  - 支持内容挂载策略：`lazyMount` / `unmountOnCollapse`
+  - 支持动画配置：`isAnimated` / `animationDuration` / `animationEasing`
+  - 新增主题 variants（light/dark）：`accordionVariants` / `accordionItemVariants` / `accordionHeaderVariants`
+
 ## 0.7.1
 
 ### Patch Changes
