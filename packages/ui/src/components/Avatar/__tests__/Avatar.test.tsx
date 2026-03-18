@@ -13,9 +13,14 @@ import {render, fireEvent} from '@testing-library/react-native';
 import Avatar from '../index';
 import {NativeUIProvider} from '../../../provider/NativeUIProvider';
 
-const renderWithProvider = (ui: React.ReactElement) => {
-  return render(<NativeUIProvider>{ui}</NativeUIProvider>);
-};
+const Wrapper: React.FC<React.PropsWithChildren> = ({children}) => (
+  <NativeUIProvider>{children}</NativeUIProvider>
+);
+
+const renderWithProvider = (ui: React.ReactElement) =>
+  render(ui, {wrapper: Wrapper});
+
+type AvatarComponentProps = React.ComponentProps<typeof Avatar>;
 
 test('无 source 且无 name 时显示 ?', () => {
   const {getByText} = renderWithProvider(<Avatar />);
@@ -32,19 +37,18 @@ test('无 source 且有 name 时显示最多 2 个 initials', () => {
   expect(getByText('张三')).toBeTruthy();
 
   // 英文：取单词首字母并大写（示例：john smith -> JS）
-  rerender(
-    <NativeUIProvider>
-      <Avatar name="john smith" />
-    </NativeUIProvider>,
-  );
+  rerender(<Avatar name="john smith" />);
   expect(getByText('JS')).toBeTruthy();
 });
 
 test('有 onPress 时点击触发回调（通过 accessibilityLabel="用户头像" 定位）', () => {
   const onPress = jest.fn();
-  const {getByLabelText} = renderWithProvider(
-    <Avatar {...({onPress, accessibilityLabel: '用户头像'} as any)} />,
-  );
+  const props = {
+    onPress,
+    accessibilityLabel: '用户头像',
+  } satisfies Partial<AvatarComponentProps>;
+
+  const {getByLabelText} = renderWithProvider(<Avatar {...props} />);
 
   fireEvent.press(getByLabelText('用户头像'));
   expect(onPress).toHaveBeenCalledTimes(1);
@@ -52,11 +56,13 @@ test('有 onPress 时点击触发回调（通过 accessibilityLabel="用户头�
 
 test('isDisabled 时不触发 onPress', () => {
   const onPress = jest.fn();
-  const {getByLabelText} = renderWithProvider(
-    <Avatar
-      {...({onPress, isDisabled: true, accessibilityLabel: '用户头像'} as any)}
-    />,
-  );
+  const props = {
+    onPress,
+    isDisabled: true,
+    accessibilityLabel: '用户头像',
+  } satisfies Partial<AvatarComponentProps>;
+
+  const {getByLabelText} = renderWithProvider(<Avatar {...props} />);
 
   fireEvent.press(getByLabelText('用户头像'));
   expect(onPress).not.toHaveBeenCalled();
@@ -64,25 +70,31 @@ test('isDisabled 时不触发 onPress', () => {
 
 test('图片 error 后回退到 initials 且触发 onImageError', () => {
   const onImageError = jest.fn();
+  const props = {
+    onImageError,
+  } satisfies Partial<AvatarComponentProps>;
+
   const {getByText, UNSAFE_getByType} = renderWithProvider(
     <Avatar
       name="john smith"
       source={{uri: 'https://example.com/avatar.png'}}
-      {...({onImageError} as any)}
+      {...props}
     />,
   );
 
   const image = UNSAFE_getByType(Image);
-  fireEvent(image, 'error', {nativeEvent: {error: 'boom'}});
+  fireEvent(image, 'onError', {nativeEvent: {error: 'boom'}});
 
   expect(onImageError).toHaveBeenCalledTimes(1);
   expect(getByText('JS')).toBeTruthy();
 });
 
 test('传入 status 时渲染状态角标', () => {
-  const {getByLabelText} = renderWithProvider(
-    <Avatar {...({status: 'online'} as any)} />,
-  );
+  const props = {
+    status: 'online',
+  } satisfies Partial<AvatarComponentProps>;
+
+  const {getByLabelText} = renderWithProvider(<Avatar {...props} />);
 
   expect(getByLabelText('在线')).toBeTruthy();
 });
