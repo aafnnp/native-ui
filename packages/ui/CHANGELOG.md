@@ -1,5 +1,11 @@
 # kra-ui
 
+## 0.8.1
+
+### Patch Changes
+
+- [#22](https://github.com/aafnnp/kra-ui/pull/22) [`425978c`](https://github.com/aafnnp/kra-ui/commit/425978c6096db386f7686720f19fc027c71a23ec) Thanks [@aafnnp](https://github.com/aafnnp)! - Alert 组件增强：新增 Compound Slots 用法（Alert.Icon / Alert.Title / Alert.Description / Alert.Action / Alert.Close），同时保留原先“非 children”快速用法。
+
 ## 0.8.0
 
 ### Minor Changes
