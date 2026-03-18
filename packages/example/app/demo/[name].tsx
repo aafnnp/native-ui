@@ -670,25 +670,72 @@ function AlertDemo() {
   return (
     <VStack space="s">
       <Alert
-        status="info"
+        variant="info"
         title="提示"
-        description="这是一条信息提示"
+        message="这是一条信息提示"
       />
       <Alert
-        status="success"
+        variant="success"
         title="成功"
-        description="操作已成功完成"
+        message="操作已成功完成"
       />
       <Alert
-        status="warning"
+        variant="warning"
         title="警告"
-        description="请注意此操作"
+        message="请注意此操作"
       />
       <Alert
-        status="error"
+        variant="error"
         title="错误"
-        description="操作失败，请重试"
+        message="操作失败，请重试"
       />
+      <Alert
+        variant="warning"
+        title="可关闭"
+        message="点击右侧按钮关闭"
+        closable
+        onClose={() => {}}
+      />
+      <Alert
+        variant="info"
+        closable
+        onClose={() => {}}
+      >
+        <HStack
+          flex={1}
+          alignItems="center"
+          justifyContent="space-between"
+          space="s"
+        >
+          <HStack
+            flex={1}
+            alignItems="center"
+            space="s"
+          >
+            <Alert.Icon />
+            <VStack
+              flex={1}
+              space="xs"
+            >
+              <Alert.Title>
+                <Text>插槽用法</Text>
+              </Alert.Title>
+              <Alert.Description>
+                <Text>可以自由组合标题、内容、操作与关闭按钮</Text>
+              </Alert.Description>
+            </VStack>
+          </HStack>
+          <Alert.Action>
+            <Button
+              label="操作"
+              size="sm"
+              variant="outline"
+              onPress={() => {}}
+            />
+          </Alert.Action>
+          <Alert.Close />
+        </HStack>
+      </Alert>
     </VStack>
   )
 }
