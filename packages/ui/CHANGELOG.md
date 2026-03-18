@@ -1,5 +1,13 @@
 # kra-ui
 
+## 0.8.2
+
+### Patch Changes
+
+- [#24](https://github.com/aafnnp/kra-ui/pull/24) [`0904400`](https://github.com/aafnnp/kra-ui/commit/0904400fb7159aae4cb39566f69aafdb7054d366) Thanks [@aafnnp](https://github.com/aafnnp)! - - 完善 `Avatar`：支持图片加载失败回退、`status` 状态角标、交互与无障碍属性（a11y）。
+  - 新增 `AvatarGroup`：支持叠放展示与超出 `max` 时的 `+N` 指示。
+  - 主题新增 `avatarSizes/avatarVariants/avatarStatusColors` 令牌，统一尺寸与状态色映射。
+
 ## 0.8.1
 
 ### Patch Changes
