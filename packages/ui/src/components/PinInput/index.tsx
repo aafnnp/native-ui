@@ -1,14 +1,14 @@
-import React, {useRef, useCallback} from 'react';
-import {TextInput, Pressable} from 'react-native';
-import {useTheme} from '@shopify/restyle';
-import type {Theme} from '../../theme';
+import { useRef, useCallback } from 'react';
+import { TextInput, Pressable } from 'react-native';
+import { useTheme } from '@shopify/restyle';
+import type { Theme } from '../../theme';
 import Box from '../Box';
-import type {BoxProps} from '../Box';
+import type { BoxProps } from '../Box';
 
 const sizeMap = {
-  sm: {box: 36, fontSize: 16},
-  md: {box: 44, fontSize: 20},
-  lg: {box: 52, fontSize: 24},
+  sm: { box: 36, fontSize: 16 },
+  md: { box: 44, fontSize: 20 },
+  lg: { box: 52, fontSize: 24 },
 };
 
 export interface PinInputProps extends BoxProps {
@@ -51,11 +51,14 @@ function PinInput({
     chars.push('');
   }
 
-  const focusInput = useCallback((index: number) => {
-    if (index >= 0 && index < length) {
-      inputRefs.current[index]?.focus();
-    }
-  }, [length]);
+  const focusInput = useCallback(
+    (index: number) => {
+      if (index >= 0 && index < length) {
+        inputRefs.current[index]?.focus();
+      }
+    },
+    [length],
+  );
 
   const handleChange = useCallback(
     (text: string, index: number) => {
@@ -70,7 +73,7 @@ function PinInput({
         focusInput(index + 1);
       }
 
-      if (newValue.length === length && !newValue.includes('')) {
+      if (newChars.length === length && newChars.every(Boolean)) {
         onComplete?.(newValue);
       }
     },
@@ -78,7 +81,7 @@ function PinInput({
   );
 
   const handleKeyPress = useCallback(
-    (e: {nativeEvent: {key: string}}, index: number) => {
+    (e: { nativeEvent: { key: string } }, index: number) => {
       if (e.nativeEvent.key === 'Backspace' && !chars[index] && index > 0) {
         focusInput(index - 1);
       }
@@ -95,22 +98,21 @@ function PinInput({
               width: s.box,
               height: s.box,
               borderWidth: 2,
-              borderColor: char
-                ? theme.colors.borderFocus
-                : theme.colors.border,
+              borderColor: char ? theme.colors.borderFocus : theme.colors.border,
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: index < length - 1 ? 8 : 0,
               opacity: isDisabled ? 0.5 : 1,
-            }}>
+            }}
+          >
             <TextInput
-              ref={ref => {
+              ref={(ref) => {
                 inputRefs.current[index] = ref;
               }}
               value={mask && char ? '●' : char}
-              onChangeText={text => handleChange(text, index)}
-              onKeyPress={e => handleKeyPress(e, index)}
+              onChangeText={(text) => handleChange(text, index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
               keyboardType="number-pad"
               maxLength={2}
               editable={!isDisabled}

@@ -1,13 +1,16 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import Modal from '../index';
-import { NativeUIProvider } from '../../../provider/NativeUIProvider';
 import { darkTheme, theme } from '../../../theme';
+import { renderWithProvider } from '../../../test-utils/render';
 
-const renderWithProvider = (
+const renderWithProviderWithColorMode = (
   ui: React.ReactElement,
   { initialColorMode = 'light' }: { initialColorMode?: 'light' | 'dark' } = {},
 ) => {
+  // 颜色模式相关测试仍沿用按需自定义 Provider，避免侵入 renderWithProvider 的默认行为
+  const { NativeUIProvider } = require('../../../provider/NativeUIProvider');
+  const { render } = require('@testing-library/react-native');
   return render(<NativeUIProvider initialColorMode={initialColorMode}>{ui}</NativeUIProvider>);
 };
 
@@ -26,7 +29,7 @@ test('遮罩色使用主题 overlay（浅色）', () => {
 });
 
 test('遮罩色使用主题 overlay（暗色）', () => {
-  const { getByTestId } = renderWithProvider(
+  const { getByTestId } = renderWithProviderWithColorMode(
     <Modal visible onClose={() => {}}>
       <Modal.Body />
     </Modal>,

@@ -4,15 +4,10 @@
  * - 处理 onPress 回调
  * - loading 与 disabled 状态
  */
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import Button from '../index';
-import { NativeUIProvider } from '../../../provider/NativeUIProvider';
 import { theme } from '../../../theme';
-
-const renderWithProvider = (ui: React.ReactElement) => {
-  return render(<NativeUIProvider>{ui}</NativeUIProvider>);
-};
+import { renderWithProvider } from '../../../test-utils/render';
 
 test('渲染按钮 label 文本', () => {
   const { getByText } = renderWithProvider(<Button label="确定" />);

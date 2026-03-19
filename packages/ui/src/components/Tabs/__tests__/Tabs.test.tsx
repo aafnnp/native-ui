@@ -1,11 +1,5 @@
-import React from 'react';
-import { render } from '@testing-library/react-native';
 import Tabs from '../index';
-import { NativeUIProvider } from '../../../provider/NativeUIProvider';
-
-const renderWithProvider = (ui: React.ReactElement) => {
-  return render(<NativeUIProvider>{ui}</NativeUIProvider>);
-};
+import { renderWithProvider } from '../../../test-utils/render';
 
 test('active tab should set accessibilityState.selected=true', () => {
   const { getByTestId } = renderWithProvider(
@@ -25,4 +19,3 @@ test('active tab should set accessibilityState.selected=true', () => {
     selected: false,
   });
 });
-

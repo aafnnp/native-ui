@@ -4,14 +4,9 @@
  * - 输入变更回调
  * - isInvalid 与 isDisabled 状态
  */
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import Textarea from '../index';
-import { NativeUIProvider } from '../../../provider/NativeUIProvider';
-
-const renderWithProvider = (ui: React.ReactElement) => {
-  return render(<NativeUIProvider>{ui}</NativeUIProvider>);
-};
+import { renderWithProvider } from '../../../test-utils/render';
 
 test('渲染占位符文本', () => {
   const { getByPlaceholderText } = renderWithProvider(<Textarea placeholder="请输入内容" />);

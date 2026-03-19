@@ -1,12 +1,7 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import Accordion from '../index';
-import { NativeUIProvider } from '../../../provider/NativeUIProvider';
 import Text from '../../Text';
-
-const renderWithProvider = (ui: React.ReactElement) => {
-  return render(<NativeUIProvider>{ui}</NativeUIProvider>);
-};
+import { renderWithProvider } from '../../../test-utils/render';
 
 test('header should set accessibilityState.expanded when toggled', () => {
   const { getByTestId } = renderWithProvider(
@@ -25,4 +20,3 @@ test('header should set accessibilityState.expanded when toggled', () => {
     expanded: true,
   });
 });
-
