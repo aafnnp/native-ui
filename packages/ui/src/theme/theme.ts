@@ -298,6 +298,30 @@ const theme = createTheme({
     },
   },
 
+  // Toast 变体（v1）
+  toastVariants: {
+    info: {
+      accentColor: 'primary',
+      textColor: 'textPrimary',
+      backgroundColor: 'cardBackground',
+    },
+    success: {
+      accentColor: 'success',
+      textColor: 'textPrimary',
+      backgroundColor: 'cardBackground',
+    },
+    warning: {
+      accentColor: 'warning',
+      textColor: 'textPrimary',
+      backgroundColor: 'cardBackground',
+    },
+    error: {
+      accentColor: 'error',
+      textColor: 'textPrimary',
+      backgroundColor: 'cardBackground',
+    },
+  },
+
   // Alert 变体
   alertVariants: {
     defaults: {
