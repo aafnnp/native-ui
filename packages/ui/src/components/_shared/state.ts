@@ -1,21 +1,15 @@
-import type { AccessibilityState } from 'react-native';
+import type { AccessibilityState as RNAccessibilityState } from 'react-native';
+
+/**
+ * React Native 的 AccessibilityState 类型未包含 invalid，但 RN 平台实际支持该字段。
+ * 这里做一次类型扩展，供组件库内部统一使用。
+ */
+export type AccessibilityState = RNAccessibilityState & { invalid?: boolean };
 
 export interface NormalizeInteractiveStateInput {
-  /** 是否禁用（新规范） */
   isDisabled?: boolean;
-  /** 是否加载中（新规范） */
   isLoading?: boolean;
-  /** 是否无效（新规范） */
   isInvalid?: boolean;
-
-  /** @deprecated 请使用 isDisabled */
-  disabled?: boolean;
-  /** @deprecated 请使用 isLoading */
-  loading?: boolean;
-  /** @deprecated 请使用 isInvalid */
-  invalid?: boolean;
-
-  /** 额外的无障碍状态 */
   accessibilityState?: AccessibilityState;
 }
 
@@ -23,35 +17,30 @@ export interface NormalizeInteractiveStateResult {
   isDisabled: boolean;
   isLoading: boolean;
   isInvalid: boolean;
-  /** 用于 Pressable.disabled 的结果（禁用或加载中都禁用点击） */
-  isPressableDisabled: boolean;
-  /** 合并后的无障碍状态 */
   accessibilityState: AccessibilityState;
 }
 
 /**
- * 统一交互组件的状态字段，兼容旧 props，并生成可访问性 state。
+ * 交互态归一化：统一 disabled/loading/invalid 与 a11y state 合并
  */
 export function normalizeInteractiveState(
   input: NormalizeInteractiveStateInput,
 ): NormalizeInteractiveStateResult {
-  const isDisabled = Boolean(input.isDisabled ?? input.disabled);
-  const isLoading = Boolean(input.isLoading ?? input.loading);
-  const isInvalid = Boolean(input.isInvalid ?? input.invalid);
+  const isDisabled = Boolean(input.isDisabled);
+  const isLoading = Boolean(input.isLoading);
+  const isInvalid = Boolean(input.isInvalid);
 
-  const isPressableDisabled = isDisabled || isLoading;
-
-  const accessibilityState: AccessibilityState = {
-    ...(input.accessibilityState ?? {}),
-    disabled: isPressableDisabled || (input.accessibilityState?.disabled ?? false),
-    busy: isLoading || (input.accessibilityState?.busy ?? false),
-  };
+  const baseState: AccessibilityState = input.accessibilityState ?? {};
 
   return {
     isDisabled,
     isLoading,
     isInvalid,
-    isPressableDisabled,
-    accessibilityState,
+    accessibilityState: {
+      ...baseState,
+      disabled: baseState.disabled ?? (isDisabled || isLoading),
+      busy: baseState.busy ?? isLoading,
+      invalid: baseState.invalid ?? isInvalid,
+    },
   };
 }

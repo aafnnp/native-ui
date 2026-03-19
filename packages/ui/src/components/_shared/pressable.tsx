@@ -1,85 +1,74 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Pressable,
+  StyleSheet,
   type PressableProps,
-  type AccessibilityRole,
-  type AccessibilityState,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-
 import { getAccessibilityLabel, mergeAccessibilityState } from './a11y';
-import { normalizeInteractiveState, type NormalizeInteractiveStateInput } from './state';
+import { normalizeInteractiveState } from './state';
+import type { AccessibilityState } from './state';
 
-export interface InteractivePressableProps
-  extends Omit<PressableProps, 'disabled' | 'accessibilityState' | 'accessibilityLabel'>,
-    NormalizeInteractiveStateInput {
-  accessibilityRole?: AccessibilityRole;
+export interface InteractivePressableProps extends Omit<PressableProps, 'disabled' | 'style'> {
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isInvalid?: boolean;
   accessibilityLabel?: string;
   accessibilityState?: AccessibilityState;
+  style?: StyleProp<ViewStyle>;
 }
 
 /**
- * 内部通用 Pressable：统一 disabled/loading/invalid 与可访问性 state，并提供一致的 pressed 反馈。
+ * 统一交互态与无障碍的 Pressable 封装
  */
-export function InteractivePressable(props: InteractivePressableProps) {
-  const {
-    isDisabled,
-    isLoading,
-    isInvalid,
-    disabled,
-    loading,
-    invalid,
-    accessibilityRole,
-    accessibilityLabel,
-    accessibilityState,
-    style,
-    ...rest
-  } = props;
-
+export function InteractivePressable({
+  isDisabled,
+  isLoading,
+  isInvalid,
+  accessibilityLabel,
+  accessibilityState,
+  style,
+  children,
+  ...rest
+}: InteractivePressableProps) {
   const normalized = normalizeInteractiveState({
     isDisabled,
     isLoading,
     isInvalid,
-    disabled,
-    loading,
-    invalid,
     accessibilityState,
   });
 
-  const resolvedA11yLabel = getAccessibilityLabel({
-    label: typeof rest.children === 'string' ? rest.children : undefined,
-    accessibilityLabel,
-  });
+  const mergedA11yState = useMemo(
+    () => mergeAccessibilityState(undefined, normalized.accessibilityState),
+    [normalized.accessibilityState],
+  );
 
-  const resolvedStyle: PressableProps['style'] = useMemo(() => {
-    if (typeof style === 'function') {
-      return (state) => {
-        const base = style(state);
-        const pressedOpacity: StyleProp<ViewStyle> =
-          state.pressed && !normalized.isPressableDisabled ? { opacity: 0.9 } : null;
-        return [base, pressedOpacity] as StyleProp<ViewStyle>;
-      };
-    }
-
-    return ({ pressed }) => {
-      const pressedOpacity: StyleProp<ViewStyle> =
-        pressed && !normalized.isPressableDisabled ? { opacity: 0.9 } : null;
-      return [style as StyleProp<ViewStyle>, pressedOpacity] as StyleProp<ViewStyle>;
-    };
-  }, [normalized.isPressableDisabled, style]);
+  const extraStyleArray = useMemo(() => {
+    if (!style) return [];
+    return Array.isArray(style) ? style : [style];
+  }, [style]);
 
   return (
     <Pressable
       {...rest}
-      style={resolvedStyle}
-      disabled={normalized.isPressableDisabled}
-      accessibilityRole={accessibilityRole}
-      accessibilityLabel={resolvedA11yLabel}
-      accessibilityState={mergeAccessibilityState(normalized.accessibilityState, props.accessibilityState)}
-    />
+      accessibilityLabel={getAccessibilityLabel({ accessibilityLabel })}
+      accessibilityState={mergedA11yState}
+      disabled={normalized.isDisabled || normalized.isLoading}
+      style={({ pressed }) => [
+        styles.base,
+        pressed && !normalized.isDisabled && !normalized.isLoading ? styles.pressed : null,
+        normalized.isDisabled ? styles.disabled : null,
+        ...extraStyleArray,
+      ]}
+    >
+      {children}
+    </Pressable>
   );
 }
 
-export default InteractivePressable;
-
+const styles = StyleSheet.create({
+  base: {},
+  disabled: { opacity: 0.5 },
+  pressed: { opacity: 0.88 },
+});
