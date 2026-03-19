@@ -234,6 +234,33 @@ export const baseThemeConfig = {
     },
   },
 
+  /**
+   * Toast 变体（按 status 映射）
+   * 说明：Toast 组件会读取 accentColor/backgroundColor/textColor
+   */
+  toastVariants: {
+    info: {
+      accentColor: 'primary',
+      backgroundColor: 'cardBackground',
+      textColor: 'textPrimary',
+    },
+    success: {
+      accentColor: 'success',
+      backgroundColor: 'cardBackground',
+      textColor: 'textPrimary',
+    },
+    warning: {
+      accentColor: 'warning',
+      backgroundColor: 'cardBackground',
+      textColor: 'textPrimary',
+    },
+    error: {
+      accentColor: 'error',
+      backgroundColor: 'cardBackground',
+      textColor: 'textPrimary',
+    },
+  },
+
   // Alert 尺寸
   alertSizes: {
     sm: {
