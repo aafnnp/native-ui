@@ -44,6 +44,11 @@ export function InteractivePressable({
     [normalized.accessibilityState],
   );
 
+  const extraStyleArray = useMemo(() => {
+    if (!style) return [];
+    return Array.isArray(style) ? style : [style];
+  }, [style]);
+
   return (
     <Pressable
       {...rest}
@@ -54,7 +59,7 @@ export function InteractivePressable({
         styles.base,
         pressed && !normalized.isDisabled && !normalized.isLoading ? styles.pressed : null,
         normalized.isDisabled ? styles.disabled : null,
-        style,
+        ...extraStyleArray,
       ]}
     >
       {children}

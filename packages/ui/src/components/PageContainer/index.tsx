@@ -197,7 +197,7 @@ function PageContainer({
         </Box>
       </Box>
     );
-  }, [isLoading, renderLoading]);
+  }, [isLoading, renderLoading, theme.colors.overlay]);
 
   /** 内容区域 */
   const content = scrollable ? (
