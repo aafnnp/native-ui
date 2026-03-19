@@ -166,6 +166,47 @@ export const baseThemeConfig = {
     },
   },
 
+  /**
+   * Input/Textarea 尺寸 token（sm/md/lg）
+   * 说明：这里提供最小可用字段，供组件动态计算高度与字号
+   */
+  inputSizes: {
+    sm: { height: 36, fontSize: 14, radius: 'm' },
+    md: { height: 44, fontSize: 16, radius: 'm' },
+    lg: { height: 52, fontSize: 18, radius: 'l' },
+  },
+
+  /**
+   * Input/Textarea 状态 token（default/focus/invalid/disabled）
+   * 说明：颜色使用主题语义色，避免组件里硬编码
+   */
+  inputStates: {
+    default: {
+      borderColor: 'border',
+      backgroundColor: 'inputBackground',
+      textColor: 'textPrimary',
+      iconColor: 'textSecondary',
+    },
+    focus: {
+      borderColor: 'borderFocus',
+      backgroundColor: 'inputBackground',
+      textColor: 'textPrimary',
+      iconColor: 'textSecondary',
+    },
+    invalid: {
+      borderColor: 'error',
+      backgroundColor: 'inputBackground',
+      textColor: 'textPrimary',
+      iconColor: 'error',
+    },
+    disabled: {
+      borderColor: 'border',
+      backgroundColor: 'inputBackground',
+      textColor: 'textMuted',
+      iconColor: 'textMuted',
+    },
+  },
+
   // Alert 变体
   alertVariants: {
     defaults: {
