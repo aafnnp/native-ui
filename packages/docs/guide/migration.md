@@ -51,4 +51,3 @@ Button 默认会设置：
 
 - `accessibilityRole="alert"`
 - `accessibilityLabel`：优先 `title + message`，否则 `message`
-

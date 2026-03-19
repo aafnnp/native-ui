@@ -48,4 +48,3 @@ test('合并并保留额外 accessibilityState', () => {
     busy: true,
   });
 });
-

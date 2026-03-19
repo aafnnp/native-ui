@@ -1,5 +1,5 @@
-import React, {useMemo, useState} from 'react';
-import {TextInput, type TextInputProps} from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { TextInput, type TextInputProps } from 'react-native';
 import {
   createRestyleComponent,
   createVariant,
@@ -9,16 +9,16 @@ import {
   useTheme,
   type VariantProps,
 } from '@shopify/restyle';
-import type {Theme} from '../../theme';
+import type { Theme } from '../../theme';
 import Box from '../Box';
-import type {BoxProps} from '../Box';
-import {getAccessibilityLabel} from '../_shared/a11y';
+import type { BoxProps } from '../Box';
+import { getAccessibilityLabel } from '../_shared/a11y';
 
 type TextareaContainerProps = VariantProps<Theme, 'inputVariants'> &
   React.ComponentProps<typeof Box>;
 
 const TextareaContainer = createRestyleComponent<TextareaContainerProps, Theme>(
-  [createVariant({themeKey: 'inputVariants'}), spacing, border, backgroundColor],
+  [createVariant({ themeKey: 'inputVariants' }), spacing, border, backgroundColor],
   Box,
 );
 
@@ -63,7 +63,13 @@ function Textarea({
     [placeholder, rest.accessibilityLabel],
   );
 
-  const stateKey = isDisabled ? 'disabled' : isInvalid ? 'invalid' : isFocused ? 'focus' : 'default';
+  const stateKey = isDisabled
+    ? 'disabled'
+    : isInvalid
+      ? 'invalid'
+      : isFocused
+        ? 'focus'
+        : 'default';
   const stateTokens = theme.inputStates?.[stateKey] as
     | {
         borderColor?: keyof Theme['colors'];
@@ -86,7 +92,8 @@ function Textarea({
         borderColor: stateTokens?.borderColor,
         backgroundColor: stateTokens?.backgroundColor,
       }}
-      {...rest}>
+      {...rest}
+    >
       <TextInput
         multiline
         numberOfLines={rows}
@@ -97,13 +104,13 @@ function Textarea({
         value={value}
         onChangeText={onChangeText}
         accessibilityLabel={a11yLabel}
-        accessibilityState={{disabled: isDisabled}}
+        accessibilityState={{ disabled: isDisabled }}
         accessibilityHint={isInvalid ? '输入无效' : undefined}
-        onFocus={e => {
+        onFocus={(e) => {
           setIsFocused(true);
           onFocus?.(e);
         }}
-        onBlur={e => {
+        onBlur={(e) => {
           setIsFocused(false);
           onBlur?.(e);
         }}
@@ -111,7 +118,9 @@ function Textarea({
           flex: 1,
           fontSize,
           lineHeight,
-          color: stateTokens?.textColor ? theme.colors[stateTokens.textColor] : theme.colors.textPrimary,
+          color: stateTokens?.textColor
+            ? theme.colors[stateTokens.textColor]
+            : theme.colors.textPrimary,
           paddingVertical: theme.spacing.s,
         }}
       />
