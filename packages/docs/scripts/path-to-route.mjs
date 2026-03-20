@@ -4,6 +4,6 @@
  * @returns {string} 例如 guide.getting-started
  */
 export function markdownRelPathToRouteId(relPath) {
-  const noMd = relPath.replace(/\.md$/i, "");
-  return noMd.replace(/\//g, ".");
+  const noMd = relPath.replace(/\.md$/i, '');
+  return noMd.replace(/\//g, '.');
 }

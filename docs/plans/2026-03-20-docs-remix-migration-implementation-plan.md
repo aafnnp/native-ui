@@ -189,10 +189,7 @@ import assert from 'node:assert/strict';
 import { markdownPathToRouteSegment } from './path-to-route.mjs';
 
 test('guide/getting-started.md -> guide.getting-started', () => {
-  assert.equal(
-    markdownPathToRouteSegment('guide/getting-started.md'),
-    'guide.getting-started',
-  );
+  assert.equal(markdownPathToRouteSegment('guide/getting-started.md'), 'guide.getting-started');
 });
 ```
 
@@ -224,7 +221,7 @@ git commit -m "test(docs): add markdown to route segment mapping"
 - Create: `packages/docs/scripts/generate-docs-routes.mjs`
 - Create: `packages/docs/app/routes/generated/.gitkeep`（若决定提交生成目录占位；或 `.gitignore` 生成物——与设计文档选定一致，**本计划默认：生成物写入 `app/routes/generated/` 并提交**，便于 CI 不依赖生成顺序）
 
-**Step 1: 扫描 `guide/**/*.md` 与根目录 `index.md`**
+**Step 1: 扫描 `guide/**/\*.md`与根目录`index.md`\*\*
 
 **Step 2: 为每个文件写出 `route.tsx` 或 `.mdx` 路由模块**
 
@@ -409,8 +406,8 @@ git commit -m "docs: document Remix docs development workflow"
 
 **Plan complete and saved to `docs/plans/2026-03-20-docs-remix-migration-implementation-plan.md`. Two execution options:**
 
-**1. Subagent-Driven（本会话）** — 每个 Task 派生子代理，任务间人工 review，迭代快  
+**1. Subagent-Driven（本会话）** — 每个 Task 派生子代理，任务间人工 review，迭代快
 
-**2. Parallel Session（新会话）** — 新开会话使用 **executing-plans**，批量执行并设检查点  
+**2. Parallel Session（新会话）** — 新开会话使用 **executing-plans**，批量执行并设检查点
 
 **你选哪一种？**
