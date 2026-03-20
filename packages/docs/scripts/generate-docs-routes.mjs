@@ -45,6 +45,10 @@ function removeGeneratedRoutes() {
 
 function main() {
   removeGeneratedRoutes();
+  if (process.argv.includes('--clean-only')) {
+    console.log('generate-docs-routes: cleaned generated routes only');
+    return;
+  }
   const mds = walkMarkdown(contentDir, contentDir).filter((rel) => rel !== 'index.md');
   for (const rel of mds) {
     const routeId = markdownRelPathToRouteId(rel);

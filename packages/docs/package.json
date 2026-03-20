@@ -18,7 +18,7 @@
     "typecheck": "pnpm run typegen && tsc -b",
     "validate:nav": "node scripts/validate-docs-nav.mjs",
     "test:scripts": "node --test scripts/path-to-route.test.mjs",
-    "clean": "rm -rf build .react-router app/routes/generated"
+    "clean": "node scripts/generate-docs-routes.mjs --clean-only && rm -rf build .react-router"
   },
   "dependencies": {
     "isbot": "^5.1.32",
