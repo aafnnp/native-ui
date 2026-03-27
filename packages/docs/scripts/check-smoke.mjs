@@ -12,6 +12,15 @@ const corePagesRequiredFiles = [
   "src/content/docs/guide/theme.mdx",
   "src/content/docs/guide/migration.mdx",
 ];
+/**
+ * 高风险组件 demo smoke 检查所需文件
+ */
+const riskyDemosRequiredFiles = [
+  "src/demos/registry.ts",
+  "src/demos/components/modal/basic.tsx",
+  "src/demos/components/toast/basic.tsx",
+  "src/demos/components/tabs/basic.tsx",
+];
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -20,19 +29,32 @@ const scope = scopeArg?.includes("=")
   ? scopeArg.split("=")[1]
   : args[args.indexOf("--scope") + 1] ?? "core-pages";
 
-if (scope !== "core-pages") {
+if (!["core-pages", "risky-demos"].includes(scope)) {
   console.error("E_SMOKE_SCOPE_UNSUPPORTED");
   process.exit(1);
 }
 
-const missingFiles = corePagesRequiredFiles.filter((filePath) => {
+const requiredFiles =
+  scope === "risky-demos" ? riskyDemosRequiredFiles : corePagesRequiredFiles;
+
+const missingFiles = requiredFiles.filter((filePath) => {
   const absolutePath = resolve(docsRootDir, filePath);
   return !existsSync(absolutePath);
 });
 
 if (missingFiles.length > 0) {
+  if (scope === "risky-demos") {
+    console.error("E_SMOKE_RISKY_DEMOS_MISSING");
+    process.exit(1);
+  }
+
   console.error("E_SMOKE_CORE_PAGES_MISSING");
   process.exit(1);
+}
+
+if (scope === "risky-demos") {
+  console.log("OK_SMOKE_RISKY_DEMOS");
+  process.exit(0);
 }
 
 console.log("OK_SMOKE_CORE_PAGES");
