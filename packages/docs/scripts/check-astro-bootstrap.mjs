@@ -1,14 +1,16 @@
 import { existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // 检查 Astro 基础文件是否已初始化
 const requiredFiles = [
   "astro.config.mjs",
   "src/pages/index.astro",
 ];
+const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const missingFiles = requiredFiles.filter((filePath) => {
-  const absolutePath = resolve(process.cwd(), filePath);
+  const absolutePath = resolve(docsRootDir, filePath);
   return !existsSync(absolutePath);
 });
 

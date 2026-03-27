@@ -1,3 +1,3 @@
-// 预留 Demo 注册检查，当前为占位实现
-console.log("OK_DEMO_REGISTRY_PLACEHOLDER");
-process.exit(0);
+// check-demo-registry 尚未实现，当前必须显式失败以避免假阳性
+console.error("E_CHECK_NOT_IMPLEMENTED check-demo-registry");
+process.exit(1);

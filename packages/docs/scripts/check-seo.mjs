@@ -1,3 +1,3 @@
-// 预留 SEO 检查，当前为占位实现
-console.log("OK_SEO_PLACEHOLDER");
-process.exit(0);
+// check-seo 尚未实现，当前必须显式失败以避免假阳性
+console.error("E_CHECK_NOT_IMPLEMENTED check-seo");
+process.exit(1);
