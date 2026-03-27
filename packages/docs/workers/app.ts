@@ -1,31 +1,19 @@
-import { createRequestHandler } from 'react-router';
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  interface CloudflareEnvironment extends Env {}
-}
-
-declare module 'react-router' {
-  export interface AppLoadContext {
-    cloudflare: {
-      env: CloudflareEnvironment;
-      ctx: ExecutionContext;
-    };
-  }
-}
-
-const requestHandler = createRequestHandler(
-  () => import('virtual:react-router/server-build'),
-  import.meta.env.MODE,
-);
-
 /**
- * Cloudflare Worker 入口：将请求交给 React Router 处理
+ * Cloudflare Worker 入口：基于 Wrangler ASSETS 直出 Astro 静态产物
  */
+interface DocsAssetsBinding {
+  fetch(request: Request): Promise<Response>;
+}
+
+interface DocsWorkerEnv {
+  ASSETS?: DocsAssetsBinding;
+}
+
 export default {
-  async fetch(request: Request, env: CloudflareEnvironment, ctx: ExecutionContext) {
-    return requestHandler(request, {
-      cloudflare: { env, ctx },
-    });
+  async fetch(request: Request, env: DocsWorkerEnv): Promise<Response> {
+    if (!env.ASSETS) {
+      return new Response("Missing ASSETS binding", { status: 500 });
+    }
+    return env.ASSETS.fetch(request);
   },
-} satisfies ExportedHandler<CloudflareEnvironment>;
+};

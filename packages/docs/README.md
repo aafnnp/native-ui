@@ -1,6 +1,6 @@
 # Kra-UI 文档站
 
-基于 **Astro 5** + **Vite** + **Cloudflare Workers**，部署到 Cloudflare。
+基于 **Astro 5** + **MDX** + **Cloudflare Workers**，部署到 Cloudflare。
 
 ## 本地开发
 
@@ -9,7 +9,7 @@
 pnpm dev:docs
 ```
 
-开发前会自动执行 `generate`，根据 `content/` 下 Markdown 生成 `app/routes` 下的路由模块。
+开发命令直接启动 Astro，本地访问地址由终端输出（默认 `http://localhost:4321`）。
 
 ## 构建
 
@@ -17,18 +17,18 @@ pnpm dev:docs
 pnpm build:docs
 ```
 
-会依次：生成路由 → 校验侧栏链接 → `astro build`。产物在 `dist/`。
+执行 `astro build`，构建产物在 `dist/`。
 
 ## 类型与检查
 
 ```bash
-pnpm --filter kra-ui-docs typecheck   # wrangler types + react-router typegen + tsc
-pnpm --filter kra-ui-docs test:scripts # 路由映射单元测试
+pnpm --filter kra-ui-docs run typecheck
+pnpm --filter kra-ui-docs run check:legacy
+pnpm --filter kra-ui-docs run check:links
+pnpm --filter kra-ui-docs run check:demo-registry
 ```
 
-`worker-configuration.d.ts` 由 `wrangler types` 生成且已加入 `.gitignore`，克隆后首次执行 `typecheck` 或 `typegen` 即可生成。
-
-修改 `wrangler.toml` 后请重新执行 `pnpm --filter kra-ui-docs run typegen`。
+`typecheck` 会执行 `astro sync` + `astro check`，用于验证 MDX/页面与类型约束。
 
 ## 预览（生产构建）
 
@@ -80,12 +80,13 @@ pnpm --filter kra-ui-docs run rollback:prod -- --version-id <VERSION_ID>
 
 ## 内容目录
 
-- 文档源文件：`content/**/*.md`（首页为 `content/index.md`）
-- 导航配置：`app/lib/docs-nav.json`（与 `app/lib/docs-nav.ts` 类型导出配合使用）
+- 文档内容：`src/content/docs/**/*.mdx`
+- 路由壳：`src/pages/**/*.astro`（页面仅 import 对应 MDX，不双写正文）
+- demo 预览：`src/components/demos/*` + `src/demos/*`
 
 ## Cloudflare Pages
 
 构建命令（仓库根）：`pnpm install --frozen-lockfile && pnpm --filter kra-ui-docs build`  
 Node 版本：**20+**
 
-具体输出目录与 Worker 入口以 `build/server/wrangler.json` 为准（由框架生成）。
+Worker 入口在 `workers/app.ts`，用于将请求分发到静态产物（`assets.directory = ./dist`）。

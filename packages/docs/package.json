@@ -36,7 +36,6 @@
     "react-dom": "^18.3.1",
     "react-markdown": "^10.1.0",
     "react-native-web": "^0.21.2",
-    "react-router": "^7.13.1",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
@@ -44,8 +43,6 @@
     "@astrojs/mdx": "^4.3.14",
     "@astrojs/react": "^5.0.2",
     "@cloudflare/vite-plugin": "^1.29.1",
-    "@react-router/dev": "^7.13.1",
-    "@react-router/fs-routes": "^7.13.1",
     "@shikijs/primitive": "^4.0.2",
     "@types/node": "^20.19.0",
     "@types/react": "^18.3.18",
