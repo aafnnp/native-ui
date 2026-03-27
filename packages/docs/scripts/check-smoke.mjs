@@ -18,7 +18,7 @@ const args = process.argv.slice(2);
 const scopeArg = args.find((arg) => arg.startsWith("--scope"));
 const scope = scopeArg?.includes("=")
   ? scopeArg.split("=")[1]
-  : args[args.indexOf("--scope") + 1];
+  : args[args.indexOf("--scope") + 1] ?? "core-pages";
 
 if (scope !== "core-pages") {
   console.error("E_SMOKE_SCOPE_UNSUPPORTED");
