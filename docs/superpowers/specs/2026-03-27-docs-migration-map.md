@@ -10,10 +10,10 @@
 
 | 旧路径 | 新路径 | 页面类型 | 状态 | 验收 |
 | --- | --- | --- | --- | --- |
-| `/` | `/` | 首页 | 未迁移 | 失败 |
-| `/guide/getting-started` | `/guide/getting-started` | 指南 | 未迁移 | 失败 |
-| `/guide/theme` | `/guide/theme` | 指南 | 未迁移 | 失败 |
-| `/guide/migration` | `/guide/migration` | 指南 | 未迁移 | 失败 |
+| `/` | `/` | 首页 | 已迁移 | 通过（Task2：content collections + smoke + links） |
+| `/guide/getting-started` | `/guide/getting-started` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
+| `/guide/theme` | `/guide/theme` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
+| `/guide/migration` | `/guide/migration` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
 | `/guide/components/accordion` | `/guide/components/accordion` | 组件 | 未迁移 | 失败 |
 | `/guide/components/alert` | `/guide/components/alert` | 组件 | 未迁移 | 失败 |
 | `/guide/components/aspect-ratio` | `/guide/components/aspect-ratio` | 组件 | 未迁移 | 失败 |
@@ -56,11 +56,11 @@
 | `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 未迁移 | 失败 |
 | `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
 
-## 统计（初始基线）
+## 统计（Task2 完成后）
 
 - 总条目：47
-- 已迁移：0
-- 未迁移：47
-- 覆盖率：0%
+- 已迁移：4
+- 未迁移：43
+- 覆盖率：8.5%
 
 > 说明：进入实施后，每完成一条迁移即更新状态与验收结果，并同步覆盖率。
