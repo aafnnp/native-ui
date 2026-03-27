@@ -24,7 +24,7 @@
     "dev": "astro dev",
     "build": "pnpm run validate:nav && astro build",
     "preview": "astro preview",
-    "verify:release": "pnpm run check:release && pnpm run typecheck && pnpm run build",
+    "verify:release": "pnpm run typecheck && pnpm run build && pnpm run check:release",
     "deploy:prod": "pnpm run verify:release && pnpm exec wrangler deploy",
     "rollback:prod": "node scripts/rollback-prod.mjs",
     "typegen": "astro sync",

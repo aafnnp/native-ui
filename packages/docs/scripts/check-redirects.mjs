@@ -7,6 +7,26 @@ const migrationMapPath = resolve(
   docsRootDir,
   "../../docs/superpowers/specs/2026-03-27-docs-migration-map.md",
 );
+/**
+ * 可维护的重定向规则来源（最小实现）
+ */
+const redirectRules = {
+  "/": "/",
+  "/guide/getting-started": "/guide/getting-started",
+  "/guide/theme": "/guide/theme",
+  "/guide/migration": "/guide/migration",
+  "/guide/components/accordion": "/guide/components/accordion",
+  "/guide/components/alert": "/guide/components/alert",
+  "/guide/components/avatar": "/guide/components/avatar",
+  "/guide/components/badge": "/guide/components/badge",
+  "/guide/components/button": "/guide/components/button",
+  "/guide/components/checkbox": "/guide/components/checkbox",
+  "/guide/components/grid": "/guide/components/grid",
+  "/guide/components/input": "/guide/components/input",
+  "/guide/components/radio": "/guide/components/radio",
+  "/guide/components/stack": "/guide/components/stack",
+  "/guide/components/textarea": "/guide/components/textarea",
+};
 
 /**
  * 将路由路径转换为 Astro 页面候选路径
@@ -41,12 +61,24 @@ if (routeRows.length === 0) {
 
 let passed = 0;
 const failedRoutes = [];
+const missingRedirectRules = [];
+const redirectTargetMismatch = [];
 
 for (const row of routeRows) {
   const cells = row.split("|").map((cell) => cell.trim());
   const oldRoute = cells[1]?.replace(/^`|`$/g, "");
   const newRoute = cells[2]?.replace(/^`|`$/g, "");
   if (!oldRoute || !newRoute) {
+    continue;
+  }
+
+  const mappedTarget = redirectRules[oldRoute];
+  if (!mappedTarget) {
+    missingRedirectRules.push(oldRoute);
+    continue;
+  }
+  if (mappedTarget !== newRoute) {
+    redirectTargetMismatch.push(`${oldRoute}->${mappedTarget} expected=${newRoute}`);
     continue;
   }
 
@@ -65,7 +97,18 @@ for (const row of routeRows) {
 const total = passed + failedRoutes.length;
 const rate = total === 0 ? 0 : Math.floor((passed / total) * 100);
 
-if (failedRoutes.length > 0 || rate < 99) {
+if (
+  failedRoutes.length > 0 ||
+  missingRedirectRules.length > 0 ||
+  redirectTargetMismatch.length > 0 ||
+  rate < 99
+) {
+  for (const route of missingRedirectRules) {
+    console.error(`E_REDIRECTS_RULE_MISSING ${route}`);
+  }
+  for (const message of redirectTargetMismatch) {
+    console.error(`E_REDIRECTS_RULE_TARGET_MISMATCH ${message}`);
+  }
   for (const route of failedRoutes) {
     console.error(`E_REDIRECTS_TARGET_MISSING ${route}`);
   }
