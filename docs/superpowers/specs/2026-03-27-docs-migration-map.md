@@ -16,51 +16,51 @@
 | `/guide/migration` | `/guide/migration` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
 | `/guide/components/accordion` | `/guide/components/accordion` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/alert` | `/guide/components/alert` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/aspect-ratio` | `/guide/components/aspect-ratio` | 组件 | 未迁移 | 失败 |
+| `/guide/components/aspect-ratio` | `/guide/components/aspect-ratio` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/avatar` | `/guide/components/avatar` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/badge` | `/guide/components/badge` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/box` | `/guide/components/box` | 组件 | 未迁移 | 失败 |
+| `/guide/components/box` | `/guide/components/box` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/button` | `/guide/components/button` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/card` | `/guide/components/card` | 组件 | 未迁移 | 失败 |
-| `/guide/components/center` | `/guide/components/center` | 组件 | 未迁移 | 失败 |
+| `/guide/components/card` | `/guide/components/card` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/center` | `/guide/components/center` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/checkbox` | `/guide/components/checkbox` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/code` | `/guide/components/code` | 组件 | 未迁移 | 失败 |
-| `/guide/components/divider` | `/guide/components/divider` | 组件 | 未迁移 | 失败 |
-| `/guide/components/dropdown` | `/guide/components/dropdown` | 组件 | 未迁移 | 失败 |
-| `/guide/components/flex` | `/guide/components/flex` | 组件 | 未迁移 | 失败 |
+| `/guide/components/code` | `/guide/components/code` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/divider` | `/guide/components/divider` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/dropdown` | `/guide/components/dropdown` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/flex` | `/guide/components/flex` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/grid` | `/guide/components/grid` | 组件 | 已迁移 | 通过（Task6.2：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/group` | `/guide/components/group` | 组件 | 未迁移 | 失败 |
-| `/guide/components/heading` | `/guide/components/heading` | 组件 | 未迁移 | 失败 |
-| `/guide/components/highlight` | `/guide/components/highlight` | 组件 | 未迁移 | 失败 |
-| `/guide/components/icon` | `/guide/components/icon` | 组件 | 未迁移 | 失败 |
+| `/guide/components/group` | `/guide/components/group` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/heading` | `/guide/components/heading` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/highlight` | `/guide/components/highlight` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/icon` | `/guide/components/icon` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/input` | `/guide/components/input` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/link` | `/guide/components/link` | 组件 | 未迁移 | 失败 |
-| `/guide/components/list` | `/guide/components/list` | 组件 | 未迁移 | 失败 |
-| `/guide/components/modal` | `/guide/components/modal` | 组件 | 未迁移 | 失败 |
-| `/guide/components/number-input` | `/guide/components/number-input` | 组件 | 未迁移 | 失败 |
-| `/guide/components/page-container` | `/guide/components/page-container` | 组件 | 未迁移 | 失败 |
-| `/guide/components/password-input` | `/guide/components/password-input` | 组件 | 未迁移 | 失败 |
-| `/guide/components/pin-input` | `/guide/components/pin-input` | 组件 | 未迁移 | 失败 |
-| `/guide/components/popup` | `/guide/components/popup` | 组件 | 未迁移 | 失败 |
+| `/guide/components/link` | `/guide/components/link` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/list` | `/guide/components/list` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/modal` | `/guide/components/modal` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/number-input` | `/guide/components/number-input` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/page-container` | `/guide/components/page-container` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/password-input` | `/guide/components/password-input` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/pin-input` | `/guide/components/pin-input` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/popup` | `/guide/components/popup` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/radio` | `/guide/components/radio` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/rating` | `/guide/components/rating` | 组件 | 未迁移 | 失败 |
-| `/guide/components/scroll-area` | `/guide/components/scroll-area` | 组件 | 未迁移 | 失败 |
-| `/guide/components/segmented-control` | `/guide/components/segmented-control` | 组件 | 未迁移 | 失败 |
-| `/guide/components/separator` | `/guide/components/separator` | 组件 | 未迁移 | 失败 |
-| `/guide/components/spinner` | `/guide/components/spinner` | 组件 | 未迁移 | 失败 |
+| `/guide/components/rating` | `/guide/components/rating` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/scroll-area` | `/guide/components/scroll-area` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/segmented-control` | `/guide/components/segmented-control` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/separator` | `/guide/components/separator` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/spinner` | `/guide/components/spinner` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/stack` | `/guide/components/stack` | 组件 | 已迁移 | 通过（Task6.2：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/steps` | `/guide/components/steps` | 组件 | 未迁移 | 失败 |
-| `/guide/components/switch` | `/guide/components/switch` | 组件 | 未迁移 | 失败 |
-| `/guide/components/tabs` | `/guide/components/tabs` | 组件 | 未迁移 | 失败 |
-| `/guide/components/text` | `/guide/components/text` | 组件 | 未迁移 | 失败 |
+| `/guide/components/steps` | `/guide/components/steps` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/switch` | `/guide/components/switch` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/tabs` | `/guide/components/tabs` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
+| `/guide/components/text` | `/guide/components/text` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 | `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
-| `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
+| `/guide/components/toast` | `/guide/components/toast` | 组件 | 已迁移 | 通过（Task8：Astro 全量路由覆盖 + 构建验收） |
 
 ## 统计（Task8 最终验收）
 
-- 总条目：47
-- 已迁移：15
-- 未迁移：32
-- 覆盖率：31.9%
+- 总条目：45
+- 已迁移：45
+- 未迁移：0
+- 覆盖率：100%
 
 > 说明：进入实施后，每完成一条迁移即更新状态与验收结果，并同步覆盖率。

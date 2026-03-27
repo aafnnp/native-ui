@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -45,6 +45,16 @@ for (const item of legacyPatterns) {
   const source = readFileSync(absolutePath, "utf8");
   if (source.includes(item.token)) {
     errors.push(`E_LEGACY_REFERENCE_FOUND ${item.file} token:${item.token}`);
+  }
+}
+
+const legacyRouteDir = resolve(docsRootDir, "app/routes");
+if (existsSync(legacyRouteDir)) {
+  const legacyGeneratedRoutes = readdirSync(legacyRouteDir).filter(
+    (fileName) => /^guide\\.components\\..+\\.tsx$/.test(fileName),
+  );
+  for (const fileName of legacyGeneratedRoutes) {
+    errors.push(`E_LEGACY_ROUTE_PATTERN_FOUND app/routes/${fileName}`);
   }
 }
 

@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kra-ui.dev/</loc>
-  </url>
+  <url><loc>https://kra-ui.dev/</loc></url>
   <url><loc>https://kra-ui.dev/guide/getting-started</loc></url>
   <url><loc>https://kra-ui.dev/guide/theme</loc></url>
   <url><loc>https://kra-ui.dev/guide/migration</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/accordion</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/alert</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/aspect-ratio</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/avatar</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/badge</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/box</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/button</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/card</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/center</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/checkbox</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/code</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/divider</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/dropdown</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/flex</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/grid</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/group</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/heading</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/highlight</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/icon</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/input</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/link</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/list</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/modal</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/number-input</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/page-container</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/password-input</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/pin-input</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/popup</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/radio</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/rating</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/scroll-area</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/segmented-control</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/separator</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/spinner</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/stack</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/steps</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/switch</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/tabs</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/text</loc></url>
   <url><loc>https://kra-ui.dev/guide/components/textarea</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/toast</loc></url>
 </urlset>

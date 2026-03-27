@@ -17,7 +17,7 @@
     "check:smoke": "node scripts/check-smoke.mjs --scope full",
     "check:smoke:core": "node scripts/check-smoke.mjs --scope core-pages",
     "check:smoke:risky": "node scripts/check-smoke.mjs --scope risky-demos",
-    "check:release": "pnpm run check:smoke && pnpm run check:redirects && pnpm run check:seo",
+    "check:release": "pnpm run check:legacy && pnpm run check:smoke && pnpm run check:redirects && pnpm run check:seo",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
