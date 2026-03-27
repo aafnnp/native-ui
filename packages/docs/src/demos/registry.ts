@@ -22,4 +22,11 @@ export const demoRegistry = {
   },
 };
 
+/**
+ * Demo id 列表（供校验脚本使用）
+ */
+export const demoIds = Object.freeze(
+  Object.keys(demoRegistry) as Array<keyof typeof demoRegistry>,
+);
+
 export type DemoRegistry = typeof demoRegistry;

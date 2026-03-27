@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import ts from "typescript";
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const docsContentDir = resolve(docsRootDir, "src/content/docs");
@@ -37,10 +38,52 @@ function collectMdxFiles(rootDir) {
   return files;
 }
 
+/**
+ * 从 demoRegistry 对象字面量中提取真实 key，避免匹配源码字符串导致误判
+ * @param {string} sourceText
+ * @returns {Set<string>}
+ */
+function collectRegistryKeysFromAst(sourceText) {
+  const sourceFile = ts.createSourceFile(
+    "registry.ts",
+    sourceText,
+    ts.ScriptTarget.ESNext,
+    true,
+    ts.ScriptKind.TS,
+  );
+
+  const ids = new Set();
+
+  /**
+   * @param {import("typescript").Node} node
+   */
+  function walk(node) {
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.name.text === "demoRegistry" &&
+      node.initializer &&
+      ts.isObjectLiteralExpression(node.initializer)
+    ) {
+      for (const prop of node.initializer.properties) {
+        if (!ts.isPropertyAssignment(prop)) {
+          continue;
+        }
+        const key = prop.name;
+        if (ts.isStringLiteral(key) || ts.isNoSubstitutionTemplateLiteral(key)) {
+          ids.add(key.text);
+        }
+      }
+    }
+    ts.forEachChild(node, walk);
+  }
+
+  walk(sourceFile);
+  return ids;
+}
+
 const registrySource = readFileSync(registryFilePath, "utf8");
-const registeredIds = new Set(
-  Array.from(registrySource.matchAll(/"([a-z0-9-]+)"\s*:/g), (match) => match[1]),
-);
+const registeredIds = collectRegistryKeysFromAst(registrySource);
 
 const demoBlockIdPattern = /<DemoBlock[^>]*\sid=(?:"([^"]+)"|'([^']+)')[^>]*\/?>/g;
 const mdxFiles = collectMdxFiles(docsContentDir);
