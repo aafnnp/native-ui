@@ -5,16 +5,24 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const docsRootDir = dirname(fileURLToPath(import.meta.url));
-const uiEntryPath = resolve(docsRootDir, "../ui/src/index.ts");
+const docsKraUIRuntimeEntry = resolve(docsRootDir, "src/demos/kra-ui-runtime.ts");
+const docsSvgShimEntry = resolve(docsRootDir, "src/shims/react-native-svg.tsx");
+const docsReactNativeShimEntry = resolve(docsRootDir, "src/shims/react-native.ts");
 
 export default defineConfig({
   site: "https://kra-ui.dev",
   integrations: [mdx(), react()],
   vite: {
     resolve: {
-      alias: {
-        "kra-ui": uiEntryPath,
-      },
+      alias: [
+        { find: "kra-ui", replacement: docsKraUIRuntimeEntry },
+        { find: "react-native", replacement: docsReactNativeShimEntry },
+        { find: "react-native-svg", replacement: docsSvgShimEntry },
+        {
+          find: /^react-native-reanimated(\/.*)?$/,
+          replacement: "react-native-reanimated/mock",
+        },
+      ],
     },
   },
 });

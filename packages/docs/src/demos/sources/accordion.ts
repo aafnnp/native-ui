@@ -1,7 +1,8 @@
 /**
  * Accordion 示例源码文本
  */
-export const accordionBasicSource = `import { Accordion, NativeUIProvider, Text } from "kra-ui";
+export const accordionBasicSource = `import React from "react";
+import { Accordion, NativeUIProvider, Text } from "kra-ui";
 
 export default function AccordionBasicDemo() {
   return (
