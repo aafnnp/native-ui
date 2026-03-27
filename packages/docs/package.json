@@ -18,14 +18,14 @@
     "check:smoke": "node scripts/check-smoke.mjs",
     "predev": "pnpm run generate",
     "prebuild": "pnpm run generate",
-    "dev": "react-router dev",
-    "build": "pnpm run validate:nav && react-router build",
-    "preview": "pnpm run build && wrangler dev --config build/server/wrangler.json",
-    "typegen": "wrangler types && react-router typegen",
-    "typecheck": "pnpm run typegen && tsc -b",
+    "dev": "npx astro dev",
+    "build": "npx astro build",
+    "preview": "npx astro preview",
+    "typegen": "npx astro sync",
+    "typecheck": "pnpm run typegen && npx astro check",
     "validate:nav": "node scripts/validate-docs-nav.mjs",
     "test:scripts": "node --test scripts/path-to-route.test.mjs",
-    "clean": "node scripts/generate-docs-routes.mjs --clean-only && rm -rf build .react-router"
+    "clean": "node scripts/generate-docs-routes.mjs --clean-only && rm -rf dist .astro"
   },
   "dependencies": {
     "isbot": "^5.1.32",
@@ -36,12 +36,14 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@cloudflare/vite-plugin": "^1.29.1",
     "@react-router/dev": "^7.13.1",
     "@react-router/fs-routes": "^7.13.1",
     "@types/node": "^20.19.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "astro": "^5.5.2",
     "typescript": "~5.3.3",
     "vite": "^6.3.0",
     "vite-tsconfig-paths": "^5.1.4",
