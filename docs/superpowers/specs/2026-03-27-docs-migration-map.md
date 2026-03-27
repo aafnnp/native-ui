@@ -23,7 +23,7 @@
 | `/guide/components/button` | `/guide/components/button` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/card` | `/guide/components/card` | 组件 | 未迁移 | 失败 |
 | `/guide/components/center` | `/guide/components/center` | 组件 | 未迁移 | 失败 |
-| `/guide/components/checkbox` | `/guide/components/checkbox` | 组件 | 未迁移 | 失败 |
+| `/guide/components/checkbox` | `/guide/components/checkbox` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/code` | `/guide/components/code` | 组件 | 未迁移 | 失败 |
 | `/guide/components/divider` | `/guide/components/divider` | 组件 | 未迁移 | 失败 |
 | `/guide/components/dropdown` | `/guide/components/dropdown` | 组件 | 未迁移 | 失败 |
@@ -33,7 +33,7 @@
 | `/guide/components/heading` | `/guide/components/heading` | 组件 | 未迁移 | 失败 |
 | `/guide/components/highlight` | `/guide/components/highlight` | 组件 | 未迁移 | 失败 |
 | `/guide/components/icon` | `/guide/components/icon` | 组件 | 未迁移 | 失败 |
-| `/guide/components/input` | `/guide/components/input` | 组件 | 未迁移 | 失败 |
+| `/guide/components/input` | `/guide/components/input` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/link` | `/guide/components/link` | 组件 | 未迁移 | 失败 |
 | `/guide/components/list` | `/guide/components/list` | 组件 | 未迁移 | 失败 |
 | `/guide/components/modal` | `/guide/components/modal` | 组件 | 未迁移 | 失败 |
@@ -42,7 +42,7 @@
 | `/guide/components/password-input` | `/guide/components/password-input` | 组件 | 未迁移 | 失败 |
 | `/guide/components/pin-input` | `/guide/components/pin-input` | 组件 | 未迁移 | 失败 |
 | `/guide/components/popup` | `/guide/components/popup` | 组件 | 未迁移 | 失败 |
-| `/guide/components/radio` | `/guide/components/radio` | 组件 | 未迁移 | 失败 |
+| `/guide/components/radio` | `/guide/components/radio` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/rating` | `/guide/components/rating` | 组件 | 未迁移 | 失败 |
 | `/guide/components/scroll-area` | `/guide/components/scroll-area` | 组件 | 未迁移 | 失败 |
 | `/guide/components/segmented-control` | `/guide/components/segmented-control` | 组件 | 未迁移 | 失败 |
@@ -53,14 +53,14 @@
 | `/guide/components/switch` | `/guide/components/switch` | 组件 | 未迁移 | 失败 |
 | `/guide/components/tabs` | `/guide/components/tabs` | 组件 | 未迁移 | 失败 |
 | `/guide/components/text` | `/guide/components/text` | 组件 | 未迁移 | 失败 |
-| `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 未迁移 | 失败 |
+| `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
 
-## 统计（Task5 完成后）
+## 统计（Task6.1 完成后）
 
 - 总条目：47
-- 已迁移：9
-- 未迁移：38
-- 覆盖率：19.1%
+- 已迁移：13
+- 未迁移：34
+- 覆盖率：27.7%
 
 > 说明：进入实施后，每完成一条迁移即更新状态与验收结果，并同步覆盖率。

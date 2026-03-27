@@ -3,6 +3,10 @@ import { alertBasicSource } from "./sources/alert";
 import { avatarBasicSource } from "./sources/avatar";
 import { badgeBasicSource } from "./sources/badge";
 import { buttonBasicSource } from "./sources/button";
+import { checkboxBasicSource } from "./sources/checkbox";
+import { inputBasicSource } from "./sources/input";
+import { radioBasicSource } from "./sources/radio";
+import { textareaBasicSource } from "./sources/textarea";
 
 /**
  * Demo 注册表最小实现
@@ -70,6 +74,38 @@ export const demoRegistry = {
     meta: {
       title: "Button 基础示例",
       description: "展示 Button 的最小可运行用法。",
+    },
+  },
+  "input-basic": {
+    load: () => import("./components/input/basic"),
+    source: inputBasicSource,
+    meta: {
+      title: "Input 基础示例",
+      description: "展示 Input 的最小可运行用法。",
+    },
+  },
+  "textarea-basic": {
+    load: () => import("./components/textarea/basic"),
+    source: textareaBasicSource,
+    meta: {
+      title: "Textarea 基础示例",
+      description: "展示 Textarea 的最小可运行用法。",
+    },
+  },
+  "checkbox-basic": {
+    load: () => import("./components/checkbox/basic"),
+    source: checkboxBasicSource,
+    meta: {
+      title: "Checkbox 基础示例",
+      description: "展示 Checkbox 的最小可运行用法。",
+    },
+  },
+  "radio-basic": {
+    load: () => import("./components/radio/basic"),
+    source: radioBasicSource,
+    meta: {
+      title: "Radio 基础示例",
+      description: "展示 Radio 的最小可运行用法。",
     },
   },
 };
