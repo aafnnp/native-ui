@@ -8,6 +8,7 @@ interface DemoRendererProps {
 }
 
 interface DemoErrorBoundaryProps {
+  demoId: string;
   children: React.ReactNode;
 }
 
@@ -30,7 +31,7 @@ class DemoErrorBoundary extends React.Component<
 
   override render() {
     if (this.state.hasError) {
-      return <p>示例渲染失败，请检查组件实现。</p>;
+      return <p>示例渲染失败：{this.props.demoId}，请检查组件实现。</p>;
     }
     return this.props.children;
   }
@@ -72,7 +73,7 @@ export default function DemoRenderer({ demoId }: DemoRendererProps) {
   }, [demoId]);
 
   if (loadError) {
-    return <p>示例加载失败，请确认 demo id 与实现是否匹配。</p>;
+    return <p>示例加载失败：{demoId}，请确认 demo id 与实现是否匹配。</p>;
   }
 
   if (!Component) {
@@ -80,7 +81,7 @@ export default function DemoRenderer({ demoId }: DemoRendererProps) {
   }
 
   return (
-    <DemoErrorBoundary>
+    <DemoErrorBoundary demoId={demoId}>
       <Component />
     </DemoErrorBoundary>
   );

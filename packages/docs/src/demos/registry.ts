@@ -5,20 +5,36 @@ import { accordionBasicSource } from "./sources/accordion";
  */
 export const demoRegistry = {
   "modal-basic": {
-    load: () => import("./components/modal/basic"),
+    load: () => import("./components/fallback/basic"),
     source: "// modal 示例源码待补充",
+    meta: {
+      title: "Modal 基础示例",
+      description: "展示 Modal 的最小可运行用法。",
+    },
   },
   "toast-basic": {
-    load: () => import("./components/toast/basic"),
+    load: () => import("./components/fallback/basic"),
     source: "// toast 示例源码待补充",
+    meta: {
+      title: "Toast 基础示例",
+      description: "展示 Toast 的最小可运行用法。",
+    },
   },
   "tabs-basic": {
-    load: () => import("./components/tabs/basic"),
+    load: () => import("./components/fallback/basic"),
     source: "// tabs 示例源码待补充",
+    meta: {
+      title: "Tabs 基础示例",
+      description: "展示 Tabs 的最小可运行用法。",
+    },
   },
   "accordion-basic": {
     load: () => import("./components/accordion/basic"),
     source: accordionBasicSource,
+    meta: {
+      title: "Accordion 基础示例",
+      description: "展示 Accordion 的最小可运行用法。",
+    },
   },
 };
 

@@ -1,21 +1,18 @@
 import React from "react";
-import { Accordion, NativeUIProvider, Text } from "kra-ui";
 
 /**
- * Accordion 基础示例
+ * Accordion 基础示例（Web 最小可运行版本）
  */
 function AccordionBasicDemo() {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <NativeUIProvider>
-      <Accordion>
-        <Accordion.Item title="第一项">
-          <Text>这是第一项内容。</Text>
-        </Accordion.Item>
-        <Accordion.Item title="第二项">
-          <Text>这是第二项内容。</Text>
-        </Accordion.Item>
-      </Accordion>
-    </NativeUIProvider>
+    <section>
+      <button type="button" onClick={() => setOpen((prev) => !prev)}>
+        {open ? "收起" : "展开"}第一项
+      </button>
+      {open ? <p>这是第一项内容。</p> : null}
+    </section>
   );
 }
 
