@@ -65,5 +65,5 @@ if (brokenLinks.length > 0) {
   process.exit(1);
 }
 
-console.log("OK_LINKS_CORE_PAGES");
+console.log("OK_LINKS");
 process.exit(0);
