@@ -7,7 +7,7 @@ import {
   ModalHeader,
   NativeUIProvider,
   Text,
-} from "../../../../../ui/src";
+} from "kra-ui";
 
 /**
  * Modal 兼容性最小样例

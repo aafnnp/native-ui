@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, NativeUIProvider, toast } from "../../../../../ui/src";
+import { Button, NativeUIProvider, toast } from "kra-ui";
 
 /**
  * Toast 兼容性最小样例

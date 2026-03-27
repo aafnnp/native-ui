@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NativeUIProvider, Tabs, Text } from "../../../../../ui/src";
+import { NativeUIProvider, Tabs, Text } from "kra-ui";
 
 /**
  * Tabs 兼容性最小样例

@@ -26,6 +26,13 @@ const riskyDemosRequiredFiles = [
  */
 const riskyDemoIds = ["modal-basic", "toast-basic", "tabs-basic"];
 
+/**
+ * 生成 registry key 严格匹配正则
+ */
+function createRegistryKeyRegex(demoId) {
+  return new RegExp(`(^|\\n)\\s*["']${demoId}["']\\s*:`, "m");
+}
+
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const scopeArg = args.find((arg) => arg.startsWith("--scope"));
@@ -62,7 +69,7 @@ if (scope === "risky-demos") {
   const registryPath = resolve(docsRootDir, "src/demos/registry.ts");
   const registryContent = readFileSync(registryPath, "utf8");
   const missingRiskyIds = riskyDemoIds.filter(
-    (demoId) => !registryContent.includes(`"${demoId}"`) && !registryContent.includes(`'${demoId}'`),
+    (demoId) => !createRegistryKeyRegex(demoId).test(registryContent),
   );
 
   if (missingRiskyIds.length > 0) {

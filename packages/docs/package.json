@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "isbot": "^5.1.32",
+    "kra-ui": "workspace:^",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^10.1.0",
