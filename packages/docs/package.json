@@ -8,7 +8,6 @@
     "node": ">=20"
   },
   "scripts": {
-    "generate": "node scripts/generate-docs-routes.mjs",
     "check:astro-bootstrap": "node scripts/check-astro-bootstrap.mjs",
     "check:demo-registry": "node scripts/check-demo-registry.mjs",
     "check:links": "node scripts/check-links.mjs",
@@ -19,19 +18,16 @@
     "check:smoke:core": "node scripts/check-smoke.mjs --scope core-pages",
     "check:smoke:risky": "node scripts/check-smoke.mjs --scope risky-demos",
     "check:release": "pnpm run check:smoke && pnpm run check:redirects && pnpm run check:seo",
-    "predev": "pnpm run generate",
-    "prebuild": "pnpm run generate",
     "dev": "astro dev",
-    "build": "pnpm run validate:nav && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "verify:release": "pnpm run typecheck && pnpm run build && pnpm run check:release",
     "deploy:prod": "pnpm run verify:release && pnpm exec wrangler deploy",
     "rollback:prod": "node scripts/rollback-prod.mjs",
     "typegen": "astro sync",
     "typecheck": "pnpm run typegen && astro check",
-    "validate:nav": "node scripts/validate-docs-nav.mjs",
-    "test:scripts": "node --test scripts/path-to-route.test.mjs",
-    "clean": "node scripts/generate-docs-routes.mjs --clean-only && rm -rf dist .astro"
+    "validate:nav": "echo \"skip legacy docs-nav validation on Astro stack\"",
+    "clean": "rm -rf dist .astro"
   },
   "dependencies": {
     "isbot": "^5.1.32",

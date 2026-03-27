@@ -56,7 +56,7 @@
 | `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
 
-## 统计（Task6.2 完成后）
+## 统计（Task8 最终验收）
 
 - 总条目：47
 - 已迁移：15
