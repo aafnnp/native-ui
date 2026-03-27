@@ -52,19 +52,23 @@ function createRegistryLoadPathRegex(demoId, modulePath) {
 }
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const args = process.argv.slice(2);
+const args = process.argv.slice(2).filter((arg) => arg !== "--");
 const scopeArg = args.find((arg) => arg.startsWith("--scope"));
 const scope = scopeArg?.includes("=")
   ? scopeArg.split("=")[1]
   : args[args.indexOf("--scope") + 1] ?? "core-pages";
 
-if (!["core-pages", "risky-demos"].includes(scope)) {
+if (!["core-pages", "risky-demos", "full"].includes(scope)) {
   console.error("E_SMOKE_SCOPE_UNSUPPORTED");
   process.exit(1);
 }
 
 const requiredFiles =
-  scope === "risky-demos" ? riskyDemosRequiredFiles : corePagesRequiredFiles;
+  scope === "full"
+    ? [...corePagesRequiredFiles, ...riskyDemosRequiredFiles]
+    : scope === "risky-demos"
+      ? riskyDemosRequiredFiles
+      : corePagesRequiredFiles;
 
 const missingFiles = requiredFiles.filter((filePath) => {
   const absolutePath = resolve(docsRootDir, filePath);
@@ -83,7 +87,7 @@ if (missingFiles.length > 0) {
   process.exit(1);
 }
 
-if (scope === "risky-demos") {
+if (scope === "risky-demos" || scope === "full") {
   const registryPath = resolve(docsRootDir, "src/demos/registry.ts");
   const registryContent = readFileSync(registryPath, "utf8");
   const missingRiskyIds = riskyDemoIds.filter(
@@ -107,6 +111,11 @@ if (scope === "risky-demos") {
       console.error(`E_SMOKE_RISKY_DEMOS_INVALID_MAPPING ${demoId}`);
     }
     process.exit(1);
+  }
+
+  if (scope === "full") {
+    console.log("OK_SMOKE_FULL");
+    process.exit(0);
   }
 
   console.log("OK_SMOKE_RISKY_DEMOS");

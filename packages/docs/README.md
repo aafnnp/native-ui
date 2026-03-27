@@ -1,6 +1,6 @@
 # Kra-UI 文档站
 
-基于 **React Router 7**（原 Remix 合并栈）+ **Vite** + **Cloudflare Workers**，SSR 部署到 Cloudflare Pages。
+基于 **Astro 5** + **Vite** + **Cloudflare Workers**，部署到 Cloudflare。
 
 ## 本地开发
 
@@ -17,7 +17,7 @@ pnpm dev:docs
 pnpm build:docs
 ```
 
-会依次：生成路由 → 校验侧栏链接 → `react-router build`。产物在 `build/client` 与 `build/server`。
+会依次：生成路由 → 校验侧栏链接 → `astro build`。产物在 `dist/`。
 
 ## 类型与检查
 
@@ -36,7 +36,42 @@ pnpm --filter kra-ui-docs test:scripts # 路由映射单元测试
 pnpm --filter kra-ui-docs preview
 ```
 
-使用 `build/server/wrangler.json` 启动 Wrangler 开发服务器（需先 build）。
+使用 Astro 预览服务启动生产构建（需先 build）。
+
+## 发布门禁（Task7）
+
+```bash
+# 全量 smoke（核心页面 + 高风险 demo）
+pnpm --filter kra-ui-docs run check:smoke
+
+# 迁移路由重定向覆盖率（必须 >= 99）
+pnpm --filter kra-ui-docs run check:redirects
+
+# SEO 基线（canonical / sitemap）
+pnpm --filter kra-ui-docs run check:seo
+
+# 发布前总验收
+pnpm --filter kra-ui-docs run verify:release
+```
+
+输出约定：
+
+- `check:smoke` 成功：`OK_SMOKE_FULL`
+- `check:redirects` 成功：`OK_REDIRECTS rate=XX`
+- `check:seo` 成功：`OK_SEO canonical=100 sitemap=100`
+
+## 部署与回滚
+
+```bash
+# 生产部署（先执行门禁 + typecheck + build）
+pnpm --filter kra-ui-docs run deploy:prod
+
+# 生产回滚（先 dry-run，再正式执行）
+pnpm --filter kra-ui-docs run rollback:prod -- --version-id <VERSION_ID> --dry-run
+pnpm --filter kra-ui-docs run rollback:prod -- --version-id <VERSION_ID>
+```
+
+`VERSION_ID` 可通过 Wrangler 的版本列表命令获取（例如 `pnpm --filter kra-ui-docs exec wrangler versions list`）。
 
 ## 内容目录
 
