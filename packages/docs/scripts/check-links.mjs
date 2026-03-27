@@ -17,7 +17,31 @@ const corePageEntries = [
   { file: "src/content/docs/guide/migration.mdx", route: "/guide/migration" },
 ];
 
-const coreRoutes = new Set(corePageEntries.map((entry) => entry.route));
+const batchAComponentEntries = [
+  {
+    file: "src/content/docs/guide/components/accordion.mdx",
+    route: "/guide/components/accordion",
+  },
+  {
+    file: "src/content/docs/guide/components/alert.mdx",
+    route: "/guide/components/alert",
+  },
+  {
+    file: "src/content/docs/guide/components/avatar.mdx",
+    route: "/guide/components/avatar",
+  },
+  {
+    file: "src/content/docs/guide/components/badge.mdx",
+    route: "/guide/components/badge",
+  },
+  {
+    file: "src/content/docs/guide/components/button.mdx",
+    route: "/guide/components/button",
+  },
+];
+
+const pageEntries = [...corePageEntries, ...batchAComponentEntries];
+const knownRoutes = new Set(pageEntries.map((entry) => entry.route));
 const markdownLinkPattern = /\[[^\]]+\]\(([^)]+)\)/g;
 
 /**
@@ -35,7 +59,7 @@ function normalizeTarget(target) {
 
 const brokenLinks = [];
 
-for (const entry of corePageEntries) {
+for (const entry of pageEntries) {
   const absolutePath = resolve(docsRootDir, entry.file);
   const source = readFileSync(absolutePath, "utf8");
 
@@ -48,7 +72,7 @@ for (const entry of corePageEntries) {
     }
 
     const normalizedTarget = normalizeTarget(rawTarget);
-    if (!coreRoutes.has(normalizedTarget)) {
+    if (!knownRoutes.has(normalizedTarget)) {
       brokenLinks.push({
         from: entry.route,
         to: rawTarget,

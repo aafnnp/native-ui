@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
@@ -6,6 +6,11 @@ import ts from "typescript";
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const docsContentDir = resolve(docsRootDir, "src/content/docs");
 const registryFilePath = resolve(docsRootDir, "src/demos/registry.ts");
+const migrationMapPath = resolve(
+  docsRootDir,
+  "../../docs/superpowers/specs/2026-03-27-docs-migration-map.md",
+);
+const batchAComponentSlugs = ["accordion", "alert", "avatar", "badge", "button"];
 
 /**
  * 递归收集目录下所有 mdx 文件
@@ -105,6 +110,28 @@ if (missingIds.size > 0) {
     console.error(`E_DEMO_ID_UNREGISTERED ${demoId}`);
   }
   process.exit(1);
+}
+
+/**
+ * 校验迁移台账中 Task5 批次A路由状态
+ */
+const migrationMapSource = readFileSync(migrationMapPath, "utf8");
+const migrationMapLines = migrationMapSource.split("\n");
+for (const slug of batchAComponentSlugs) {
+  const route = `/guide/components/${slug}`;
+  const mdxPath = resolve(docsContentDir, `guide/components/${slug}.mdx`);
+  if (!existsSync(mdxPath)) {
+    console.error(`E_MIGRATION_MAP_MISMATCH MISSING_MDX ${route} ${mdxPath}`);
+    process.exit(1);
+  }
+
+  const routeRow = migrationMapLines.find(
+    (line) => line.includes(`| \`${route}\` | \`${route}\` |`) && line.includes("| 组件 |"),
+  );
+  if (!routeRow || !routeRow.includes("| 已迁移 |") || !routeRow.includes("| 通过")) {
+    console.error(`E_MIGRATION_MAP_MISMATCH STATUS_OR_ACCEPTANCE ${route}`);
+    process.exit(1);
+  }
 }
 
 console.log("OK_DEMO_REGISTRY");
