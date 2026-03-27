@@ -37,3 +37,23 @@
   - canonical 必须以 `astro.config.mjs` 的 `site` 为前缀；
   - `dist/sitemap.xml` 必须存在并包含核心路由。
 - 成功输出契约：`OK_SEO canonical=100 sitemap=100`。
+
+## 3) 回滚演练结果记录
+
+- 演练时间：`2026-03-27 16:22:13 +0800`
+- 演练命令：`pnpm --filter kra-ui-docs run rollback:prod -- --dry-run --version-id mock-version-20260327`
+- 关键输出：`OK_ROLLBACK_DRY_RUN version=mock-version-20260327`
+- 退出码：`0`
+- 演练结论：`通过`
+
+### 3.1 演练后复检命令与结果
+
+- 复检命令：`pnpm --filter kra-ui-docs run check:smoke`
+  - 输出摘要：`OK_SMOKE_FULL`
+  - 退出码：`0`
+- 复检命令：`pnpm --filter kra-ui-docs run check:redirects`
+  - 输出摘要：`OK_REDIRECTS rate=100`
+  - 退出码：`0`
+- 复检命令：`pnpm --filter kra-ui-docs run check:seo`
+  - 输出摘要：`OK_SEO canonical=100 sitemap=100`
+  - 退出码：`0`
