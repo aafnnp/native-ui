@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -21,6 +21,10 @@ const riskyDemosRequiredFiles = [
   "src/demos/components/toast/basic.tsx",
   "src/demos/components/tabs/basic.tsx",
 ];
+/**
+ * 高风险 demo 必须注册的 id
+ */
+const riskyDemoIds = ["modal-basic", "toast-basic", "tabs-basic"];
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -44,7 +48,9 @@ const missingFiles = requiredFiles.filter((filePath) => {
 
 if (missingFiles.length > 0) {
   if (scope === "risky-demos") {
-    console.error("E_SMOKE_RISKY_DEMOS_MISSING");
+    for (const filePath of missingFiles) {
+      console.error(`E_SMOKE_RISKY_DEMOS_MISSING file:${filePath}`);
+    }
     process.exit(1);
   }
 
@@ -53,6 +59,19 @@ if (missingFiles.length > 0) {
 }
 
 if (scope === "risky-demos") {
+  const registryPath = resolve(docsRootDir, "src/demos/registry.ts");
+  const registryContent = readFileSync(registryPath, "utf8");
+  const missingRiskyIds = riskyDemoIds.filter(
+    (demoId) => !registryContent.includes(`"${demoId}"`) && !registryContent.includes(`'${demoId}'`),
+  );
+
+  if (missingRiskyIds.length > 0) {
+    for (const demoId of missingRiskyIds) {
+      console.error(`E_SMOKE_RISKY_DEMOS_MISSING registry:${demoId}`);
+    }
+    process.exit(1);
+  }
+
   console.log("OK_SMOKE_RISKY_DEMOS");
   process.exit(0);
 }

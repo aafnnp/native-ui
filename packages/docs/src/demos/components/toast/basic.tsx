@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { Button, NativeUIProvider, toast } from "../../../../../ui/src";
 
 /**
  * Toast 兼容性最小样例
  */
 function ToastBasicDemo() {
-  const [show, setShow] = useState(false);
+  const handleShowToast = () => {
+    toast.info({
+      title: "Toast 最小样例",
+      message: "这是使用 kra-ui Toast 的最小示例。",
+    });
+  };
 
   return (
-    <div>
-      <button type="button" onClick={() => setShow(true)}>
-        显示 Toast
-      </button>
-      {show ? (
-        <div role="status" aria-live="polite">
-          <span>这是 Toast 最小样例消息。</span>
-          <button type="button" onClick={() => setShow(false)}>
-            关闭
-          </button>
-        </div>
-      ) : null}
-    </div>
+    <NativeUIProvider>
+      <Button onPress={handleShowToast}>显示 Toast</Button>
+    </NativeUIProvider>
   );
 }
 

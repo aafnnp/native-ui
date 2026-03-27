@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NativeUIProvider, Tabs, Text } from "../../../../../ui/src";
 
 /**
  * Tabs 兼容性最小样例
@@ -7,29 +8,19 @@ function TabsBasicDemo() {
   const [active, setActive] = useState<"tab-a" | "tab-b">("tab-a");
 
   return (
-    <div>
-      <div role="tablist" aria-label="基础 Tabs 示例">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={active === "tab-a"}
-          onClick={() => setActive("tab-a")}
-        >
-          选项 A
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={active === "tab-b"}
-          onClick={() => setActive("tab-b")}
-        >
-          选项 B
-        </button>
-      </div>
-      <div role="tabpanel">
-        {active === "tab-a" ? "这是选项 A 内容。" : "这是选项 B 内容。"}
-      </div>
-    </div>
+    <NativeUIProvider>
+      <Tabs
+        items={[
+          { key: "tab-a", label: "选项 A" },
+          { key: "tab-b", label: "选项 B" },
+        ]}
+        activeKey={active}
+        onChange={(key) => setActive(key as "tab-a" | "tab-b")}
+      >
+        <Text>这是选项 A 内容。</Text>
+        <Text>这是选项 B 内容。</Text>
+      </Tabs>
+    </NativeUIProvider>
   );
 }
 

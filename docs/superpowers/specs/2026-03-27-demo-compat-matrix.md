@@ -9,9 +9,9 @@
 
 | 组件 | Demo ID | Demo 文件 | 注册表状态 | Smoke 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| Modal | `modal-basic` | `packages/docs/src/demos/components/modal/basic.tsx` | 已注册 | 通过 | 最小开关逻辑 |
-| Toast | `toast-basic` | `packages/docs/src/demos/components/toast/basic.tsx` | 已注册 | 通过 | 最小显示/关闭逻辑 |
-| Tabs | `tabs-basic` | `packages/docs/src/demos/components/tabs/basic.tsx` | 已注册 | 通过 | 最小切换逻辑 |
+| Modal | `modal-basic` | `packages/docs/src/demos/components/modal/basic.tsx` | 已注册 | 通过 | 使用 `kra-ui` 的 `Modal` 组件最小链路 |
+| Toast | `toast-basic` | `packages/docs/src/demos/components/toast/basic.tsx` | 已注册 | 通过 | 使用 `kra-ui` 的 `toast` API 最小链路 |
+| Tabs | `tabs-basic` | `packages/docs/src/demos/components/tabs/basic.tsx` | 已注册 | 通过 | 使用 `kra-ui` 的 `Tabs` 组件最小链路 |
 
 ## 本轮结论
 
