@@ -59,13 +59,44 @@ const batchB1ComponentEntries = [
   },
 ];
 
+const batchB2ComponentEntries = [
+  {
+    file: "src/content/docs/guide/components/grid.mdx",
+    route: "/guide/components/grid",
+  },
+  {
+    file: "src/content/docs/guide/components/stack.mdx",
+    route: "/guide/components/stack",
+  },
+];
+
 const pageEntries = [
   ...corePageEntries,
   ...batchAComponentEntries,
   ...batchB1ComponentEntries,
+  ...batchB2ComponentEntries,
 ];
 const knownRoutes = new Set(pageEntries.map((entry) => entry.route));
 const markdownLinkPattern = /\[[^\]]+\]\(([^)]+)\)/g;
+
+/**
+ * 解析 --file 参数，支持 --file <path> 与 --file=<path>
+ * @param {string[]} argv
+ * @returns {string | null}
+ */
+function parseFileArg(argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const currentArg = argv[index];
+    if (currentArg === "--file") {
+      const nextArg = argv[index + 1];
+      return nextArg ? nextArg.trim() : null;
+    }
+    if (currentArg.startsWith("--file=")) {
+      return currentArg.slice("--file=".length).trim();
+    }
+  }
+  return null;
+}
 
 /**
  * 标准化链接目标，仅保留路径部分
@@ -81,8 +112,12 @@ function normalizeTarget(target) {
 }
 
 const brokenLinks = [];
+const fileArg = parseFileArg(process.argv.slice(2));
+const entriesToCheck = fileArg
+  ? [{ file: fileArg, route: fileArg }]
+  : pageEntries;
 
-for (const entry of pageEntries) {
+for (const entry of entriesToCheck) {
   const absolutePath = resolve(docsRootDir, entry.file);
   const source = readFileSync(absolutePath, "utf8");
 
@@ -105,6 +140,12 @@ for (const entry of pageEntries) {
 }
 
 if (brokenLinks.length > 0) {
+  if (fileArg) {
+    for (const broken of brokenLinks) {
+      console.error(`E_LINKS_INVALID ${broken.to}`);
+    }
+    process.exit(1);
+  }
   console.error("E_LINKS_BROKEN_CORE_PAGES");
   for (const broken of brokenLinks) {
     console.error(`- from=${broken.from} to=${broken.to}`);
