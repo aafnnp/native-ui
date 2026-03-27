@@ -1,0 +1,17 @@
+{
+  "/": "/",
+  "/guide/getting-started": "/guide/getting-started",
+  "/guide/theme": "/guide/theme",
+  "/guide/migration": "/guide/migration",
+  "/guide/components/accordion": "/guide/components/accordion",
+  "/guide/components/alert": "/guide/components/alert",
+  "/guide/components/avatar": "/guide/components/avatar",
+  "/guide/components/badge": "/guide/components/badge",
+  "/guide/components/button": "/guide/components/button",
+  "/guide/components/checkbox": "/guide/components/checkbox",
+  "/guide/components/grid": "/guide/components/grid",
+  "/guide/components/input": "/guide/components/input",
+  "/guide/components/radio": "/guide/components/radio",
+  "/guide/components/stack": "/guide/components/stack",
+  "/guide/components/textarea": "/guide/components/textarea"
+}

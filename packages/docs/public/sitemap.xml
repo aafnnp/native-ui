@@ -3,4 +3,18 @@
   <url>
     <loc>https://kra-ui.dev/</loc>
   </url>
+  <url><loc>https://kra-ui.dev/guide/getting-started</loc></url>
+  <url><loc>https://kra-ui.dev/guide/theme</loc></url>
+  <url><loc>https://kra-ui.dev/guide/migration</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/accordion</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/alert</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/avatar</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/badge</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/button</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/checkbox</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/grid</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/input</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/radio</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/stack</loc></url>
+  <url><loc>https://kra-ui.dev/guide/components/textarea</loc></url>
 </urlset>

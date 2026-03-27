@@ -5,13 +5,12 @@ import { fileURLToPath } from "node:url";
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const astroConfigPath = resolve(docsRootDir, "astro.config.mjs");
+const migrationMapPath = resolve(
+  docsRootDir,
+  "../../docs/superpowers/specs/2026-03-27-docs-migration-map.md",
+);
 const distDir = resolve(docsRootDir, "dist");
 const sitemapPath = resolve(distDir, "sitemap.xml");
-
-/**
- * 核心路由（最小实现）
- */
-const coreRoutes = ["/"];
 
 /**
  * 从 astro.config.mjs 提取站点前缀
@@ -37,16 +36,38 @@ function runBuild() {
 }
 
 /**
+ * 提取台账中“已迁移”路由集合
+ * @param {string} source
+ * @returns {string[]}
+ */
+function collectMigratedRoutes(source) {
+  const routes = [];
+  const lines = source.split("\n");
+  for (const line of lines) {
+    if (!line.startsWith("| `") || !line.includes("| 已迁移 |")) {
+      continue;
+    }
+    const cells = line.split("|").map((cell) => cell.trim());
+    const newRoute = cells[2]?.replace(/^`|`$/g, "");
+    if (newRoute) {
+      routes.push(newRoute);
+    }
+  }
+  return routes;
+}
+
+/**
  * 基于 dist 做 SEO 校验
  * @param {string} sitePrefixValue
+ * @param {string[]} routes
  * @returns {{ canonical: number; sitemap: number }}
  */
-function validateFromDist(sitePrefixValue) {
-  if (!existsSync(distDir)) {
+function validateFromDist(sitePrefixValue, routes) {
+  if (!existsSync(distDir) || !existsSync(sitemapPath) || routes.length === 0) {
     return { canonical: 0, sitemap: 0 };
   }
 
-  const canonicalOk = coreRoutes.every((route) => {
+  const canonicalPassed = routes.filter((route) => {
     const htmlPath =
       route === "/"
         ? resolve(distDir, "index.html")
@@ -63,36 +84,40 @@ function validateFromDist(sitePrefixValue) {
       )}["']\\s*/?>`,
     );
     return canonicalPattern.test(html);
-  });
+  }).length;
 
-  const sitemapOk =
-    existsSync(sitemapPath) &&
-    coreRoutes.every((route) => {
-      const expectedLoc = `<loc>${sitePrefixValue}${route === "/" ? "/" : route}</loc>`;
-      return readFileSync(sitemapPath, "utf8").includes(expectedLoc);
-    });
+  const sitemapXml = readFileSync(sitemapPath, "utf8");
+  const sitemapPassed = routes.filter((route) => {
+    const expectedLoc = `<loc>${sitePrefixValue}${route === "/" ? "/" : route}</loc>`;
+    return sitemapXml.includes(expectedLoc);
+  }).length;
 
   return {
-    canonical: canonicalOk ? 100 : 0,
-    sitemap: sitemapOk ? 100 : 0,
+    canonical: Math.floor((canonicalPassed / routes.length) * 100),
+    sitemap: Math.floor((sitemapPassed / routes.length) * 100),
   };
 }
 
 const astroConfig = readFileSync(astroConfigPath, "utf8");
 const sitePrefix = extractSitePrefix(astroConfig);
+const migratedRoutes = collectMigratedRoutes(readFileSync(migrationMapPath, "utf8"));
 
 if (!sitePrefix) {
   console.error("E_SEO_SITE_PREFIX_MISSING");
   process.exit(1);
 }
+if (migratedRoutes.length === 0) {
+  console.error("E_SEO_NO_MIGRATED_ROUTES");
+  process.exit(1);
+}
 
-let { canonical, sitemap } = validateFromDist(sitePrefix);
+let { canonical, sitemap } = validateFromDist(sitePrefix, migratedRoutes);
 if ((canonical < 100 || sitemap < 100) && !runBuild()) {
   console.error("E_SEO_BUILD_FAILED");
   process.exit(1);
 }
 if (canonical < 100 || sitemap < 100) {
-  ({ canonical, sitemap } = validateFromDist(sitePrefix));
+  ({ canonical, sitemap } = validateFromDist(sitePrefix, migratedRoutes));
 }
 
 if (canonical < 100 || sitemap < 100) {

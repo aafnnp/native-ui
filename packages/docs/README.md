@@ -60,6 +60,11 @@ pnpm --filter kra-ui-docs run verify:release
 - `check:redirects` 成功：`OK_REDIRECTS rate=XX`
 - `check:seo` 成功：`OK_SEO canonical=100 sitemap=100`
 
+重定向规则维护位置：
+
+- `packages/docs/config/redirects.json`（旧路由 -> 新路由）
+- `check:redirects` 会读取该文件并校验映射完整率及 dist 目标页面可用性
+
 ## 部署与回滚
 
 ```bash
