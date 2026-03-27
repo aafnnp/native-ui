@@ -9,6 +9,13 @@
   },
   "scripts": {
     "generate": "node scripts/generate-docs-routes.mjs",
+    "check:astro-bootstrap": "node scripts/check-astro-bootstrap.mjs",
+    "check:demo-registry": "node scripts/check-demo-registry.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:legacy": "node scripts/check-legacy.mjs",
+    "check:redirects": "node scripts/check-redirects.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
+    "check:smoke": "node scripts/check-smoke.mjs",
     "predev": "pnpm run generate",
     "prebuild": "pnpm run generate",
     "dev": "react-router dev",
