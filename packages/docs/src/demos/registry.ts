@@ -1,4 +1,8 @@
 import { accordionBasicSource } from "./sources/accordion";
+import { alertBasicSource } from "./sources/alert";
+import { avatarBasicSource } from "./sources/avatar";
+import { badgeBasicSource } from "./sources/badge";
+import { buttonBasicSource } from "./sources/button";
 
 /**
  * Demo 注册表最小实现
@@ -34,6 +38,38 @@ export const demoRegistry = {
     meta: {
       title: "Accordion 基础示例",
       description: "展示 Accordion 的最小可运行用法。",
+    },
+  },
+  "alert-basic": {
+    load: () => import("./components/alert/basic"),
+    source: alertBasicSource,
+    meta: {
+      title: "Alert 基础示例",
+      description: "展示 Alert 的最小可运行用法。",
+    },
+  },
+  "avatar-basic": {
+    load: () => import("./components/avatar/basic"),
+    source: avatarBasicSource,
+    meta: {
+      title: "Avatar 基础示例",
+      description: "展示 Avatar 的最小可运行用法。",
+    },
+  },
+  "badge-basic": {
+    load: () => import("./components/badge/basic"),
+    source: badgeBasicSource,
+    meta: {
+      title: "Badge 基础示例",
+      description: "展示 Badge 的最小可运行用法。",
+    },
+  },
+  "button-basic": {
+    load: () => import("./components/button/basic"),
+    source: buttonBasicSource,
+    meta: {
+      title: "Button 基础示例",
+      description: "展示 Button 的最小可运行用法。",
     },
   },
 };

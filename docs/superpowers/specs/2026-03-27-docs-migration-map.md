@@ -14,13 +14,13 @@
 | `/guide/getting-started` | `/guide/getting-started` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
 | `/guide/theme` | `/guide/theme` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
 | `/guide/migration` | `/guide/migration` | 指南 | 已迁移 | 通过（Task2：content collections + smoke + links） |
-| `/guide/components/accordion` | `/guide/components/accordion` | 组件 | 未迁移 | 失败 |
-| `/guide/components/alert` | `/guide/components/alert` | 组件 | 未迁移 | 失败 |
+| `/guide/components/accordion` | `/guide/components/accordion` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
+| `/guide/components/alert` | `/guide/components/alert` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/aspect-ratio` | `/guide/components/aspect-ratio` | 组件 | 未迁移 | 失败 |
-| `/guide/components/avatar` | `/guide/components/avatar` | 组件 | 未迁移 | 失败 |
-| `/guide/components/badge` | `/guide/components/badge` | 组件 | 未迁移 | 失败 |
+| `/guide/components/avatar` | `/guide/components/avatar` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
+| `/guide/components/badge` | `/guide/components/badge` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/box` | `/guide/components/box` | 组件 | 未迁移 | 失败 |
-| `/guide/components/button` | `/guide/components/button` | 组件 | 未迁移 | 失败 |
+| `/guide/components/button` | `/guide/components/button` | 组件 | 已迁移 | 通过（Task5：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/card` | `/guide/components/card` | 组件 | 未迁移 | 失败 |
 | `/guide/components/center` | `/guide/components/center` | 组件 | 未迁移 | 失败 |
 | `/guide/components/checkbox` | `/guide/components/checkbox` | 组件 | 未迁移 | 失败 |
@@ -56,11 +56,11 @@
 | `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 未迁移 | 失败 |
 | `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
 
-## 统计（Task2 完成后）
+## 统计（Task5 完成后）
 
 - 总条目：47
-- 已迁移：4
-- 未迁移：43
-- 覆盖率：8.5%
+- 已迁移：9
+- 未迁移：38
+- 覆盖率：19.1%
 
 > 说明：进入实施后，每完成一条迁移即更新状态与验收结果，并同步覆盖率。
