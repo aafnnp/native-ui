@@ -40,7 +40,30 @@ const batchAComponentEntries = [
   },
 ];
 
-const pageEntries = [...corePageEntries, ...batchAComponentEntries];
+const batchB1ComponentEntries = [
+  {
+    file: "src/content/docs/guide/components/input.mdx",
+    route: "/guide/components/input",
+  },
+  {
+    file: "src/content/docs/guide/components/textarea.mdx",
+    route: "/guide/components/textarea",
+  },
+  {
+    file: "src/content/docs/guide/components/checkbox.mdx",
+    route: "/guide/components/checkbox",
+  },
+  {
+    file: "src/content/docs/guide/components/radio.mdx",
+    route: "/guide/components/radio",
+  },
+];
+
+const pageEntries = [
+  ...corePageEntries,
+  ...batchAComponentEntries,
+  ...batchB1ComponentEntries,
+];
 const knownRoutes = new Set(pageEntries.map((entry) => entry.route));
 const markdownLinkPattern = /\[[^\]]+\]\(([^)]+)\)/g;
 
