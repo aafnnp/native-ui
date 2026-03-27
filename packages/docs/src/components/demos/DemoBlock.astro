@@ -1,0 +1,54 @@
+---
+import DemoRenderer from "./DemoRenderer";
+import { demoRegistry } from "../../demos/registry";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props as Props;
+const registryEntry = demoRegistry[id as keyof typeof demoRegistry];
+const sourceCode = registryEntry?.source ?? `// 未找到 demo: ${id}`;
+---
+
+<section class="demo-block">
+  <div class="demo-block__preview">
+    <DemoRenderer client:load demoId={id} />
+  </div>
+  <details class="demo-block__source">
+    <summary>查看源码</summary>
+    <pre><code>{sourceCode}</code></pre>
+  </details>
+</section>
+
+<style>
+  .demo-block {
+    margin: 24px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .demo-block__preview {
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .demo-block__source {
+    padding: 12px 16px;
+  }
+
+  .demo-block__source summary {
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+  }
+
+  .demo-block__source pre {
+    margin-top: 12px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+</style>
