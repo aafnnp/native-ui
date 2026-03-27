@@ -28,7 +28,7 @@
 | `/guide/components/divider` | `/guide/components/divider` | 组件 | 未迁移 | 失败 |
 | `/guide/components/dropdown` | `/guide/components/dropdown` | 组件 | 未迁移 | 失败 |
 | `/guide/components/flex` | `/guide/components/flex` | 组件 | 未迁移 | 失败 |
-| `/guide/components/grid` | `/guide/components/grid` | 组件 | 未迁移 | 失败 |
+| `/guide/components/grid` | `/guide/components/grid` | 组件 | 已迁移 | 通过（Task6.2：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/group` | `/guide/components/group` | 组件 | 未迁移 | 失败 |
 | `/guide/components/heading` | `/guide/components/heading` | 组件 | 未迁移 | 失败 |
 | `/guide/components/highlight` | `/guide/components/highlight` | 组件 | 未迁移 | 失败 |
@@ -48,7 +48,7 @@
 | `/guide/components/segmented-control` | `/guide/components/segmented-control` | 组件 | 未迁移 | 失败 |
 | `/guide/components/separator` | `/guide/components/separator` | 组件 | 未迁移 | 失败 |
 | `/guide/components/spinner` | `/guide/components/spinner` | 组件 | 未迁移 | 失败 |
-| `/guide/components/stack` | `/guide/components/stack` | 组件 | 未迁移 | 失败 |
+| `/guide/components/stack` | `/guide/components/stack` | 组件 | 已迁移 | 通过（Task6.2：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/steps` | `/guide/components/steps` | 组件 | 未迁移 | 失败 |
 | `/guide/components/switch` | `/guide/components/switch` | 组件 | 未迁移 | 失败 |
 | `/guide/components/tabs` | `/guide/components/tabs` | 组件 | 未迁移 | 失败 |
@@ -56,11 +56,11 @@
 | `/guide/components/textarea` | `/guide/components/textarea` | 组件 | 已迁移 | 通过（Task6.1：MDX + demo registry + check/build/typecheck） |
 | `/guide/components/toast` | `/guide/components/toast` | 组件 | 未迁移 | 失败 |
 
-## 统计（Task6.1 完成后）
+## 统计（Task6.2 完成后）
 
 - 总条目：47
-- 已迁移：13
-- 未迁移：34
-- 覆盖率：27.7%
+- 已迁移：15
+- 未迁移：32
+- 覆盖率：31.9%
 
 > 说明：进入实施后，每完成一条迁移即更新状态与验收结果，并同步覆盖率。

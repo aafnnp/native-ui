@@ -4,8 +4,10 @@ import { avatarBasicSource } from "./sources/avatar";
 import { badgeBasicSource } from "./sources/badge";
 import { buttonBasicSource } from "./sources/button";
 import { checkboxBasicSource } from "./sources/checkbox";
+import { gridBasicSource } from "./sources/grid";
 import { inputBasicSource } from "./sources/input";
 import { radioBasicSource } from "./sources/radio";
+import { stackBasicSource } from "./sources/stack";
 import { textareaBasicSource } from "./sources/textarea";
 
 /**
@@ -106,6 +108,22 @@ export const demoRegistry = {
     meta: {
       title: "Radio 基础示例",
       description: "展示 Radio 的最小可运行用法。",
+    },
+  },
+  "grid-basic": {
+    load: () => import("./components/grid/basic"),
+    source: gridBasicSource,
+    meta: {
+      title: "Grid 基础示例",
+      description: "展示 Grid 的最小可运行用法。",
+    },
+  },
+  "stack-basic": {
+    load: () => import("./components/stack/basic"),
+    source: stackBasicSource,
+    meta: {
+      title: "Stack 基础示例",
+      description: "展示 Stack 的最小可运行用法。",
     },
   },
 };
