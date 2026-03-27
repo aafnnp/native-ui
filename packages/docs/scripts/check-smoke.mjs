@@ -25,12 +25,30 @@ const riskyDemosRequiredFiles = [
  * 高风险 demo 必须注册的 id
  */
 const riskyDemoIds = ["modal-basic", "toast-basic", "tabs-basic"];
+/**
+ * 高风险 demo 的注册映射期望值
+ */
+const riskyDemoExpectedLoadPaths = {
+  "modal-basic": "./components/modal/basic",
+  "toast-basic": "./components/toast/basic",
+  "tabs-basic": "./components/tabs/basic",
+};
 
 /**
  * 生成 registry key 严格匹配正则
  */
 function createRegistryKeyRegex(demoId) {
   return new RegExp(`(^|\\n)\\s*["']${demoId}["']\\s*:`, "m");
+}
+
+/**
+ * 生成 registry load 路径精确匹配正则
+ */
+function createRegistryLoadPathRegex(demoId, modulePath) {
+  return new RegExp(
+    `["']${demoId}["']\\s*:\\s*\\{[\\s\\S]*?load\\s*:\\s*\\(\\)\\s*=>\\s*import\\(["']${modulePath}["']\\)`,
+    "m",
+  );
 }
 
 const docsRootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -75,6 +93,18 @@ if (scope === "risky-demos") {
   if (missingRiskyIds.length > 0) {
     for (const demoId of missingRiskyIds) {
       console.error(`E_SMOKE_RISKY_DEMOS_MISSING registry:${demoId}`);
+    }
+    process.exit(1);
+  }
+
+  const invalidMappingIds = riskyDemoIds.filter((demoId) => {
+    const expectedPath = riskyDemoExpectedLoadPaths[demoId];
+    return !createRegistryLoadPathRegex(demoId, expectedPath).test(registryContent);
+  });
+
+  if (invalidMappingIds.length > 0) {
+    for (const demoId of invalidMappingIds) {
+      console.error(`E_SMOKE_RISKY_DEMOS_INVALID_MAPPING ${demoId}`);
     }
     process.exit(1);
   }

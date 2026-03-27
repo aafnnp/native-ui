@@ -5,7 +5,7 @@ import { accordionBasicSource } from "./sources/accordion";
  */
 export const demoRegistry = {
   "modal-basic": {
-    load: () => import("./components/fallback/basic"),
+    load: () => import("./components/modal/basic"),
     source: "// modal 示例源码待补充",
     meta: {
       title: "Modal 基础示例",
@@ -13,7 +13,7 @@ export const demoRegistry = {
     },
   },
   "toast-basic": {
-    load: () => import("./components/fallback/basic"),
+    load: () => import("./components/toast/basic"),
     source: "// toast 示例源码待补充",
     meta: {
       title: "Toast 基础示例",
@@ -21,7 +21,7 @@ export const demoRegistry = {
     },
   },
   "tabs-basic": {
-    load: () => import("./components/fallback/basic"),
+    load: () => import("./components/tabs/basic"),
     source: "// tabs 示例源码待补充",
     meta: {
       title: "Tabs 基础示例",
