@@ -99,6 +99,8 @@ function ToastActionButton({
         onActionPress();
         onClose();
       }}
+      accessibilityRole="button"
+      accessibilityLabel={actionLabel}
       hitSlop={8}
       style={styles.action}
     >
@@ -112,7 +114,7 @@ function ToastActionButton({
 function ToastCloseButton({ closable, onClose }: { closable: boolean; onClose: () => void }) {
   if (!closable) return null;
   return (
-    <Pressable onPress={onClose} hitSlop={8}>
+    <Pressable onPress={onClose} hitSlop={8} accessibilityRole="button" accessibilityLabel="关闭">
       <CloseIcon size={14} color="textSecondary" />
     </Pressable>
   );

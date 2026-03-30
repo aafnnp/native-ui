@@ -11,10 +11,14 @@ const STACK_STEP = 64;
 
 function getItemContainerStyle(placement: ToastPlacement, index: number): StyleProp<ViewStyle> {
   const offset = TOAST_OFFSET + index * STACK_STEP;
-  return placement === 'top' ? {top: offset} : {bottom: offset};
+  return placement === 'top' ? { top: offset } : { bottom: offset };
 }
 
-function renderPlacementToasts(placement: ToastPlacement, items: ToastItem[], onDismiss: (id: string) => void) {
+function renderPlacementToasts(
+  placement: ToastPlacement,
+  items: ToastItem[],
+  onDismiss: (id: string) => void,
+) {
   return items.map((item, index) => (
     <Toast
       key={item.id}
@@ -38,7 +42,7 @@ function renderPlacementToasts(placement: ToastPlacement, items: ToastItem[], on
  * - 根据队列渲染同屏可见的多条 Toast（默认最多 3 条）
  */
 export default function ToastHost() {
-  const {toasts, config, dismiss} = useToast();
+  const { toasts, config, dismiss } = useToast();
 
   const resolved = useMemo(() => resolveToastConfig(config), [config]);
   const topVisible = useMemo(() => getVisibleToasts(toasts, 'top', resolved), [toasts, resolved]);
@@ -47,10 +51,19 @@ export default function ToastHost() {
     [toasts, resolved],
   );
 
+  const topToasts = useMemo(
+    () => renderPlacementToasts('top', topVisible, dismiss),
+    [topVisible, dismiss],
+  );
+  const bottomToasts = useMemo(
+    () => renderPlacementToasts('bottom', bottomVisible, dismiss),
+    [bottomVisible, dismiss],
+  );
+
   return (
     <View pointerEvents="box-none" style={styles.root}>
-      {renderPlacementToasts('top', topVisible, dismiss)}
-      {renderPlacementToasts('bottom', bottomVisible, dismiss)}
+      {topToasts}
+      {bottomToasts}
     </View>
   );
 }
@@ -61,4 +74,3 @@ const styles = StyleSheet.create({
     zIndex: 9999,
   },
 });
-

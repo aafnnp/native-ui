@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useMemo, useState, useRef, useCallback, useEffect } from 'react';
 import {
   Pressable,
   StyleSheet,
@@ -67,6 +67,35 @@ function DropdownMenu({
   onLayout: (e: LayoutChangeEvent) => void;
   onSelect: (key: string) => void;
 }) {
+  const menuItems = useMemo(
+    () =>
+      items.map((item) => (
+        <React.Fragment key={item.key}>
+          {item.divider ? <Box height={1} backgroundColor="border" /> : null}
+          <Pressable
+            onPress={() => !item.disabled && onSelect(item.key)}
+            disabled={item.disabled}
+            accessibilityRole="menuitem"
+            accessibilityState={{ disabled: item.disabled }}
+            style={({ pressed }) => ({
+              paddingVertical: 8,
+              paddingHorizontal: 16,
+              opacity: item.disabled ? 0.4 : 1,
+              backgroundColor: pressed
+                ? // pressed 时用主色“浅背景”反馈；未 pressed 时保持透明
+                  (theme.colors.primaryLight as string)
+                : 'transparent',
+            })}
+          >
+            <Text fontSize={15} color={item.disabled ? 'textMuted' : 'textPrimary'}>
+              {item.label}
+            </Text>
+          </Pressable>
+        </React.Fragment>
+      )),
+    [items, onSelect, theme.colors.primaryLight],
+  );
+
   return (
     <RNModal
       visible={isOpen}
@@ -75,7 +104,12 @@ function DropdownMenu({
       onRequestClose={onClose}
       statusBarTranslucent
     >
-      <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+      <Pressable
+        style={StyleSheet.absoluteFill}
+        onPress={onClose}
+        accessibilityRole="button"
+        accessibilityLabel="关闭菜单"
+      />
 
       <Animated.View
         onLayout={onLayout}
@@ -92,27 +126,7 @@ function DropdownMenu({
           menuAnimatedStyle,
         ]}
       >
-        {items.map((item) => (
-          <React.Fragment key={item.key}>
-            {item.divider ? <Box height={1} backgroundColor="border" /> : null}
-            <Pressable
-              onPress={() => !item.disabled && onSelect(item.key)}
-              disabled={item.disabled}
-              accessibilityRole="menuitem"
-              accessibilityState={{ disabled: item.disabled }}
-              style={({ pressed }) => ({
-                paddingVertical: 8,
-                paddingHorizontal: 16,
-                opacity: item.disabled ? 0.4 : 1,
-                backgroundColor: pressed ? (theme.colors.primaryLight as string) : 'transparent',
-              })}
-            >
-              <Text fontSize={15} color={item.disabled ? 'textMuted' : 'textPrimary'}>
-                {item.label}
-              </Text>
-            </Pressable>
-          </React.Fragment>
-        ))}
+        {menuItems}
       </Animated.View>
     </RNModal>
   );

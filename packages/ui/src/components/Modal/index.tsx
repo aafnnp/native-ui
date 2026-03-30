@@ -97,7 +97,11 @@ function Modal({
         <Pressable
           testID="native-ui-modal-overlay"
           style={overlayStyle}
-          onPress={handleOverlayPress}
+          onPress={closeOnOverlay ? handleOverlayPress : undefined}
+          disabled={!closeOnOverlay}
+          accessibilityRole="button"
+          accessibilityLabel="关闭弹窗"
+          accessibilityState={{ disabled: !closeOnOverlay }}
         >
           <Pressable testID="native-ui-modal-content" style={contentStyle}>
             {children}

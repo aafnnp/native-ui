@@ -140,65 +140,86 @@ function Tabs({
     [theme.colors.primary, indicatorStyle],
   );
 
-  const renderTabBar = () => {
-    const tabItems = items.map((item) => {
-      const isActive = item.key === effectiveKey;
-      const labelColorKey =
-        variant === 'pill' && isActive ? 'textInverse' : isActive ? 'primary' : 'textSecondary';
+  // 缓存 tab bar 中“昂贵”的 map 产物，避免每次 render 都重新创建 Pressable/回调闭包。
+  const tabItems = useMemo(
+    () =>
+      items.map((item) => {
+        const isActive = item.key === effectiveKey;
+        const labelColorKey =
+          variant === 'pill' && isActive ? 'textInverse' : isActive ? 'primary' : 'textSecondary';
 
-      const tabStyle =
-        variant === 'pill'
-          ? {
-              backgroundColor: isActive ? theme.colors.primary : 'transparent',
-              borderRadius: theme.borderRadii.full,
-            }
-          : variant === 'filled'
+        const tabStyle =
+          variant === 'pill'
             ? {
-                backgroundColor: isActive ? theme.colors.primaryLight : 'transparent',
-                borderRadius: theme.borderRadii.m,
+                backgroundColor: isActive ? theme.colors.primary : 'transparent',
+                borderRadius: theme.borderRadii.full,
               }
-            : {};
+            : variant === 'filled'
+              ? {
+                  backgroundColor: isActive ? theme.colors.primaryLight : 'transparent',
+                  borderRadius: theme.borderRadii.m,
+                }
+              : {};
 
-      return (
-        <Pressable
-          key={item.key}
-          onPress={() => handleTabPress(item.key)}
-          onLayout={(e) => handleTabLayout(item.key, e)}
-          testID={`native-ui-tabs-tab-${item.key}`}
-          accessibilityRole="tab"
-          accessibilityState={{ selected: isActive }}
-        >
-          <Box style={[tabPaddingStyle, tabStyle]}>
-            <Text fontSize={s.fontSize} fontWeight={isActive ? '600' : '400'} color={labelColorKey}>
-              {item.label}
-            </Text>
-          </Box>
-        </Pressable>
-      );
-    });
+        return (
+          <Pressable
+            key={item.key}
+            onPress={() => handleTabPress(item.key)}
+            onLayout={(e) => handleTabLayout(item.key, e)}
+            testID={`native-ui-tabs-tab-${item.key}`}
+            accessibilityRole="tab"
+            accessibilityLabel={item.label}
+            accessibilityState={{ selected: isActive }}
+          >
+            <Box style={[tabPaddingStyle, tabStyle]}>
+              <Text
+                fontSize={s.fontSize}
+                fontWeight={isActive ? '600' : '400'}
+                color={labelColorKey}
+              >
+                {item.label}
+              </Text>
+            </Box>
+          </Pressable>
+        );
+      }),
+    [
+      items,
+      effectiveKey,
+      variant,
+      theme.borderRadii.full,
+      theme.borderRadii.m,
+      theme.colors.primary,
+      theme.colors.primaryLight,
+      tabPaddingStyle,
+      s.fontSize,
+      handleTabPress,
+      handleTabLayout,
+    ],
+  );
 
-    if (scrollable) {
-      return (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Box flexDirection="row" position="relative">
-            {tabItems}
-            {variant === 'underline' && renderIndicator('native-ui-tabs-indicator-scrollable')}
-          </Box>
-        </ScrollView>
-      );
-    }
+  const tabBar = scrollable ? (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <Box flexDirection="row" position="relative">
+        {tabItems}
+        {variant === 'underline' && renderIndicator('native-ui-tabs-indicator-scrollable')}
+      </Box>
+    </ScrollView>
+  ) : (
+    <Box flexDirection="row">{tabItems}</Box>
+  );
 
-    return <Box flexDirection="row">{tabItems}</Box>;
-  };
-
-  const activeIndex = items.findIndex((item) => item.key === effectiveKey);
-  const childArray = React.Children.toArray(children);
+  const activeIndex = useMemo(
+    () => items.findIndex((item) => item.key === effectiveKey),
+    [items, effectiveKey],
+  );
+  const childArray = useMemo(() => React.Children.toArray(children), [children]);
   const activeContent = childArray[activeIndex] || null;
 
   return (
     <Box {...rest}>
       <Box borderBottomWidth={variant === 'underline' ? 1 : 0} borderColor="border">
-        {renderTabBar()}
+        {tabBar}
 
         {variant === 'underline' &&
           !scrollable &&

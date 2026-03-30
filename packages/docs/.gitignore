@@ -2,9 +2,8 @@
 /node_modules/
 *.tsbuildinfo
 
-# React Router
-/.react-router/
-/build/
+# Astro
+/dist/
 
 # Cloudflare
 .mf
