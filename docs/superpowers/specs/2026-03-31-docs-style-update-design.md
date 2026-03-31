@@ -56,6 +56,17 @@
   - `description` 存在时输出：`<meta name="description" content={description} />`
 - `<body class="doc-root">`
 - `<main class="doc-main">` 承载正文内容（正文宽度与留白由 `global.css` 控制）
+- `BaseLayout.astro` 中通过 `import "../styles/global.css";`（或等价路径）只注入一次全局样式
+
+页面迁移对照规则（用于实现落地与验收）：
+1. 旧页面的 `<title>` -> `BaseLayout` 的 `title` prop
+2. 旧页面的 `<link rel="canonical" href="...">` -> `canonical` prop（页面没有则可不传）
+3. 旧页面的 `<meta name="description" content="...">` -> `description` prop（页面没有则布局不输出该 meta）
+4. 旧页面里原先重复的 charset/viewport head 元素在迁移后删除（交由 `BaseLayout` 统一生成）
+
+迁移范围说明：
+- 当前 `packages/docs/src/pages/**.astro` 的 head 元素主要围绕 `title` / `canonical` / `description` 展开，因此三项映射足以覆盖本次样式统一的迁移需求。
+- 若未来出现额外的页面级 head 元素，本次可以通过扩展 `BaseLayout` 的“可插槽 head Extras”策略或对单页保留特殊实现来处理（本次不纳入范围）。
 
 ### 2) global.css 的 CSS 变量与暗色实现
 
@@ -77,18 +88,43 @@
 1. `.doc-root`：
    - `background: var(--doc-bg)`
    - `color: var(--doc-fg)`
+   - （建议）`min-height: 100vh`
 2. `.doc-main`：
    - 链接/代码样式限制在 `.doc-main` 作用域下，避免影响其它区域：
      - `a { color: var(--doc-link) }`
      - `code` / `pre` 背景使用 `--doc-code-bg`
 
+变量取值建议（便于实现时形成可验收的“初始效果”，后续可再微调）：
+| 变量 | 浅色（默认） | 深色（dark） |
+| --- | --- | --- |
+| `--doc-bg` | `#ffffff` | `#0b1220` |
+| `--doc-fg` | `#111827` | `#e5e7eb` |
+| `--doc-muted` | `#4b5563` | `#9ca3af` |
+| `--doc-border` | `#e5e7eb` | `#1f2937` |
+| `--doc-card-bg` | `#ffffff` | `#111827` |
+| `--doc-code-bg` | `#f3f4f6` | `#0f172a` |
+| `--doc-link` | `#2563eb` | `#60a5fa` |
+| `--doc-radius` | `12px` | `12px` |
+
 ### 3) 正文排版规则（doc-main 作用域）
 
 在 `.doc-main` 下定义：
-1. `max-width: 960px`，居中布局
-2. `line-height`、标题间距、段落间距、列表间距等基础排版
-3. `a`、`code`、`pre`/`pre code` 样式读取对应的 CSS 变量
-4. `pre` 允许横向滚动，避免长行代码溢出
+1. `max-width: 960px`，居中布局；`padding: 32px 16px`
+2. 基础排版（建议起始值，后续可微调）：
+   - `line-height: 1.7`
+   - `h1`: `font-size: 30px; margin: 0 0 16px; font-weight: 800`
+   - `h2`: `font-size: 24px; margin: 28px 0 12px; font-weight: 800`
+   - `h3`: `font-size: 18px; margin: 20px 0 10px; font-weight: 700`
+   - `p`: `margin: 0 0 12px; color: var(--doc-fg)`
+   - `ul/ol`: `margin: 0 0 12px; padding-left: 1.25em`
+   - `li`: `margin: 0 0 8px`
+   - `hr`: `border: none; border-top: 1px solid var(--doc-border); margin: 24px 0`
+3. 文本与代码：
+   - `a`: `color: var(--doc-link); text-decoration: underline; text-underline-offset: 2px`
+   - 行内 `code`: `background: var(--doc-code-bg); padding: 0.2em 0.45em; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em`
+   - 代码块 `pre`: `background: var(--doc-code-bg); padding: 14px; border-radius: 10px; overflow-x: auto`
+4. 与 `DemoBlock` 的关系：
+   - `DemoBlock` 的卡片/代码块样式仍由它自身局部 `<style>` 决定，但其颜色变量读取自 `global.css`，避免暗色突兀
 
 ### 4) DemoBlock.astro 的变量化
 
@@ -118,7 +154,9 @@
 
 1. 新建 `global.css`：实现 CSS 变量、深浅色覆盖、正文排版规则
 2. 新建 `BaseLayout.astro`：在布局内引入 `global.css`，并统一 `main` 容器结构
-3. 批量将 `packages/docs/src/pages/**.astro` 改为使用 `BaseLayout`
+3. 批量将 `packages/docs/src/pages/**.astro` 改为使用 `BaseLayout`：
+   - 删除旧页面重复的 `<html>/<head>/<body>/<main>` 结构
+   - 保留各自的 MDX 内容，并将旧的 `<title>`/`canonical`/`description` 映射到布局 props
 4. 更新 `DemoBlock.astro`：用 `--doc-*` 变量替换 `#fff/#e5e7eb` 等写死值
 5. 本地验证：运行 `pnpm dev:docs`，检查浅/暗色模式切换效果与代码块溢出行为
 
