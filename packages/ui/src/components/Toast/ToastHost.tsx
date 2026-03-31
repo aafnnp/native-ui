@@ -61,7 +61,7 @@ export default function ToastHost() {
   );
 
   return (
-    <View pointerEvents="box-none" style={styles.root}>
+    <View style={styles.root}>
       {topToasts}
       {bottomToasts}
     </View>
@@ -71,6 +71,7 @@ export default function ToastHost() {
 const styles = StyleSheet.create({
   root: {
     ...StyleSheet.absoluteFillObject,
+    pointerEvents: 'box-none',
     zIndex: 9999,
   },
 });

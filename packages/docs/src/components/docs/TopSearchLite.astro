@@ -1,0 +1,77 @@
+---
+import { searchItems } from "./search-index";
+---
+
+<div class="doc-top-search">
+  <label for="doc-search-input" class="doc-top-search__label">搜索文档</label>
+  <input
+    id="doc-search-input"
+    class="doc-top-search__input"
+    type="search"
+    placeholder="搜索组件名或页面标题..."
+    autocomplete="off"
+  />
+  <ul id="doc-top-search-results" class="doc-top-search__results" hidden></ul>
+</div>
+
+<script define:vars={{ searchItems }}>
+  const inputEl = document.getElementById("doc-search-input");
+  const resultEl = document.getElementById("doc-top-search-results");
+
+  if (inputEl instanceof HTMLInputElement && resultEl) {
+    const safeItems = Array.isArray(searchItems) ? searchItems : [];
+
+    const renderResults = (keyword) => {
+      const normalized = keyword.trim().toLowerCase();
+      if (!normalized) {
+        resultEl.innerHTML = "";
+        resultEl.hidden = true;
+        return;
+      }
+
+      const matched = safeItems.filter((item) => {
+        return (
+          item.title.toLowerCase().includes(normalized) ||
+          item.path.toLowerCase().includes(normalized)
+        );
+      });
+
+      resultEl.hidden = false;
+      if (matched.length === 0) {
+        resultEl.innerHTML = `<li class="doc-top-search__empty">无匹配结果</li>`;
+        return;
+      }
+
+      resultEl.innerHTML = matched
+        .slice(0, 12)
+        .map((item) => {
+          return `
+            <li>
+              <a href="${item.path}">
+                <span>${item.title}</span>
+                <small>${item.group === "guide" ? "Guide" : "Component"}</small>
+              </a>
+            </li>
+          `;
+        })
+        .join("");
+    };
+
+    inputEl.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) {
+        return;
+      }
+      renderResults(target.value);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Node)) {
+        return;
+      }
+      if (!resultEl.contains(event.target) && event.target !== inputEl) {
+        resultEl.hidden = true;
+      }
+    });
+  }
+</script>

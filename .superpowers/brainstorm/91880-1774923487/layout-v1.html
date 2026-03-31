@@ -1,0 +1,122 @@
+<h2>Docs「文档模式」布局方向（对标 Chakra）</h2>
+<p class="subtitle">
+  点击选择一个方向。我们后续会在此基础上细化：导航信息架构、页面模板、Demo 预览区、移动端折叠策略。
+</p>
+
+<div class="section">
+  <div class="options">
+    <div class="option" data-choice="a" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>双栏：左侧导航 + 主内容（最小重构）</h3>
+        <p>优先解决“文档模式/可读性”，不做右侧目录；移动端只需把左侧导航做成抽屉。</p>
+        <div class="mockup">
+          <div class="mockup-header">Wireframe</div>
+          <div class="mockup-body">
+            <div style="display: flex; gap: 12px; align-items: stretch">
+              <div class="mock-sidebar" style="width: 240px">
+                <div class="label">导航</div>
+                <div class="placeholder" style="height: 160px; margin-top: 8px">
+                  Guide / Components 列表
+                </div>
+              </div>
+              <div class="mock-content" style="flex: 1">
+                <div class="label">内容</div>
+                <div class="placeholder" style="height: 44px; margin-top: 8px">H1 标题 + 摘要</div>
+                <div class="placeholder" style="height: 180px; margin-top: 10px">正文（MDX）</div>
+                <div class="placeholder" style="height: 140px; margin-top: 10px">
+                  DemoBlock（预览 + 源码）
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option" data-choice="b" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>三栏：左侧导航 + 主内容 + 右侧目录（最像 Chakra）</h3>
+        <p>阅读体验最佳；右侧目录（本页锚点）随滚动高亮；移动端可折叠/隐藏目录。</p>
+        <div class="mockup">
+          <div class="mockup-header">Wireframe</div>
+          <div class="mockup-body">
+            <div style="display: flex; gap: 12px; align-items: stretch">
+              <div class="mock-sidebar" style="width: 240px">
+                <div class="label">导航</div>
+                <div class="placeholder" style="height: 160px; margin-top: 8px">
+                  Guide / Components
+                </div>
+              </div>
+              <div class="mock-content" style="flex: 1">
+                <div class="label">内容</div>
+                <div class="placeholder" style="height: 44px; margin-top: 8px">H1 + 版本/标签</div>
+                <div class="placeholder" style="height: 180px; margin-top: 10px">正文（MDX）</div>
+                <div class="placeholder" style="height: 140px; margin-top: 10px">DemoBlock</div>
+              </div>
+              <div class="mock-sidebar" style="width: 220px">
+                <div class="label">目录</div>
+                <div class="placeholder" style="height: 160px; margin-top: 8px">On this page</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option" data-choice="c" onclick="toggleSelect(this)">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>内容优先：主内容宽屏 + 顶部次导航（更像博客/指南）</h3>
+        <p>适合“指南类”长文；组件文档通过顶部 Tabs/二级导航切换；侧边栏弱化。</p>
+        <div class="mockup">
+          <div class="mockup-header">Wireframe</div>
+          <div class="mockup-body">
+            <div class="mock-nav">Kra UI | Guide | Components | Theme | Search</div>
+            <div class="placeholder" style="height: 44px; margin-top: 10px">
+              二级导航：Props / Examples / Theming
+            </div>
+            <div class="placeholder" style="height: 220px; margin-top: 10px">主内容（更宽）</div>
+            <div class="placeholder" style="height: 140px; margin-top: 10px">DemoBlock</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>同时想解决的点（多选）</h3>
+  <p class="subtitle">可多选，帮助我决定布局组件需要内置哪些能力。</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="nav-tree" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>左侧导航树（分组 + 当前项高亮）</h3>
+        <p>Guide / Components 分组；组件列表自动生成。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="toc" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>右侧目录（On this page）</h3>
+        <p>自动提取 h2/h3，滚动高亮，点击跳转。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="search" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>顶部搜索（先做最简）</h3>
+        <p>先做“组件名/页面标题”过滤，后续再升级全文索引。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="mobile" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>移动端导航抽屉</h3>
+        <p>汉堡按钮打开目录/导航，保证手机阅读体验。</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,46 +9,164 @@ interface Props {
 const { id } = Astro.props as Props;
 const registryEntry = demoRegistry[id as keyof typeof demoRegistry];
 const sourceCode = registryEntry?.source ?? `// 未找到 demo: ${id}`;
+const sourceLanguage = "tsx";
+const isSourceOpenByDefault = Astro.url.pathname === "/";
 ---
 
 <section class="demo-block">
   <div class="demo-block__preview">
     <DemoRenderer client:load demoId={id} />
   </div>
-  <details class="demo-block__source">
-    <summary>查看源码</summary>
-    <pre><code>{sourceCode}</code></pre>
+  <details class="demo-block__source" open={isSourceOpenByDefault}>
+    <summary class="demo-block__source-summary">查看源码</summary>
+    <div class="demo-block__code-surface">
+      <div class="demo-block__code-header">
+        <span class="demo-block__code-title">源码</span>
+        <span class="demo-block__code-language">{sourceLanguage}</span>
+        <button class="demo-block__copy-button" type="button">复制</button>
+      </div>
+      <pre><code>{sourceCode}</code></pre>
+    </div>
   </details>
 </section>
+
+<script>
+  const copyText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = text;
+    helper.setAttribute("readonly", "true");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    document.execCommand("copy");
+    document.body.removeChild(helper);
+  };
+
+  const blocks = document.querySelectorAll(".demo-block");
+  blocks.forEach((block) => {
+    const copyButton = block.querySelector(".demo-block__copy-button");
+    const codeNode = block.querySelector("pre code");
+    if (!(copyButton instanceof HTMLButtonElement) || !(codeNode instanceof HTMLElement)) {
+      return;
+    }
+    const originLabel = copyButton.textContent ?? "复制";
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await copyText(codeNode.textContent ?? "");
+        copyButton.textContent = "已复制";
+      } catch {
+        copyButton.textContent = "失败";
+      }
+
+      window.setTimeout(() => {
+        copyButton.textContent = originLabel;
+      }, 1200);
+    });
+  });
+</script>
 
 <style>
   .demo-block {
     margin: 24px 0;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border: 1px solid var(--doc-border);
+    border-radius: var(--doc-radius);
     overflow: hidden;
-    background: #fff;
+    background: var(--doc-card-bg);
   }
 
   .demo-block__preview {
     padding: 16px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--doc-border);
   }
 
   .demo-block__source {
-    padding: 12px 16px;
+    padding: 12px 16px 16px;
   }
 
-  .demo-block__source summary {
+  .demo-block__source-summary {
     cursor: pointer;
     user-select: none;
     font-weight: 600;
+    color: var(--doc-fg);
+  }
+
+  .demo-block__code-surface {
+    margin-top: 12px;
+    border: 1px solid var(--doc-code-border);
+    border-radius: var(--doc-radius);
+    background: var(--doc-code-surface);
+    box-shadow: var(--doc-code-shadow);
+    overflow: hidden;
+  }
+
+  .demo-block__code-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--doc-code-border);
+    background: var(--doc-code-header-bg);
+  }
+
+  .demo-block__code-title {
+    color: var(--doc-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .demo-block__code-language {
+    border: 1px solid var(--doc-code-border);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--doc-muted);
+    background: var(--doc-code-surface);
+    text-transform: uppercase;
+  }
+
+  .demo-block__copy-button {
+    margin-left: auto;
+    min-width: 52px;
+    height: 26px;
+    padding: 0 10px;
+    border: 1px solid var(--doc-code-border);
+    border-radius: 8px;
+    background: var(--doc-code-surface);
+    color: var(--doc-fg);
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .demo-block__copy-button:hover {
+    background: var(--doc-code-bg);
   }
 
   .demo-block__source pre {
-    margin-top: 12px;
+    margin: 0;
+    padding: 12px 14px;
     overflow-x: auto;
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: var(--doc-code-font-size);
+    line-height: var(--doc-code-line-height);
+    background: transparent;
+    color: var(--doc-fg);
+  }
+
+  .demo-block__source pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    line-height: inherit;
   }
 </style>

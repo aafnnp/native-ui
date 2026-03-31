@@ -1,0 +1,47 @@
+---
+import { componentSlugs, guideNavItems, toComponentTitle } from "./nav";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props as Props;
+
+/**
+ * 是否命中当前路径
+ */
+function isActive(path: string) {
+  return currentPath === path || currentPath === `${path}/`;
+}
+---
+
+<nav class="doc-sidebar-nav" aria-label="文档导航">
+  <section class="doc-nav-section">
+    <h2>Guide</h2>
+    <ul>
+      {guideNavItems.map((item) => (
+        <li>
+          <a href={item.path} data-active={isActive(item.path)}>
+            {item.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="doc-nav-section">
+    <h2>Components</h2>
+    <ul>
+      {componentSlugs.map((slug) => {
+        const path = `/guide/components/${slug}`;
+        return (
+          <li>
+            <a href={path} data-active={isActive(path)}>
+              {toComponentTitle(slug)}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</nav>

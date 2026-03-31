@@ -1,18 +1,181 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 const siteUrl = "https://kra-ui.dev/";
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href={siteUrl} />
-    <title>Kra UI Docs</title>
-  </head>
-  <body>
-    <main>
-      <h1>Kra UI Docs</h1>
-      <p>Astro 文档站已初始化。</p>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="Kra UI"
+  canonical={siteUrl}
+  description="Kra UI（kra-ui）是基于 @shopify/restyle 的 React Native 组件库。这里是官方文档与组件示例。"
+>
+  <header class="home-hero">
+    <div class="home-hero__badge">React Native · Design System · Restyle</div>
+    <h1 class="home-hero__title">Kra UI</h1>
+    <p class="home-hero__desc">
+      基于 <code>@shopify/restyle</code> 的 React Native 组件库与主题系统。提供开箱即用的基础组件、
+      统一的设计令牌与可扩展的主题能力。
+    </p>
+
+    <div class="home-hero__actions">
+      <a class="home-btn home-btn--primary" href="/guide/getting-started">快速开始</a>
+      <a class="home-btn" href="/guide/components">浏览组件</a>
+      <a class="home-btn" href="/guide/theme">主题系统</a>
+    </div>
+  </header>
+
+  <hr />
+
+  <section class="home-section">
+    <h2>常用入口</h2>
+    <div class="home-grid">
+      <a class="home-card" href="/guide/getting-started">
+        <div class="home-card__title">快速开始</div>
+        <div class="home-card__desc">安装、配置与第一个组件示例。</div>
+      </a>
+
+      <a class="home-card" href="/guide/components">
+        <div class="home-card__title">组件文档</div>
+        <div class="home-card__desc">所有组件列表与用法示例。</div>
+      </a>
+
+      <a class="home-card" href="/guide/theme">
+        <div class="home-card__title">主题系统</div>
+        <div class="home-card__desc">颜色、间距、字体与类型增强。</div>
+      </a>
+
+      <a class="home-card" href="/guide/migration">
+        <div class="home-card__title">迁移指南</div>
+        <div class="home-card__desc">从旧版本升级到当前版本的注意事项。</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2>从组件开始</h2>
+    <p class="home-muted">
+      如果你想快速感受组件风格，建议先从 <a href="/guide/components/button">Button</a> 或
+      <a href="/guide/components/card">Card</a> 开始。
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero {
+    padding: 16px 0 8px;
+  }
+
+  .home-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid var(--doc-border);
+    border-radius: 999px;
+    background: var(--doc-card-bg);
+    color: var(--doc-muted);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .home-hero__title {
+    margin-top: 14px;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .home-hero__desc {
+    margin: 0 0 18px;
+    color: var(--doc-muted);
+    max-width: 64ch;
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--doc-border);
+    background: var(--doc-card-bg);
+    color: var(--doc-fg);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .home-btn:hover {
+    filter: brightness(0.98);
+  }
+
+  .home-btn--primary {
+    background: var(--doc-link);
+    border-color: var(--doc-link);
+    color: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .home-btn--primary {
+      color: #0b1220;
+    }
+
+    .home-btn:hover {
+      filter: brightness(1.05);
+    }
+  }
+
+  .home-section {
+    margin: 24px 0;
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .home-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .home-card {
+    display: block;
+    padding: 14px 14px;
+    border-radius: var(--doc-radius);
+    border: 1px solid var(--doc-border);
+    background: var(--doc-card-bg);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .home-card:hover {
+    filter: brightness(0.98);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .home-card:hover {
+      filter: brightness(1.05);
+    }
+  }
+
+  .home-card__title {
+    font-weight: 800;
+    margin: 0 0 4px;
+  }
+
+  .home-card__desc {
+    color: var(--doc-muted);
+    margin: 0;
+  }
+
+  .home-muted {
+    color: var(--doc-muted);
+  }
+</style>

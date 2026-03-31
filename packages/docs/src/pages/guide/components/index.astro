@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const componentSlugs = [
+  "accordion",
+  "alert",
+  "aspect-ratio",
+  "avatar",
+  "badge",
+  "box",
+  "button",
+  "card",
+  "center",
+  "checkbox",
+  "code",
+  "divider",
+  "dropdown",
+  "flex",
+  "grid",
+  "group",
+  "heading",
+  "highlight",
+  "icon",
+  "input",
+  "list",
+  "link",
+  "modal",
+  "number-input",
+  "page-container",
+  "password-input",
+  "pin-input",
+  "popup",
+  "radio",
+  "rating",
+  "scroll-area",
+  "segmented-control",
+  "separator",
+  "spinner",
+  "stack",
+  "steps",
+  "switch",
+  "tabs",
+  "text",
+  "textarea",
+  "toast",
+];
+
+function toLabel(slug: string) {
+  const words = slug.split("-");
+  const titleWords = words.map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w));
+  return `${titleWords.join(" ")} 组件`;
+}
+---
+<BaseLayout title="组件" canonical="https://kra-ui.dev/guide/components">
+  <h1>组件文档</h1>
+  <p>选择一个组件查看对应文档。</p>
+
+  <ul>
+    {componentSlugs.map((slug) => (
+      <li>
+        <a href={`/guide/components/${slug}`}>{toLabel(slug)}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+

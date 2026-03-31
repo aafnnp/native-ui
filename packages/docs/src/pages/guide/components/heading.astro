@@ -1,18 +1,12 @@
 ---
 import HeadingDoc from "../../../content/docs/guide/components/heading.mdx";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href="https://kra-ui.dev/guide/components/heading" />
-    <title>Heading 组件</title>
-    <meta name="description" content="标题组件，支持 h1-h6 六个级别，用于页面标题层级展示。" />
-  </head>
-  <body>
-    <main>
-      <HeadingDoc />
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="Heading 组件"
+  canonical="https://kra-ui.dev/guide/components/heading"
+  description="标题组件，支持 h1-h6 六个级别，用于页面标题层级展示。"
+>
+  <HeadingDoc />
+</BaseLayout>

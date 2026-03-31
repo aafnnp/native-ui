@@ -1,18 +1,12 @@
 ---
 import ListDoc from "../../../content/docs/guide/components/list.mdx";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href="https://kra-ui.dev/guide/components/list" />
-    <title>List 组件</title>
-    <meta name="description" content="列表组件，支持有序列表（数字）和无序列表（圆点）。" />
-  </head>
-  <body>
-    <main>
-      <ListDoc />
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="List 组件"
+  canonical="https://kra-ui.dev/guide/components/list"
+  description="列表组件，支持有序列表（数字）和无序列表（圆点）。"
+>
+  <ListDoc />
+</BaseLayout>

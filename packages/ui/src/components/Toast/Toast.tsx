@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import { StyleSheet, Pressable, useWindowDimensions } from 'react-native';
+import { Platform, StyleSheet, Pressable, useWindowDimensions } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -226,17 +226,23 @@ function ToastBase({
         width: screenWidth - 32,
         backgroundColor: theme.colors[backgroundColorKey] as string,
         borderLeftColor: theme.colors[accentColorKey] as string,
-        shadowColor: theme.colors.textPrimary as string,
+        ...(Platform.OS === 'web'
+          ? {
+              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.12)',
+            }
+          : {
+              shadowColor: theme.colors.textPrimary as string,
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.12,
+              shadowRadius: 12,
+            }),
       },
     ],
     [accentColorKey, backgroundColorKey, screenWidth, theme.colors],
   );
 
   return (
-    <Animated.View
-      style={[styles.container, placementStyle, animatedStyle, containerStyle]}
-      pointerEvents="box-none"
-    >
+    <Animated.View style={[styles.container, placementStyle, animatedStyle, containerStyle]}>
       <Pressable
         onPress={closable ? handleClose : undefined}
         testID="native-ui-toast"
@@ -245,7 +251,7 @@ function ToastBase({
         style={toastStyle}
       >
         <StatusIcon size={18} color={accentColorKey} />
-        <Pressable style={styles.content} pointerEvents="none">
+        <Pressable style={styles.content}>
           <ToastTitle title={title} textColorKey={textColorKey} />
           <Text style={styles.message} numberOfLines={title ? 1 : 2} color={textColorKey}>
             {message}
@@ -277,6 +283,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     left: 16,
+    pointerEvents: 'box-none',
     position: 'absolute',
     right: 16,
     zIndex: 9999,
@@ -284,6 +291,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginLeft: 10,
+    pointerEvents: 'none',
   },
   message: {
     fontSize: 15,
@@ -301,9 +309,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
   },
   top: {
     top: TOAST_OFFSET,

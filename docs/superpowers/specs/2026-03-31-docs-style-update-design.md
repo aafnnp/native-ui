@@ -5,12 +5,14 @@
 当前 `packages/docs` 的页面与示例区域样式主要依赖各页面重复的最小 HTML 结构以及组件示例区 `DemoBlock.astro` 内部的局部 `<style>`。
 
 这会带来两个问题：
+
 1. 文档的“正文排版”和“示例卡片外观”难以统一（缺少统一入口）
 2. 暗色模式下示例卡片/代码块边框与背景若仍写死浅色，将出现明显观感不一致
 
 ## 目标
 
 本次修改聚焦在 `packages/docs`：
+
 1. 全局统一文档正文的基础排版（标题层级、段落间距、链接样式、代码/代码块观感）
 2. 统一示例卡片 `DemoBlock.astro` 的外观（卡片背景、边框、代码区与展开按钮区域）
 3. 暗色/浅色模式跟随系统 `prefers-color-scheme` 自动切换
@@ -31,6 +33,7 @@
 ## 方案概述（推荐方案）
 
 采用“布局 + 全局样式 + 组件示例变量化”的组合：
+
 1. 新增 `packages/docs/src/styles/global.css`
 2. 新增 `packages/docs/src/layouts/BaseLayout.astro`：只在布局里引入 `global.css`，并提供 `main` 的容器与排版 class
 3. 将 `packages/docs/src/pages/**.astro` 统一改为使用 `BaseLayout`（减少每个页面重复的 `<html>/<head>/<body>/<main>`）
@@ -41,12 +44,14 @@
 ### 1) BaseLayout 的接口
 
 `BaseLayout.astro` 需要接收：
+
 1. `title`：页面标题
 2. `canonical`：规范链接（可选）
 3. `description`：SEO 描述（可选）
 4. 页面内容：通过 Astro 的 `<slot />` 注入（即页面在布局内渲染自己的 MDX 内容）
 
 布局输出：
+
 - `<html lang="zh-CN">` 固定语言
 - `<head>` 最小清单：
   - `<meta charset="utf-8" />`
@@ -59,18 +64,21 @@
 - `BaseLayout.astro` 中通过 `import "../styles/global.css";`（或等价路径）只注入一次全局样式
 
 页面迁移对照规则（用于实现落地与验收）：
+
 1. 旧页面的 `<title>` -> `BaseLayout` 的 `title` prop
 2. 旧页面的 `<link rel="canonical" href="...">` -> `canonical` prop（页面没有则可不传）
 3. 旧页面的 `<meta name="description" content="...">` -> `description` prop（页面没有则布局不输出该 meta）
 4. 旧页面里原先重复的 charset/viewport head 元素在迁移后删除（交由 `BaseLayout` 统一生成）
 
 迁移范围说明：
+
 - 当前 `packages/docs/src/pages/**.astro` 的 head 元素主要围绕 `title` / `canonical` / `description` 展开，因此三项映射足以覆盖本次样式统一的迁移需求。
 - 若未来出现额外的页面级 head 元素，本次可以通过扩展 `BaseLayout` 的“可插槽 head Extras”策略或对单页保留特殊实现来处理（本次不纳入范围）。
 
 ### 2) global.css 的 CSS 变量与暗色实现
 
 新增文档语义变量（建议命名以 `--doc-*` 开头）：
+
 - `--doc-bg`：页面背景
 - `--doc-fg`：正文文字颜色
 - `--doc-muted`：次级文字（段落说明/注释）
@@ -81,10 +89,12 @@
 - `--doc-radius`：统一圆角
 
 实现：
+
 - 浅色：在 `:root` 定义默认变量值
 - 深色：通过 `@media (prefers-color-scheme: dark)` 覆盖上述变量值
 
 落点（关键选择器最小定义）：
+
 1. `.doc-root`：
    - `background: var(--doc-bg)`
    - `color: var(--doc-fg)`
@@ -109,6 +119,7 @@
 ### 3) 正文排版规则（doc-main 作用域）
 
 在 `.doc-main` 下定义：
+
 1. `max-width: 960px`，居中布局；`padding: 32px 16px`
 2. 基础排版（建议起始值，后续可微调）：
    - `line-height: 1.7`
@@ -129,11 +140,13 @@
 ### 4) DemoBlock.astro 的变量化
 
 保持 `DemoBlock.astro` 结构与局部 CSS 组织方式不大幅改变，只替换颜色来源：
+
 1. `.demo-block` 背景、边框、圆角与溢出裁剪改用文档变量
 2. `.demo-block__preview` 与 `.demo-block__source` 的边框/背景改用文档变量
 3. `.demo-block__source pre` 的 `background`、文字颜色、字体大小与行高读取文档变量（必要时可继续保留原有尺寸值）
 
 硬编码色到变量的映射（用于实现时减少选择偏差）：
+
 - `#e5e7eb`（边框、分隔线） -> `var(--doc-border)`
 - `#fff`（卡片/预览区域背景） -> `var(--doc-card-bg)`
 - 链接/默认文字颜色未在 `DemoBlock` 中显式设置时，依赖 `.doc-root` 的 `color: var(--doc-fg)` 即可
@@ -163,10 +176,11 @@
 ## 验证与测试
 
 手动验证（优先）：
+
 1. 浏览器里将系统颜色模式切换为浅色/深色（或通过开发者工具模拟 `prefers-color-scheme`）
 2. 检查 `main` 的宽度是否为约 `960px`，以及页面留白是否符合“宽松现代”
 3. 展开 `DemoBlock` 的“查看源码”区域，确认 `pre` 的背景、边框与文字颜色在深色下仍清晰可读
 
 自动校验（如可用）：
-1. 运行 `pnpm` docs 侧已有的 `check:smoke`（若不受限于样式改动）
 
+1. 运行 `pnpm` docs 侧已有的 `check:smoke`（若不受限于样式改动）

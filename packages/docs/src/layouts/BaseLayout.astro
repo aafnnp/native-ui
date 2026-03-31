@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+import SidebarNav from "../components/docs/SidebarNav.astro";
+import RightToc from "../components/docs/RightToc.astro";
+import TopSearchLite from "../components/docs/TopSearchLite.astro";
+
+export interface Props {
+  title: string;
+  canonical?: string;
+  description?: string;
+}
+
+const { title, canonical, description } = Astro.props as Props;
+const currentPath = Astro.url.pathname;
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {canonical ? <link rel="canonical" href={canonical} /> : null}
+    {description ? <meta name="description" content={description} /> : null}
+  </head>
+
+  <body class="doc-root">
+    <header class="doc-topbar">
+      <a class="doc-topbar__brand" href="/">Kra UI Docs</a>
+      <button class="doc-topbar__menu" id="doc-menu-toggle" type="button" aria-expanded="false">
+        菜单
+      </button>
+      <TopSearchLite />
+    </header>
+
+    <div class="doc-shell">
+      <aside class="doc-sidebar" id="doc-sidebar">
+        <SidebarNav currentPath={currentPath} />
+      </aside>
+
+      <main class="doc-main">
+        <article id="doc-content">
+          <slot />
+        </article>
+      </main>
+
+      <aside class="doc-right">
+        <RightToc />
+      </aside>
+    </div>
+
+    <script>
+      const toggleButton = document.getElementById("doc-menu-toggle");
+      const sidebar = document.getElementById("doc-sidebar");
+
+      if (toggleButton && sidebar) {
+        toggleButton.addEventListener("click", () => {
+          const expanded = toggleButton.getAttribute("aria-expanded") === "true";
+          toggleButton.setAttribute("aria-expanded", expanded ? "false" : "true");
+          sidebar.setAttribute("data-open", expanded ? "false" : "true");
+        });
+      }
+    </script>
+  </body>
+</html>
+

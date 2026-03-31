@@ -1,0 +1,57 @@
+<aside class="doc-right-toc" aria-label="本页目录">
+  <div class="doc-right-toc__title">On this page</div>
+  <ul id="doc-right-toc-list" class="doc-right-toc__list">
+    <li class="doc-right-toc__empty">当前页面暂无目录</li>
+  </ul>
+</aside>
+
+<script>
+  const tocList = document.getElementById("doc-right-toc-list");
+  const contentRoot = document.getElementById("doc-content");
+
+  if (tocList && contentRoot) {
+    const headings = Array.from(
+      contentRoot.querySelectorAll("h2[id], h3[id]"),
+    ) as Array<HTMLHeadingElement>;
+
+    if (headings.length > 0) {
+      tocList.innerHTML = "";
+
+      headings.forEach((heading) => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#${heading.id}`;
+        link.textContent = heading.textContent ?? heading.id;
+        link.dataset.level = heading.tagName.toLowerCase();
+        li.appendChild(link);
+        tocList.appendChild(li);
+      });
+
+      const links = Array.from(
+        tocList.querySelectorAll("a"),
+      ) as Array<HTMLAnchorElement>;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const id = (entry.target as HTMLElement).id;
+            const matchedLink = links.find((link) => link.hash === `#${id}`);
+            if (!matchedLink) {
+              return;
+            }
+            if (entry.isIntersecting) {
+              links.forEach((link) => link.removeAttribute("data-active"));
+              matchedLink.setAttribute("data-active", "true");
+            }
+          });
+        },
+        {
+          rootMargin: "0px 0px -70% 0px",
+          threshold: 0.1,
+        },
+      );
+
+      headings.forEach((heading) => observer.observe(heading));
+    }
+  }
+</script>
