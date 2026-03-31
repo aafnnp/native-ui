@@ -44,10 +44,16 @@
 1. `title`：页面标题
 2. `canonical`：规范链接（可选）
 3. `description`：SEO 描述（可选）
-4. `children`：页面内容（通常为导入的 MDX 组件）
+4. 页面内容：通过 Astro 的 `<slot />` 注入（即页面在布局内渲染自己的 MDX 内容）
 
 布局输出：
 - `<html lang="zh-CN">` 固定语言
+- `<head>` 最小清单：
+  - `<meta charset="utf-8" />`
+  - `<meta name="viewport" content="width=device-width, initial-scale=1" />`
+  - `<title>{title}</title>`
+  - `canonical` 存在时输出：`<link rel="canonical" href={canonical} />`
+  - `description` 存在时输出：`<meta name="description" content={description} />`
 - `<body class="doc-root">`
 - `<main class="doc-main">` 承载正文内容（正文宽度与留白由 `global.css` 控制）
 
@@ -67,6 +73,15 @@
 - 浅色：在 `:root` 定义默认变量值
 - 深色：通过 `@media (prefers-color-scheme: dark)` 覆盖上述变量值
 
+落点（关键选择器最小定义）：
+1. `.doc-root`：
+   - `background: var(--doc-bg)`
+   - `color: var(--doc-fg)`
+2. `.doc-main`：
+   - 链接/代码样式限制在 `.doc-main` 作用域下，避免影响其它区域：
+     - `a { color: var(--doc-link) }`
+     - `code` / `pre` 背景使用 `--doc-code-bg`
+
 ### 3) 正文排版规则（doc-main 作用域）
 
 在 `.doc-main` 下定义：
@@ -81,6 +96,12 @@
 1. `.demo-block` 背景、边框、圆角与溢出裁剪改用文档变量
 2. `.demo-block__preview` 与 `.demo-block__source` 的边框/背景改用文档变量
 3. `.demo-block__source pre` 的 `background`、文字颜色、字体大小与行高读取文档变量（必要时可继续保留原有尺寸值）
+
+硬编码色到变量的映射（用于实现时减少选择偏差）：
+- `#e5e7eb`（边框、分隔线） -> `var(--doc-border)`
+- `#fff`（卡片/预览区域背景） -> `var(--doc-card-bg)`
+- 链接/默认文字颜色未在 `DemoBlock` 中显式设置时，依赖 `.doc-root` 的 `color: var(--doc-fg)` 即可
+- 代码块背景（若 DemoBlock 后续扩展为代码区背景） -> `var(--doc-code-bg)`
 
 目标是：暗色模式下卡片与代码区域观感一致，不出现“白底突兀”的问题。
 
